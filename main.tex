@@ -1,0 +1,79 @@
+\documentclass[12pt]{scrreprt}
+
+% template inspired from https://www.overleaf.com/learn/latex/How_to_Write_a_Thesis_in_LaTeX_(Part_1):_Basic_Structure
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+
+% for layout
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm,bindingoffset=6mm]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy} % adding header to pages
+\newsavebox{\largestimage} % for the title_page
+
+% for figures
+\usepackage{caption}
+\usepackage{subcaption}
+
+% for references
+% \usepackage{biblatex}
+\usepackage{biblatex}
+\addbibresource{references.bib}
+
+\graphicspath{ {images/} }
+
+% for \thetitle \theauthor \thedate
+\usepackage{titling}
+
+% document properties
+\title{Title}
+\subtitle{Upgrade Report}
+\author{Martino Mensio}
+\date{June 2020}
+
+\begin{document}
+
+\input{title_page}
+
+\input{chapters/00_abstract}
+
+% \chapter*{Dedication}
+% To mum and dad
+
+% \chapter*{Declaration}
+% I declare that..
+
+% \chapter*{Acknowledgements}
+% I want to thank...
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+
+\input{chapters/01_introduction}
+
+
+\input{chapters/02_chapter}
+
+
+\input{chapters/03_chapter}
+
+
+\input{chapters/04_chapter}
+
+
+\input{chapters/05_chapter}
+
+
+\input{chapters/conclusion}
+
+
+\printbibliography[heading=bibintoc]
+% \bibliography{bibliography}
+
+\appendix
+
+\input{chapters/appendix}
+
+\end{document}

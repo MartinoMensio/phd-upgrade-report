@@ -1,0 +1,126 @@
+\chapter{Research Proposal}
+\label{chap:proposal}
+
+feasible
+appropriate:  likely to deliver the evidence needed to answer the question
+rigorous
+likely to deliver valid, reliable, (generalisable?) results
+ethical
+justified
+
+
+\section{Justification}
+
+\section{Proposed method}
+
+
+In this section, we propose a description of our comparison framework.
+We plan to use methods coming from both the research areas identified (document linking and linguistic signals) as a starting point.
+
+\subsection{Processing Pipeline}
+In order to do so, we propose the following processing pipeline:
+% The processing pipeline we propose for this purpose is made of multiple steps:
+\begin{itemize}
+    \item \textbf{preprocessing}: documents are retrieved, cleaned up and fragmented into paragraphs and sentences;
+    \item \textbf{narrative features} are attached to each document, paragraph and sentence belonging to three main types:
+    \emph{structural role} using and highlighting the linguistic devices provided by~\cite{zahid2019towards};
+    \emph{framing features} are extracted (framing and reasoning devices) finding some linguistic representatives from~\cite{gamson1989media,fillmore2006frame};
+    \emph{subjectivity} is computed, and strong word choices are highlighted~\cite{liu2010sentiment};
+    \item \textbf{linking}: \emph{similar articles} are found by using document-level similarity measures: in this way it would be possible to find groups of documents that describe the same events; \emph{similar sentences and paragraphs} are found by sentence-level similarity measures, inside each group of documents: corroborated and omitted sentences are identified~\cite{bountouridis2018explaining}.
+\end{itemize}
+% We start with an example of analysis together with the processing pipeline, % that enables this and 
+% then we introduce some cross-article signals that highlight the difference in the narratives used.
+% First we describe how we think is more reasonable to process the documents (similarity, cliques, hierarchical topic/stories).
+% Then we describe which are the  (baseline)(with list).
+
+%\subsection{Example}
+
+% \vspace{-15pt}
+% \begin{savenotes}
+\begin{figure}[!b]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1\linewidth]{figures/sketches-example_bigger.pdf}}
+    % \vspace{-20pt}
+    \caption{An example of analysis between two news articles that both talk about the risk of coronavirus spread in the UK. The first one (from \href{https://www.thesun.co.uk/news/10822050/coronavirus-uk-nhs-staff-china/}{The Sun}) emphasises the risks from the virus, while the second article (from \href{https://www.bbc.co.uk/news/uk-51221915}{BBC}) is more focused on presenting the UK as ready to face the problem.
+    Each paragraph is characterised with framing, subjectivity and structural signals, and the links between the articles represent the most similar pairs of sentences.}
+    % \vspace{-0.3cm}
+    \label{fig:comparison}
+    % \vspace{-0.3cm}
+\end{figure}
+% \end{savenotes}
+\begin{comment}
+    \begin{figure}[!h]
+        \centering
+        \includegraphics[width=1\linewidth]{figures/sketches-pipeline.pdf}
+        \caption{The processing pipeline.}
+        \label{fig:pipeline}
+    \end{figure}
+\end{comment}
+
+%To highlight the features that we want to be able to detect, we show in 
+Figure~\ref{fig:comparison} shows the result of such processing over two articles, where we have several features
+%(framing, subjectivity, structural role)
+attached to the sentences, with similar paragraphs across the two articles linked together using a similarity measure~\cite{cer2018universal}.
+%and we linked paragraphs from one article with ones in the other article using a similarity measure~\cite{cer2018universal}.
+
+\subsection{Cross-article Signals}
+This is is the starting point to identify the differences, with a contrastive analysis. We propose here a set of \emph{cross-article comparative signals} that can bring the narrative analysis a step further:
+\begin{itemize}
+    \item The \textbf{main focus} of the compared articles is on a different part or detail of the story: this means that while they are both describing the same broad event, they are trying to emphasise or prioritise two different aspects.
+    % Prioritisation is usually based on negativity / unexpectedness / superlativeness \cite{zahid2019towards}.
+    This signal can be computed by looking at the most similar sentence to the article title (proxy of the emphasis), and seeing how it is represented in other documents.
+    % Two articles that are semantically similar overall (they also have sentence-sentence pairs very similar) focus on different details when the titles are similar to different sentence-level cliques.
+    
+    \item \textbf{Ordering}: the compared articles present the same details, but in a different order.
+    Re-ordering events tends to be an efficient way of creating implicit cause-effect relationships. 
+    To do this comparison, it is sufficient to find the crossovers in the sentence-level connections.
+
+    \item \textbf{Selection of details}:
+    One article is \emph{omitting} certain details that have been reported by other articles, or is describing events that are \emph{corroborated} by other sources, or has \emph{unique parts} that do not occur in other articles~\cite{bountouridis2018explaining}.
+    In addition to seeing which parts are selected or omitted, the narrative analysis can help us to find some insights about them (e.g., the article is omitting subjective statements reported by others, or is describing a background event that others did not include).
+    % For the detection of this case, we rely on the work~\cite{bountouridis2018explaining}.
+    
+    \item The articles are \textbf{framing} the narrative in different ways from each other. This manifests through comparing linked sentences to observe the differences in terms of framing features: the considered articles are describing the same events but with different framing and reasoning.
+    One concrete example is the usage of \emph{causality}: one article may contain causality signposting between a pair of sentences that is absent elsewhere.
+    % \item The article uses \textbf{causality as a weapon} (where there is no proof of causality).
+    % An article is expressing causality when there are certain devices (signposting) between two sentences/events.
+    % Different articles may show the causality with different levels, so one sees it as causal and the other one does not link the events.
+    Or as another example, the usage of \emph{specific words} can reveal a specific framing: talking about the same detail or entity, the usage of verbs or adjectives may change.
+    % find strong sentiment and subjective words 
+    % (as adjectives for the same entity, or as verbs).
+    % Detail (e.g. black man instead of just saying man, to add a subtle bias).
+    For detecting such peculiarities, %and comparing them, we can combine the framing signals with 
+    features as Named Entities and subjectivity may be combined.
+    % use features coming from subjective and sentiment analysis.
+
+    \item The comparison can be also done on the \textbf{subjectivity} of the article: both at the document level (saying that this is an opinion piece, while a similar one is more factual) or at the sentence level, by interweaving this signal with the ones proposed before.
+    % is a \textbf{mix of factual and opinionated / subjective} content: subjectivity values on the full document and on specific sentences.
+    % A sentence is on one article subjective and a similar one on a different article is objective.
+    % Also look at the role of the sentence (commentary, action, background). 
+
+\end{itemize}
+
+% \vspace{8pt}
+
+From the signals in Figure~\ref{fig:comparison}, we can see that the first article pushes the narrative towards \texttt{risk} and other negative frames, to sustain the idea presented in the title ``Britain on Edge''.
+The second article, even though it has a lot of information in common with the first one, is more confident on the preparedness of the National Health Service to face the virus (e.g., \texttt{confidence}, \texttt{expertise}).
+The extraction of these cross-article signals is the first step to finding possible cases of manipulation.
+
+\subsection{Information Flow analysis}
+
+(RQ2.1) Comparison + time information: how to build cascades
+
+(RQ2.2) Pattern extraction from information flow: what we expect to see
+
+(RQ2.3) Relationship with source information: bias, news groups
+
+
+\subsection{Possible outputs}
+
+
+Tool for finding other stories on the same event
+External facts not considered
+Highlight words that are used differently
+Tool to analyse the practices of news outlets
+From where do they get info
+How they change it

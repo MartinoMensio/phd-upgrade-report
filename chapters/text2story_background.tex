@@ -1,0 +1,144 @@
+\label{sec:related}
+
+In this section, we provide an overview of previous studies in two areas of research. First, the investigation on relationships between news articles which aims to find documents that cover the same information. Second, the detection of narrative linguistic signals, which investigates and characterises several aspects of structure, framing, and subjectivity.
+For both of them, we gather a set of techniques that enable our approach described in the next Section~\ref{sec:framework}.
+%can be used to characterise the components(sentences/paragraphs) of the articles.
+%can help us characterise the narrative comparison analysis.
+%Starting from approaches that link together articles and parts of articles together that cover the same information, we see how we can enrich and characterise the participating nodes (articles and sentences) with signals from narrative, framing and subjectivity analysis.
+
+%\todo[color=yellow]{add a sentence here to remark that we just observed works on the two areas, separated and not joint?}
+
+\begin{comment}
+    % 2: Main limitations of existing works
+    But there are different limitations of what is available.
+    For example, the approach proposed by~\cite{bountouridis2018explaining} finds and links similar articles and similar sentences (POI) in them, but mainly focuses on finding indications of corroborated information or omitted information.
+    Their work does not investigate the differences between the linked pieces, accounting for subtle modifications and their exploitation to provide bias / subjectivity (framing / word choices).
+    Another recent work~\cite{zahid2019towards} instead is just focusing on a single article narrative analysis, without linking and comparing it to other news articles.
+    \todo[color=yellow]{move this paragraph to related work, just leave a sentence here}
+\end{comment}
+
+\subsection{Relationships between news articles}
+
+% Definition of relationship
+There are different possible types of relationships between news articles, such as similarity (covering the same information), referencing (one is citing another one), and temporal proximity. They can be performed at the document level (e.g., the whole article is similar to another one) or at the sentence level (e.g., the same sentence is corroborated by a sentence in another article~\cite{bountouridis2018explaining}) or even at the paragraph level.
+Since we are interested in finding articles discussing the same information, we focus on similarity relationships.
+% \begin{added}
+Other relationships could add interesting features, such as the order of publication which would help to identify which of the articles might have taken inspiration from the other. For the time being, we focus on studying and understanding the role of similarity.
+% \end{added}
+%In this direction it is very important to keep exposed to multiple perspectives~\cite{flaxman2016filter}, thanks to news aggregators, that provide articles on the same events from multiple sources (e.g. Google Headlines\footnote{\url{https://news.google.com/}}) or approaches that analyse the corroboration and omission between news articles~\cite{bountouridis2018explaining}. 
+
+% Article-level relationships
+At the article-level, there is a wide variety of work that investigates article clustering, and the methods mostly used are Latent Dirichlet Allocation (LDA) or document embedding.
+% News aggregators and LDA topic: can provide article-level aggregation
+LDA~\cite{blei2003latent} is the most used technique for topic modelling, as it allows the discovery of topics and to group articles accordingly using word distributions.
+% similarity measures
+Another technique for grouping articles together is to compute a similarity measure (e.g., cosine similarity) between numeric representations of the documents (TF-IDF~\cite{jones1972statistical} or Language Models~\cite{devlin2018bert,cer2018universal,yang2019xlnet}).
+% \begin{added}
+We plan to study these models in order to select the one that can efficiently discriminate articles that talk about the same events, even if they use different linguistics, from articles that may use the same subset of words but talk about different events. 
+% \end{added}
+%In this direction, there are several techniques, such as TF-IDF~\cite{jones1972statistical} or using representations coming from Language Models~\cite{devlin2018bert,cer2018universal,yang2019xlnet}.
+% recent advances on similarity and document embedding
+%But with the recent explosion of Deep Learning representation there emerged many of Language Model tools that can provide document representation, like BERT~\cite{TODO}, XLnet~\cite{TODO}, or even more oriented towards the similarity task: Universal Sentence Encoder~\cite{TODO}.\todo[color=yellow]{too many details on possible features for similarity?}
+% And all these models can be used directly without the need to train, thanks to pretrained models that perform already well out-of-the-box.
+
+
+% Topic Detection and Tracking steps
+% 0. flat clusters: TDT before 2003. Simple LDA clustering methods
+% 1. hierarchical topics: TDT 2003 (hierarchy of topic --> event --> story)
+% 2. dependencies: 2004 Napallati~\cite{nallapati2004event}. They introduce edges with two possible reasons: causality or only temporal ordering.
+
+% News event structure evolution (keep short)
+% Instead in the direction of the structure of news event, we have a succession of works that went more in details than just creating groups / flat clusters generated by LDA.
+% First of all \emph{hierarchical} topic modelling~\cite{allan2003flexible} that defined a set of levels (from the broad concept of topic, to the narrow event that belongs to the topic, and then a specific story/anecdote).
+% And then moved to study the dependencies between events~\cite{nallapati2004event} with causality and temporal ordering.
+% This recently brought to approaches that are able to find the events belonging to a topic and link them creating a Event Evolution Graph~\cite{yang2009discovering,ansah2019graph} that can be visualised to give an idea of the dependency between the events detected.
+%\todo[color=yellow]{The removed paragraph was about events hierarchy and dependency}
+% ~\cite{ansah2019graph} that is able to generate a visual story timeline summarisation, connecting the main events; Event Maps~\cite{yang2009discovering}
+% Or works that focus on the illustrative side and use the extracted story timeline summarisation~\cite{ansah2019graph}.
+
+% Furthermore, \cite{cai2019temporal} also presents event maps (original baseline~\cite{yang2009discovering}). With also importance score on the nodes and edges. The event relationships can be temporal, content dependence and event dependence.
+
+
+% Corroboration, external confirmation / denial: computation and visualisation. \cite{bountouridis2018explaining}
+Furthermore, there are works that not only link the articles at a document level, but also investigate in more detail the connections between sentences.
+In one recent work~\cite{bountouridis2018explaining}, groups of similar articles are found, then broken down to pieces of information and analysed to find if these details are \emph{corroborated} (occurring in multiple documents) or \emph{omitted} (occurring in other documents of the same group, but not the current one). 
+%is good for getting relationships between paragraphs and documents. Corroboration and omission
+% \begin{added}
+We aim to use this idea of applying similarity to both article-level and sentence-level, extending it even to the word-level. By doing so,
+not only we might be able to recognise which sentences appear in multiple documents (with different degrees of similarity) but also we would be able to identify the specific words that have been changed.
+%, on one side we will be able to keep the information of similarity and on the other side we will bring into view the differences of the articles (sentences) and sentences (words).
+% \end{added}
+
+% \removed{When looking at the results of such approaches, it is often left to the reader to evaluate and compare the linked information pieces.}
+% \begin{added}
+However, this set of approaches are limited to bringing to the attention of the reader the linked information pieces with a measure of similarity, without characterising the differences. The reader would then need to evaluate the differences in the role of the sentence, the framing that it implies and how it compares with other sentences in terms of subjectivity.
+Different documents may express the same set of details, but give them a different role (reporting an action, commenting, contextualising, doing a digression, identifying causes and consequences) and use different words that are semantically similar but may imply a different framing perspective.
+For this reason, the next subsection presents a set of narrative linguistic signals that could provide us with the missing features.
+% \end{added}
+% \removed{A sentence can have different roles in a document (reporting an action, commenting, contextualising, doing a digression) and hence it is important to extract and present these features.
+% Furthermore, even if the information is reported in similar ways in different articles, they could be using specific choices of words to provide a different framing.}
+%We see these difference, as signals, in the following subsection.
+
+%The only cross-document narrative analysis found~\cite{reiter2014nlp} (structural similarity, using FrameNet)~\todo[color=yellow]{move this sentence in the proper position}
+
+% Some directions used by document comparison:
+% - fact-checking: \cite{karadzhov2017fully} automatic fact-checking by comparing news article
+% - perspectrum: \cite{chen2019seeing} presents PERSPECTRUM, comparing stance and perspectives for a claim.
+% - break your bubble or similar news aggregators (Balancer, Blue Feed Red Feed, Burst your bubble, Escape your bubble, Read Across the Isle, OneSub, Nuzzera)
+
+\subsection{Narrative linguistic signals}
+% \subsection{The many faces of \sout{biases}: Narrative, framing and subjectivity/bias signals}
+%\todo{define somewhere the term \emph{narrative linguistic signal}}
+% The term mainly comes from http://ceur-ws.org/Vol-2342/paper9.pdf where they use "linguistic devices". "Devices" was then substituted with "signals". About "linguistic signal", there are many works that use it https://www.aaai.org/ocs/index.php/ICWSM/ICWSM16/paper/download/13112/12731 https://www.shanjiang.me/publications/cscw18a_paper.pdf
+% It's in general some words that signal something (structure / framing / subjectivity). And "narrative" because it encloses structure, framing and subjectivity. 
+
+There is much research on exposing the narrative using linguistic signals~\cite{zahid2019towards}, with specific words that indicate the \emph{structural role}, \emph{framing} and \emph{subjectivity} of the part of text they belong to.
+%There is a wide literature of work that wants to expose the narrative using linguistic signals, with specific words that indicate the \emph{structural role}, \emph{framing} and \emph{subjectivity} of the part of text they belong to.
+One limitation is that most of such works are applied to single articles, with little comparison between them.
+%\todo[color=yellow]{put this at the end of subsection, to bridge what we want to do?}
+
+% news schema structure
+On one hand, some research considers the \emph{structural role} of a sentence in the document (e.g., is it providing some background, the main event, an evaluation).
+Different structural roles have been defined in the literature, such as 
+%Different works define sets of structural roles: 
+news schema~\cite{bell1991language}, which identifies hierarchical categories (e.g., action, reaction, consequence, context, history), narrative structure~\cite{bell2005news} (e.g., abstract, orientation, evaluation, complication, resolution), or linguistic signals~\cite{zahid2019towards,marcu2000theory}. 
+%One recent study~\cite{zahid2019towards} proposed linguistic signals to be able to recognise the structural role.
+%With such characterisations, we would be able to add to the sentence-level similarity links also their role in the different articles, to understand how their structure differs.
+Such signals could be used to identify the differences between similar sentences with regards to their structural roles in the articles. 
+% And this is an important feature because time structure and story structure are usually different~\cite{bell2005news}.
+
+% framing
+On the other hand, there is much literature on \emph{framing}, defined
+as how a certain story is presented to shape mass opinion~\cite{goffman1974frame}, the addition to the underlying facts that reflects the sociocultural context
+%(cultural, political, ...)
+and acts as an underlying force to persuade the reader.
+% Semantic frames~\cite{fillmore2006frame}
+% News Media Frames~\cite{boydstun2014tracking} developed a schema of 15 cross-cutting framing dimensions, such as economics, morality, and politics, and
+% dataset of human annotations~\cite{card2015media}
+The work by~\cite{gamson1989media} describes a set of \emph{framing packages}, made of \emph{framing devices} (e.g., word choice, metaphors, catchphrases, 
+%exemplars, depictions, descriptions, 
+use of contrast, quantification) and \emph{reasoning devices} (e.g., problem definition, cause, consequence, solution, action%, moral evaluation
+).
+Additionally, the Frame Semantics Theory~\cite{fillmore2006frame} can be used to recognise lexical units of known frames.
+By extracting these linguistic signals, we could represent the framing behind a certain piece of text, and there exist different approaches to extract the listed features~\cite{mandal2017overview,gao2018neural,asghar2016automatic,swayamdipta:17}.
+
+In addition to these two characterisations, we can add other signals derived from studies on \emph{subjectivity}.
+% and sentiment intensity.
+% https://www.niemanlab.org/2019/05/u-s-journalism-really-has-become-more-subjective-and-personal-at-least-some-of-it/ "a blurring of the line between opinion and fact."
+As found by recent research, in contemporary journalism the line between opinion and facts is blurring more and more~\cite{blake2019news}. For this reason, having signals of subjectivity on the document and paragraph-level would be very useful~\cite{liu2010sentiment}.
+%Furthermore, subjectivity is closely related to sentiment, since sentiment analysis is about finding the value of opinion while subjectivity is about distinguishing if the text is having an opinion or just reporting factual events~\cite{liu2010sentiment}.
+In this way, each article and each paragraph can be characterised with an indication of subjectivity.
+
+% % subjectivity
+% Then there is a wide set of works on \emph{subjectivity}
+% Studies on subjectivity are good for adding the feature
+
+% % sentiment intensity
+% Hate/sentiment intensity: emotional level
+
+% word choices (are a device of framing/subjectivity/intensity)
+
+% \removed{As noted for the first area, also this research would benefit an integration, since a contrastive analysis can have more signals as the single-article equivalent, as we will see in the next session.}
+% \begin{added}
+All these features have been used in previous research, but as mentioned above, they are mainly applied to single-article analysis. Extending this kind of analysis by taking into consideration the relationships both at the article level and the sentence level would bring a big contribution by providing contrastive signals that would not come up otherwise. 
+% \end{added}

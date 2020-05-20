@@ -5,6 +5,11 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 
+% for comments, todos and changes
+\usepackage{comment}
+\usepackage[colorinlistoftodos,textsize=scriptsize]{todonotes}
+
+
 % for layout
 \usepackage[a4paper,width=150mm,top=25mm,bottom=25mm,bindingoffset=6mm]{geometry}
 \usepackage{fancyhdr}
@@ -14,6 +19,10 @@
 % for figures
 \usepackage{caption}
 \usepackage{subcaption}
+
+% for links, footnotes, ...
+\usepackage{hyperref}
+\usepackage{footnote}
 
 % for references
 % \usepackage{biblatex}
@@ -54,22 +63,22 @@
 \input{chapters/01_introduction}
 
 
-\input{chapters/02_chapter}
+\input{chapters/02_literature}
 
 
-\input{chapters/rq}
+\input{chapters/03_research_questions}
 
 
-\input{chapters/03_chapter}
+\input{chapters/04_proposal}
 
 
-\input{chapters/04_chapter}
+\input{chapters/05_results}
 
 
-\input{chapters/05_chapter}
+\input{chapters/06_plan}
 
 
-\input{chapters/conclusion}
+\input{chapters/07_conclusion}
 
 
 \printbibliography[heading=bibintoc]

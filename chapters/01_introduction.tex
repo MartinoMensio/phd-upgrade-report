@@ -2,23 +2,41 @@
 
 % Orientation: wider context
 
-Situation: thousands of articles are published every day about events happening.
-The usage of specific language, the selection of details and how the narrative is presented, are all different aspects that are unique of each news outlet/author.
-And this peculiarities at the same time, can influence what the reader perceives about the events. They have big impacts.
+% situation
+Thousands of articles are published every day about the events that are happening.
+The usage of specific language, the selection of details and how the narrative is presented, are all different aspects that are unique of each news outlet and author.
+And these peculiarities, at the same time, can influence what the reader perceives about the events.
+% framing definition
+This whole set of information, may it be subtle or explicit, that extends the raw facts that did happen, is usually called \emph{Framing}.
+Framing is created with any subjective comments that are mixed with the description of the event narrated, but does not stop there.
+Even selecting which details or features to report makes a big difference in the message sent to the reader.
+% example
+Taking for example two sentences ``\textit{the black man was shot}'' vs ``\textit{the man was shot}'', they have a different framing because, even if the man shot was black, it's a judgement of the reporter whether this detail is worth emphasising or not, implying a form of racism with respect to a race-neutral murder.
+Framing therefore has big impacts on the way readers perceive the news, and how they perceive it as relevant (\textit{Agenda-setting}).
+
 
 % Rationale: create a niche
 
-On the technological side, there is a gap of tools that can present the differences.
-There are news aggregators, but they just group articles without saying what is different. There are tools to analyse plagiarism.
-But no tool studies how the choices done by the writers relate between them.
+% need of comparing multiple articles
+Spotting the framing is therefore very difficult, if not impossible in some cases even for humans. Something that really helps in this situation is looking at different sources and see how they present the same event with different framing.
+By seeing ``the other sides'' of the story we, as readers, can create a more complete picture and spot the differences at the macro and local level.
+The main problem of this technique is that it requires a lot of time to read, compare, track, and differentiate all the small details.
+% tech limitations
+At the moment, there is not a ready-to-use tool that provides this functionality.
+There are technologies that analyse parts of the problem, e.g. by grouping articles together by events (news aggregators), or anti-plagiarism tools that spot sentences occurring in multiple documents, or theoretical studies and conceptualisations analysing framing under different aspects.
+But in our knowledge, there is none of them that is able to bring together different stories and point at the differences that imply a different framing.
+
 
 % Aim: purpose of research
 
-This PhD aims at characterising the choices done by authors, and to study the information flow between them.
+This PhD aims at creating a methodology to extract and characterise framing differences among news articles.
+This includes on one side revealing the choices done by authors, and bring to the light the types of techniques they use (e.g., select, emphasise details, add comments)  with the goal to stand their point of view.
+And at the same time, to study the information flow between sources and see to what extent there exist patterns.
+Given this aim, we target two Research Questions, that will be expanded in Chapter~\ref{chap:research_questions}:
 
 % Research Questions: short
 \begin{itemize}
-    \item RQ1: How to automatically reveal the differences inn articles presenting the same event?
+    \item RQ1: How to automatically reveal the framing differences in articles presenting the same event?
     \item RQ2: How to identify patterns of information flow between news sources?
 \end{itemize}
 
@@ -34,11 +52,9 @@ This PhD aims at characterising the choices done by authors, and to study the in
 % Document outline
 
 The document is structured as follows.
-In Chapter~\ref{chap:literature_review} I am providing a review of the fields related (TODO say something)
-Then RQ expanded.
-Then the proposal.
-Some initial results.
-The plan.
+In Chapter~\ref{chap:literature_review} we are providing a review of the literature available that analyses the sub-problems (similarity of documents, linguistic features, theoretical framing works).
+Then, after expanding the Research Questions in Chapter~\ref{chap:research_questions}, we describe the proposed method in Chapter~\ref{chap:proposal} explaining the plan to analyse the articles with a processing pipeline and structuring the analysis.
+We also describe some early achievements in Chapter~\ref{chap:results} and then we describe the research plan in Chapter~\ref{chap:plan}.
 
 
 % What, how and when

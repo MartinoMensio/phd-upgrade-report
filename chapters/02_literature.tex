@@ -8,13 +8,14 @@
 % critical
 % adds value
 
-Considering our objective of comparing articles on the same events to derive insightful usage of language, we are bringing together different research topics:
+Considering our objective of comparing articles on the same events to derive  usage of framing, we are bringing together different research topics:
 
 \begin{itemize}
     \item same events: it requires to have a method to understand what is contained in news articles (language representation), in order to find groups of relevant articles;
     \item comparing: this implies techniques to see how similar or different are, on the macro scale or also in the details (similarity computation, plagiarism, corroboration)
     \item usage of language: we need linguistic features (POS, sentiment, subjectivity, ...)
 \end{itemize}
+\todo{remove}
 
 For this reason, in this chapter we first focus on works that analyse how documents are talking about the same details, using language representations, clustering and seeing which details are narrated by different sources.
 The objective of this first group is to extract the common ground between different stories and highlight the pieces that are uniquely changed, added or removed by individual sources.
@@ -33,26 +34,38 @@ Here in this section, we start with approaches that deal with language represent
 
 \subsection{Language representation}
 
+% why
 This group of methods tackles one question: \emph{What is contained in the text?}
 
+% what (details)
 Starting with very naive methods,
 Bag of words, stopwords
 
 TF-IDF: how relevant and unique words are\cite{jones1972statistical}
 
-Entity Recognition and Linking, triplets extraction
+Knowledge extraction: Entity Recognition and Linking, triplets extraction. Is it worth?
 
-Word embeddings
+The switch to distributional Language models:
+first, Word embeddings
 
-Language Models era~\cite{devlin2018bert,cer2018universal,yang2019xlnet}.
+The era of Language Models~\cite{devlin2018bert,cer2018universal,yang2019xlnet}.
 With the recent explosion of Deep Learning representation there emerged many of Language Model tools that can provide document representation, like BERT~\cite{devlin2018bert}, XLnet~\cite{yang2019xlnet}, or even more oriented towards the similarity task: Universal Sentence Encoder~\cite{cer2018universal}.
-And all these models can be used directly without the need to train, thanks to pretrained models that perform already well out-of-the-box.
+And all these models can be used directly without the need to train, thanks to pre-trained models that perform already well out-of-the-box.
 
+% strenghts, limitations
 Main strength of Language models:
 relate articles that talk about the same events, even if they use different linguistic surface, from articles that may use the same subset of words but talk about different events, it is a semantic matching more than a word-based matching. 
 
+It's a shallower semantic model with respect to the ones based on Entity Linking, but it is more resistant to changes in the linguistic surface.
+
+Talk about SentEval\footnote{\url{http://nlpprogress.com/english/semantic_textual_similarity.html}}
+
 \subsection{Clustering}
 
+% why
+Once documents and sentences are transformed to a representation, we can apply clustering techniques to find similarity relationships both at the article level (to identify articles that talk about the same event) and at the sentence level (to identify parts of article, details, which are similar, in order to be able to relate sub-document parts).
+
+% what (details)
 LDA
 methods mostly used are Latent Dirichlet Allocation (LDA) or document embedding.
 % News aggregators and LDA topic: can provide article-level aggregation
@@ -80,10 +93,16 @@ Hierarchical Clustering
 
 % Furthermore, \cite{cai2019temporal} also presents event maps (original baseline~\cite{yang2009discovering}). With also importance score on the nodes and edges. The event relationships can be temporal, content dependence and event dependence.
 
+
+
+% strengths, limitations
+
 \subsection{Plagiarism, corroborations and omissions}
 
-Bountouridis
+% why
+Once the articles and parts of them are linked in clusters, there are some works that exploit this information to see how much information is shared between them. This is the field of plagiarism detection, or also some other works that compute how much information is corroborated externally or omitted.
 
+% what (details)
 Furthermore, there are works that not only link the articles at a document level, but also investigate in more detail the connections between sentences.
 In one recent work~\cite{bountouridis2018explaining}, groups of similar articles are found, then broken down to pieces of information and analysed to find if these details are \emph{corroborated} (occurring in multiple documents) or \emph{omitted} (occurring in other documents of the same group, but not the current one). 
 %is good for getting relationships between paragraphs and documents. Corroboration and omission
@@ -91,21 +110,33 @@ In one recent work~\cite{bountouridis2018explaining}, groups of similar articles
 We aim to use this idea of applying similarity to both article-level and sentence-level, extending it even to the word-level. By doing so,
 not only we might be able to recognise which sentences appear in multiple documents (with different degrees of similarity) but also we would be able to identify the specific words that have been changed.
 
+
+% strengths, limitations
 However, this set of approaches are limited to bringing to the attention of the reader the linked information pieces with a measure of similarity, without characterising the differences. The reader would then need to evaluate the differences in the role of the sentence, the framing that it implies and how it compares with other sentences in terms of subjectivity.
 Different documents may express the same set of details, but give them a different role (reporting an action, commenting, contextualising, doing a digression, identifying causes and consequences) and use different words that are semantically similar but may imply a different framing perspective.
 For this reason, the next subsection presents a set of narrative linguistic signals that could provide us with the missing features.
 
-Citation Networks
+Citation Networks?
 
-Edit distances
+Edit distances?
 
 Time evolution? TODO find stuff
 
+
+
 \section{Linguistic features}
+
+While the first group of works focuses on finding similar articles and highlighting parts that are similar or different, here we present a set of linguistic features that can be very useful in order to characterise the peculiarities. These works are usually independent from our goal, and are applied in a wide variety of tasks.
 
 \subsection{Natural Language Parsing}
 
-grammar, POS, dependencies
+% grammar, POS, dependencies, entity extraction and linking
+First of all, we have a set of features that comes to represent the structure of sentences. It is the world of parsers, that are able to tokenise, find Part Of Speech and create Dependency Trees.
+
+The progress of this research is quite advanced, and there are plenties of tools available off-the-shelf (e.g. Stanford NLP, SpaCy, ...) that achieve good performances (TODO?)
+
+% entities (WARNING: avoid duplicate with 2.1.1. Language Representation)
+
 
 \subsection{Subjectivity and sentiment}
 
@@ -118,7 +149,7 @@ As found by recent research, in contemporary journalism the line between opinion
 %Furthermore, subjectivity is closely related to sentiment, since sentiment analysis is about finding the value of opinion while subjectivity is about distinguishing if the text is having an opinion or just reporting factual events~\cite{liu2010sentiment}.
 In this way, each article and each paragraph can be characterised with an indication of subjectivity.
 
-\subsection{Argumentation mining}
+\subsection{Argumentation mining?}
 
 \subsection{Narrative features}
 
@@ -134,6 +165,8 @@ Such signals could be used to identify the differences between similar sentences
 % And this is an important feature because time structure and story structure are usually different~\cite{bell2005news}.
 
 \subsection{Bias and Framing}
+
+Agenda setting theory and other theories
 
 Framing and Linguistic frames (both on a single doc and on multiple docs, e.g. https://journals-sagepub-com.libezproxy.open.ac.uk/doi/pdf/10.1177/1077699015606670)
 
@@ -155,6 +188,8 @@ By extracting these linguistic signals, we could represent the framing behind a 
 
 
 \section{Gaps}
+
+TODO: underline lack of approaches and studies that accomplish the task automatically.
 
 All these features have been used in previous research, but as mentioned above, they are mainly applied to single-article analysis. Extending this kind of analysis by taking into consideration the relationships both at the article level and the sentence level would bring a big contribution by providing contrastive signals that would not come up otherwise. 
 

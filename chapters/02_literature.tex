@@ -1,38 +1,181 @@
 \chapter{Literature Review}
 \label{chap:literature_review}
 
-% focussed, concise
+% focused, concise
 % supports the well-stated question
 % identifies a gap
 % reports and critiques current state of discourse
 % critical
 % adds value
 
-Considering our objective of comparing articles on the same events to derive  usage of framing, we are bringing together different research topics:
+% motivation
 
-\begin{itemize}
-    \item same events: it requires to have a method to understand what is contained in news articles (language representation), in order to find groups of relevant articles;
-    \item comparing: this implies techniques to see how similar or different are, on the macro scale or also in the details (similarity computation, plagiarism, corroboration)
-    \item usage of language: we need linguistic features (POS, sentiment, subjectivity, ...)
-\end{itemize}
-\todo{remove}
+Given the aims identified in the introduction, this chapter investigates the existing work that can help us understand the framing phenomenon (theory), how it has been detected by automatic approaches (detection), usually performed on single articles.
+% how we can expand the current state of detection by using the information coming from other articles.
+But, as mentioned previously, this type of analysis struggles to detect the framing when it is very subtle and manifests through devices such as selections of details or words, omissions and ordering~\cite{morstatter2018identifying}. For this type of framing, it is very complicated to spot what belongs to framing or not, and we argue that the methods would benefit from taking a look at other articles.
 
-For this reason, in this chapter we first focus on works that analyse how documents are talking about the same details, using language representations, clustering and seeing which details are narrated by different sources.
-The objective of this first group is to extract the common ground between different stories and highlight the pieces that are uniquely changed, added or removed by individual sources.
+This multi-article knowledge requires introducing a second family of methods that aims at finding similarities between articles (clustering), by using document and sentence representations (representations), and to find which pieces appear in multiple documents or not (corroborations). In this way the common ground can be identified, as well as the diversity in information reported.
 
-Then we present works that characterise documents with linguistic features that we aim to use for the second phase, that is \emph{understanding} the framing that the choices of the authors use. For this reason, we analyse a set of features that have appeared in similar works.
+The analysis on these two separate fields shows that there is an intersection area that is not much explored, that is the analysis of framing differences. Given the differences identified by this second group of methods, we need to expand the framing analysis to work with multiple documents and understand why modifications in the text happen.
+We have some works that analyse this specific field, but under the perspective of social science (manual, not automated), and the automation of this type of analysis is an existing gap.
+
+% structure
+
+For these reasons, this chapter is structured in three parts: framing on single documents (Section~\ref{sec:lit_framing}), relationships of similarity between multiple documents (Section~\ref{sec:lit_relationships}) and finally the point of contact between the two (Section~\ref{sec:lit_gap}), as our target niche.
+
+% The structure of 2.1 and 2.2 is inside 2.1 and 2.2
+% expanding on framing theories in Section~\ref{ssec:lit_framing_theory}, then moving to automated framing analysis in Section~\ref{ssec:lit_framing_auto}. Section~\ref{ssec:lit_framing_other} is providing some insights about related analyses that are quite related to framing (e.g., subjectivity, source bias and factuality) and Section~\ref{ssec:lit_framing_limit} exposes the limits of the single-article framing analysis.
+% Then we move to the second area, that is ~\ref{sec:lit_relationships}: 
+% We are considering two main research areas that are related to our problem: \textit{i)} framing analysis and \textit{ii)} analysis of similarities between documents.
+
+\section{Framing}
+\label{sec:lit_framing}
+
+% definition
+Before exploring the framing analysis area, we need to define what we mean with framing, because multiple definitions exist.
+% - broad framing as perception of the world (goffman)
+The broadest definition comes from ~\cite{goffman1974frame}, and defines framing as how people organise experiences about the world.
+% - semantic frames
+Then we have the Frame Semantics~\cite{fillmore2006frame} that instead defines a frame as "\textit{any system of concepts related in such a way that to understand any one of them you have to understand the whole structure in which it fits}". This second definition goes into the direction of annotating sentences with units of meaning (semantics) that are evoked by specific words (TODO make example of FrameNet).
+
+% - media framing
+But the definition that we rely on, instead focuses on media as a powerful tool to present facts under a specific light: instead of focusing on what is contained in a text (semantics), we focus on how it is described. This facet of the term "framing" can be seen in
+Entman~\cite{entman1993framing} that defines framing as ``\textit{select[ing] some aspects of a perceived reality and make them more salient in a communicating text}''.
+Or from Goffman that describes framing as ``\textit{how a certain story is presented to shape mass opinion}''~\cite{goffman1974frame}.
+
+% ``the central organising themes ... that connect different semantic elements of a news story (headlines, quotes, leads, visual representations, and narrative structure) into a coherent whole to suggest what is an issue.''~\cite{pan1993framing}
+
+% Structure of 2.1
+We are expanding on framing theories in Subection~\ref{ssec:lit_framing_theory}, then moving to automated framing analysis in Subection~\ref{ssec:lit_framing_auto}. Subection~\ref{ssec:lit_framing_other} is providing some insights about related analyses that are quite related to framing (e.g., subjectivity, source bias and factuality) and Subection~\ref{ssec:lit_framing_limit} exposes the limits of the single-article framing analysis.
+
+\subsection{Framing theories and definitions}
+\label{ssec:lit_framing_theory}
+% framing: definition and theory
+
+% We have a group of theoretical studies that define the concept of \textit{media framing}~\cite{gamson1989media,scheufele2007framing},
+
+% concepts
+Media framing has several concepts.
+We have a set of processes coming from~\cite{scheufele1999framing}.
+% 1. frame building
+\textit{Frame building} is the process of creating a narrative and make the document coherent to some objectives~\cite{TODO}. It produces ``media frames'' that are embedded in the articles.
+% 2. frame setting
+Then there is the process of \textit{frame setting} that refers to transferring the frame from the reader to the consumer. How the document has been written creates the ``audience frames'': the reader is placed in a certain mental perspective.
+% 3. individual level effects of framing
+And then there is the individual effects on the audience, in other words the internalisation (attribution of responsibilities, attitudes, behaviours).
+
+Another term that is quite common is "agenda setting" that corresponds to select the information for the reader (what to think about, not how) that is used to influence the relevance of a certain event: the number of article that are published about each event is an indicator of this process (avalanche effect, a lot of outlets want to have their piece on the same event too).
+But the agenda setting ca be seen also at a more fine-grained level: stories are made of details and different sources can emphasise with different weights.
+
+% and how it acts as an intermediary between the writers and the consumers of the news, via the processes of frame setting and individual-level effects on the public~\cite{scheufele1999framing} (diagram of media vs public and processes)
+
+% Switching from abstract concepts and processes to more tangible, 
+Framing is usually defined at macro and micro levels.
+For the macro-level, usually, each article is associated with a set of media framing packages, which correspond to a central idea with a surrounding interpretive structure that gives meaning to an issue~\cite{gamson1989media}. And then the micro-level analysis focuses on seeing how the defined frames come out from specific words, used as \textit{framing devices} (e.g., word choice, metaphors, catchphrases, use of contrast, quantification) and \textit{reasoning devices} (e.g., problem definition, cause, consequence, solution, action).
+
+\subsection{Framing detection}
+\label{ssec:lit_framing_auto}
+% framing: practical automated approaches
+
+% what is framing detection?
+Automated framing detection has been addressed as an task where the objective is to annotate specific pieces of text with labels that express some forms of perspective.
+
+TODO expand
+
+% The approaches used in practice usually come from specifically built lexicons~\cite{TODO} or by human annotations~\cite{card2015media,morstatter2018identifying}.
+
+% resources/datasets
+\cite{card2015media} dataset where each document has spans annotated with media frames (broad, non dependent on the specific topic): Economic, Capacity and resources, Morality, Fairness and equality, Legality, constitutionality and jurisprudence, Policy prescription and evaluation, Crime and punishment, Security and defense, Health and safety, Quality of life, Cultural identity, Public opinion, Political, External regulation and reputation, Other.
+
+\cite{morstatter2018identifying} where each sentence has an annotation belonging to specific frames in relationship to the narrow topic of "ballistic missile defense system in Europe": General Threat (GT), Specific Threat (ST), Collective Security (CS), Deterrence System (DS), Domestic Benefit (DB), Progress/Effectiveness (PE), Political Tensions (PT), Threat to Russia (TR), Russian Roadblocks (RR), Partnership with Russia (PR)
 
 
-\section{Relationships between articles}
+% Framing and Linguistic frames (both on a single doc and on multiple docs, e.g. https://journals-sagepub-com.libezproxy.open.ac.uk/doi/pdf/10.1177/1077699015606670)
+
+
+% On the other hand, there is much literature on \emph{framing}, defined
+% as how a certain story is presented to shape mass opinion~\cite{goffman1974frame}, the addition to the underlying facts that reflects the sociocultural context
+% %(cultural, political, ...)
+% and acts as an underlying force to persuade the reader.
+% % Semantic frames~\cite{fillmore2006frame}
+% % News Media Frames~\cite{boydstun2014tracking} developed a schema of 15 cross-cutting framing dimensions, such as economics, morality, and politics, and
+% % dataset of human annotations~\cite{card2015media}
+% The work by~\cite{gamson1989media} describes a set of \emph{framing packages}, made of \emph{framing devices} (e.g., word choice, metaphors, catchphrases, 
+% %exemplars, depictions, descriptions, 
+% use of contrast, quantification) and \emph{reasoning devices} (e.g., problem definition, cause, consequence, solution, action%, moral evaluation
+% ).
+
+
+\subsection{Related concepts}
+\label{ssec:lit_framing_other}
+% framing: exchange with other dimensions
+
+
+\cite{mandal2017overview,gao2018neural,asghar2016automatic} (catchphrases, methaphors, causality).
+
+Framing manifests also through the usage of loaded language, and for this reason, \textit{sentiment and subjectivity analysis} can provide further signals~\cite{liu2010sentiment}.
+Sentiment analysis for detecting not only biased news but also comments made by news readers~\cite{park2011politics}
+
+loaded language
+
+In addition to these characterisations, we can add other signals derived from studies on \emph{subjectivity}.
+% and sentiment intensity.
+% https://www.niemanlab.org/2019/05/u-s-journalism-really-has-become-more-subjective-and-personal-at-least-some-of-it/ "a blurring of the line between opinion and fact."
+As found by recent research, in contemporary journalism the line between opinion and facts is blurring more and more~\cite{blake2019news}. For this reason, having signals of subjectivity on the document and paragraph-level would be very useful~\cite{liu2010sentiment}.
+%Furthermore, subjectivity is closely related to sentiment, since sentiment analysis is about finding the value of opinion while subjectivity is about distinguishing if the text is having an opinion or just reporting factual events~\cite{liu2010sentiment}.
+In this way, each article and each paragraph can be characterised with an indication of subjectivity.
+
+
+
+And there exist also works that analyse the framing of the whole news source by evaluating factors like political alignment, bias, and factuality~\cite{yin2008truth}.
+
+% Alignment of the sources
+% Micro-level:
+% - Words that evoke framing
+% - strong sentiment, loaded language, subjectivity
+
+Narrative structural roles
+\cite{zahid2019towards}
+
+some research considers the \emph{structural role} of a sentence in the document (e.g., is it providing some background, the main event, an evaluation).
+Different structural roles have been defined in the literature, such as 
+%Different works define sets of structural roles: 
+news schema~\cite{bell1991language}, which identifies hierarchical categories (e.g., action, reaction, consequence, context, history), narrative structure~\cite{bell2005news} (e.g., abstract, orientation, evaluation, complication, resolution), or linguistic signals~\cite{zahid2019towards,marcu2000theory}. 
+%One recent study~\cite{zahid2019towards} proposed linguistic signals to be able to recognise the structural role.
+%With such characterisations, we would be able to add to the sentence-level similarity links also their role in the different articles, to understand how their structure differs.
+Such signals could be used to identify the differences between similar sentences with regards to their structural roles in the articles. 
+% And this is an important feature because time structure and story structure are usually different~\cite{bell2005news}.
+
+\subsection{Limitations}
+\label{ssec:lit_framing_limit}
+
+Limitations of single-article framing analysis
+- can't see what is missing or added or modified
+- narrow to one article only
+- can't have external confirmation
+- does not see different perspectives, it just shows one side labelling as "framing biased" or not. Bias is everywhere
+
+
+
+
+
+\section{Overlap of Different Documents}
+\label{sec:lit_relationships}
+
+% relationships: motivation
+Just analysing the framing of single articles alone provides a good set of signals that can be used to understand the framing that is in action. But if we take multiple stories, written by authors with different perspectives, we can use the variety of news to our advantage.
+% We need the second area because we want to use methods that can tell us how similar or dissimilar are news articles or sub-parts of them.
+
 
 % Definition of relationship
 There are different possible types of relationships between news articles, such as similarity (covering the same information), referencing (one is citing another one), and temporal proximity. They can be performed at the document level (e.g., the whole article is similar to another one) or at the sentence level (e.g., the same sentence is corroborated by a sentence in another article~\cite{bountouridis2018explaining}) or even at the paragraph level.
 Since we are interested in finding articles discussing the same information, we focus on similarity relationships.
 % Other relationships could add interesting features, such as the order of publication which would help to identify which of the articles might have taken inspiration from the other. For the time being, we focus on studying and understanding the role of similarity.
 
-Here in this section, we start with approaches that deal with language representation, then moving to clustering methods and then finally approaches to plagiarism detection and analysis of how the information repeats in multiple documents.
+Here in this section, we first describe approaches that deal with language representation, then moving to clustering methods and then finally approaches to plagiarism detection and analysis of how the information repeats in multiple documents.
 
-\subsection{Language representation}
+\subsection{Language Representation}
+\label{ssec:lit_relationships_representation}
 
 % why
 This group of methods tackles one question: \emph{What is contained in the text?}
@@ -58,9 +201,16 @@ relate articles that talk about the same events, even if they use different ling
 
 It's a shallower semantic model with respect to the ones based on Entity Linking, but it is more resistant to changes in the linguistic surface.
 
-Talk about SentEval\footnote{\url{http://nlpprogress.com/english/semantic_textual_similarity.html}}
+Talk about SentEval\footnote{\url{http://nlpprogress.com/english/semantic_textual_similarity.html}}: benchmark that evaluates the ability of models to score similarity of sentences
 
-\subsection{Clustering}
+
+% % language representation
+% And with the recent advance of language models~\cite{devlin2018bert,cer2018universal,yang2019xlnet}, we have available robust methods to analyse the overlap of different articles and sub-parts of them by using their representation.
+
+
+\subsection{News Clustering}
+\label{ssec:lit_relationships_clustering}
+% news clustering
 
 % why
 Once documents and sentences are transformed to a representation, we can apply clustering techniques to find similarity relationships both at the article level (to identify articles that talk about the same event) and at the sentence level (to identify parts of article, details, which are similar, in order to be able to relate sub-document parts).
@@ -97,7 +247,24 @@ Hierarchical Clustering
 
 % strengths, limitations
 
-\subsection{Plagiarism, corroborations and omissions}
+
+The literature is quite rich in approaches to news clustering~\cite{carpineto2009survey,jones1972statistical} %also andrews2007recent
+that can bring together articles talking about the same events.
+
+
+
+\subsection{Corroboration analysis}
+\label{ssec:lit_relationships_corroboration}
+
+% TODO figure sent-sent similarity
+Some methods are able to extract which information appears in multiple documents or is omitted in some others~\cite{bountouridis2018explaining}, being really useful to analyse the selection of details that each article has made.
+% Talk about the same event
+% How much information they share
+% Document and sentence Embedding
+% Common parts, omissions, unique parts 
+
+% what about plagiarism?
+
 
 % why
 Once the articles and parts of them are linked in clusters, there are some works that exploit this information to see how much information is shared between them. This is the field of plagiarism detection, or also some other works that compute how much information is corroborated externally or omitted.
@@ -112,7 +279,7 @@ not only we might be able to recognise which sentences appear in multiple docume
 
 
 % strengths, limitations
-However, this set of approaches are limited to bringing to the attention of the reader the linked information pieces with a measure of similarity, without characterising the differences. The reader would then need to evaluate the differences in the role of the sentence, the framing that it implies and how it compares with other sentences in terms of subjectivity.
+However, this set of approaches is limited to bringing to the attention of the reader the linked information pieces with a measure of similarity, without characterising the differences. The reader would then need to evaluate the differences in the role of the sentence, the framing that it implies and how it compares with other sentences in terms of subjectivity.
 Different documents may express the same set of details, but give them a different role (reporting an action, commenting, contextualising, doing a digression, identifying causes and consequences) and use different words that are semantically similar but may imply a different framing perspective.
 For this reason, the next subsection presents a set of narrative linguistic signals that could provide us with the missing features.
 
@@ -122,75 +289,69 @@ Edit distances?
 
 Time evolution? TODO find stuff
 
+\subsection{Limitations}
+\label{ssec:lit_relationships_limitations}
+
+The main problems of this set of approaches:
+- analysis of what the differences mean is left to the reader
 
 
-\section{Linguistic features}
 
-While the first group of works focuses on finding similar articles and highlighting parts that are similar or different, here we present a set of linguistic features that can be very useful in order to characterise the peculiarities. These works are usually independent from our goal, and are applied in a wide variety of tasks.
 
-\subsection{Natural Language Parsing}
 
-% grammar, POS, dependencies, entity extraction and linking
-First of all, we have a set of features that comes to represent the structure of sentences. It is the world of parsers, that are able to tokenise, find Part Of Speech and create Dependency Trees.
+\section{Integration gap}
+\label{sec:lit_gap}
+% limitations
+Although these two areas have done significant progress, they have evolved independently without points of contact.
 
-The progress of this research is quite advanced, and there are plenties of tools available off-the-shelf (e.g. Stanford NLP, SpaCy, ...) that achieve good performances (TODO?)
+% acknowledge existing works on framing differences, but manual and not annotated
+Manual framing difference approaches:
+
+- break your bubble and similar (Blue Feed, Red Feed): feed populated with news from different sides. But not specific on a certain event.
+
+- AllSides\footnote{\url{https://www.allsides.com/story/admin}}: publishes list of parallel news: the same event seen by left, center and right sources
+
+
+% lack of automated framing difference analysis
+We argue that by the integration of these two fields, a deeper analysis of framing can be achieved, with the goal to understand better how, from the same event, multiple different stories are generated.
+
+Framing analysis, being limited to single-article analysis, cannot analyse specific framing manifestations that have been described in theoretical works: for example selecting or omitting details. This is the area that we want to tackle.
+
+
+% \section{Early draft - remove and merge}
+
+% For this reason, in this chapter we first focus on works that analyse how documents are talking about the same details, using language representations, clustering and seeing which details are narrated by different sources.
+% The objective of this first group is to extract the common ground between different stories and highlight the pieces that are uniquely changed, added or removed by individual sources.
+
+% Then we present works that characterise documents with linguistic features that we aim to use for the second phase, that is \emph{understanding} the framing that the choices of the authors use. For this reason, we analyse a set of features that have appeared in similar works.
+
+
+
+
+
+% \section{Linguistic features}
+
+% While the first group of works focuses on finding similar articles and highlighting parts that are similar or different, here we present a set of linguistic features that can be very useful in order to characterise the peculiarities. These works are usually independent from our goal, and are applied in a wide variety of tasks.
+
+% \subsection{Natural Language Parsing}
+
+% % grammar, POS, dependencies, entity extraction and linking
+% First of all, we have a set of features that comes to represent the structure of sentences. It is the world of parsers, that are able to tokenise, find Part Of Speech and create Dependency Trees.
+
+% The progress of this research is quite advanced, and there are plenties of tools available off-the-shelf (e.g. Stanford NLP, SpaCy, ...) that achieve good performances (TODO?)
 
 % entities (WARNING: avoid duplicate with 2.1.1. Language Representation)
 
 
-\subsection{Subjectivity and sentiment}
 
-loaded language
-
-In addition to these characterisations, we can add other signals derived from studies on \emph{subjectivity}.
-% and sentiment intensity.
-% https://www.niemanlab.org/2019/05/u-s-journalism-really-has-become-more-subjective-and-personal-at-least-some-of-it/ "a blurring of the line between opinion and fact."
-As found by recent research, in contemporary journalism the line between opinion and facts is blurring more and more~\cite{blake2019news}. For this reason, having signals of subjectivity on the document and paragraph-level would be very useful~\cite{liu2010sentiment}.
-%Furthermore, subjectivity is closely related to sentiment, since sentiment analysis is about finding the value of opinion while subjectivity is about distinguishing if the text is having an opinion or just reporting factual events~\cite{liu2010sentiment}.
-In this way, each article and each paragraph can be characterised with an indication of subjectivity.
-
-% \subsection{Argumentation mining?}
-
-\subsection{Narrative features}
-
-\cite{zahid2019towards}
-
-some research considers the \emph{structural role} of a sentence in the document (e.g., is it providing some background, the main event, an evaluation).
-Different structural roles have been defined in the literature, such as 
-%Different works define sets of structural roles: 
-news schema~\cite{bell1991language}, which identifies hierarchical categories (e.g., action, reaction, consequence, context, history), narrative structure~\cite{bell2005news} (e.g., abstract, orientation, evaluation, complication, resolution), or linguistic signals~\cite{zahid2019towards,marcu2000theory}. 
-%One recent study~\cite{zahid2019towards} proposed linguistic signals to be able to recognise the structural role.
-%With such characterisations, we would be able to add to the sentence-level similarity links also their role in the different articles, to understand how their structure differs.
-Such signals could be used to identify the differences between similar sentences with regards to their structural roles in the articles. 
-% And this is an important feature because time structure and story structure are usually different~\cite{bell2005news}.
-
-\subsection{Bias and Framing}
-
-Agenda setting theory and other theories
-
-Framing and Linguistic frames (both on a single doc and on multiple docs, e.g. https://journals-sagepub-com.libezproxy.open.ac.uk/doi/pdf/10.1177/1077699015606670)
-
-Mention AllSides\footnote{\url{https://www.allsides.com/story/admin}}
-
-On the other hand, there is much literature on \emph{framing}, defined
-as how a certain story is presented to shape mass opinion~\cite{goffman1974frame}, the addition to the underlying facts that reflects the sociocultural context
-%(cultural, political, ...)
-and acts as an underlying force to persuade the reader.
-% Semantic frames~\cite{fillmore2006frame}
-% News Media Frames~\cite{boydstun2014tracking} developed a schema of 15 cross-cutting framing dimensions, such as economics, morality, and politics, and
-% dataset of human annotations~\cite{card2015media}
-The work by~\cite{gamson1989media} describes a set of \emph{framing packages}, made of \emph{framing devices} (e.g., word choice, metaphors, catchphrases, 
-%exemplars, depictions, descriptions, 
-use of contrast, quantification) and \emph{reasoning devices} (e.g., problem definition, cause, consequence, solution, action%, moral evaluation
-).
-Additionally, the Frame Semantics Theory~\cite{fillmore2006frame} can be used to recognise lexical units of known frames.
-By extracting these linguistic signals, we could represent the framing behind a certain piece of text, and there exist different approaches to extract the listed features~\cite{mandal2017overview,gao2018neural,asghar2016automatic,swayamdipta:17}.
+% \subsection{Bias and Framing}
 
 
-\section{Gaps}
 
-TODO: underline lack of approaches and studies that accomplish the task automatically.
+% \section{Gaps}
 
-All these features have been used in previous research, but as mentioned above, they are mainly applied to single-article analysis. Extending this kind of analysis by taking into consideration the relationships both at the article level and the sentence level would bring a big contribution by providing contrastive signals that would not come up otherwise. 
+% TODO: underline lack of approaches and studies that accomplish the task automatically.
+
+% All these features have been used in previous research, but as mentioned above, they are mainly applied to single-article analysis. Extending this kind of analysis by taking into consideration the relationships both at the article level and the sentence level would bring a big contribution by providing contrastive signals that would not come up otherwise. 
 
 % \input{chapters/text2story_background}

@@ -1,5 +1,6 @@
 \documentclass[12pt]{scrreprt}
 
+
 % template inspired from https://www.overleaf.com/learn/latex/How_to_Write_a_Thesis_in_LaTeX_(Part_1):_Basic_Structure
 
 \usepackage[utf8]{inputenc}
@@ -26,8 +27,11 @@
 
 % for references
 % \usepackage{biblatex}
-\usepackage{biblatex}
-\addbibresource{references.bib}
+% \usepackage[style=authoryear-ibid,backend=biber]{biblatex}
+% \addbibresource{references.bib}
+\usepackage{natbib}
+\renewcommand\cite{\citep} % default \cite becomes \citep
+\DeclareOldFontCommand{\bf}{\normalfont\bfseries}{\mathbf} % natbib uses deprecated \bf command
 
 \graphicspath{ {images/} }
 
@@ -81,8 +85,11 @@
 % \input{chapters/07_conclusion}
 
 
-\printbibliography[heading=bibintoc]
-% \bibliography{bibliography}
+% \printbibliography[heading=bibintoc]
+% % \bibliography{bibliography}
+
+\bibliographystyle{agsm}
+\bibliography{references}
 
 \appendix
 

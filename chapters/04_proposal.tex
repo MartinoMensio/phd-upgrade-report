@@ -13,23 +13,41 @@
 
 % \section{Proposed method} <-- everything here
 
+% motivation
+Our goal is to provide a tool for doing framing analysis of multiple articles about a certain event, to highlight the different framing techniques and compare the resulting articles.
+In this chapter, we propose an overall description of the framework we want to build and evaluate in order to answer the research questions.
+% This needs to be taken as a description of the requirements
+% This description of the framework acts as a wireframe, where specific choices will be done based on evidence, 
 
-In this section, we propose a description of our comparison framework.
-We plan to use methods coming from both the research areas identified (framing analysis and document linking) as a starting point in Section~\ref{sec:prop_pipeline}. Then we 
+% outline
+This chapters begins with Section~\ref{sec:prop_pipeline} that outlines how we want to take existing works from the framing and similarity research areas.
+Then in Section~\ref{sec:prop_rq1} we target RQ1, giving some insights about some new analysis that we can do that would extend the existing automated framing analysis.
+And then in Section~\ref{sec:prop_rq2} we explain how we can analyse the role of news sources, for the relationship between their alignment and the framing they apply and how the stories are changed over time.
 
 \section{Processing Pipeline}
 \label{sec:prop_pipeline}
 The first objective is to build a representation that describes how the articles, and parts of them, are related between each other, together with the framing features coming from the single-article analysis.
 
+This is the starting point that is required to do all the expansions investigated by the research questions.
+Even though there are multiple works on automated framing analysis, the implementations are sparse and mostly focused on specific topics.
+Here instead we want to have a generic pipeline that would work for any topic.
+???
 
-In order to do so, we propose the following processing pipeline:
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/figure_pipeline.pdf}
+    \caption{The processing pipeline that retrieves, processes and links together different articles.}
+    \label{fig:pipeline}
+\end{figure}
+
+As we can see in Figure~\ref{fig:pipeline}, the processing pipeline is made of different stages:
 % The processing pipeline we propose for this purpose is made of multiple steps:
 \begin{itemize}
     \item \textbf{preprocessing}: documents are retrieved, cleaned up and fragmented into paragraphs and sentences;
     \item \textbf{narrative features} are attached to each document, paragraph and sentence belonging to three main types:
     \emph{structural role} using and highlighting the linguistic devices provided by~\cite{zahid2019towards};
     \emph{framing features} are extracted (framing and reasoning devices) finding some linguistic representatives from~\cite{gamson1989media,fillmore2006frame};
-    \emph{subjectivity} is computed, and strong word choices are highlighted~\cite{liu2010sentiment};
+    \emph{subjectivity} is computed, and strong word choices are highlighted~\cite{liu2010sentiment};\todo{expand on single-article framing signals}
     \item \textbf{linking}: \emph{similar articles} are found by using document-level similarity measures: in this way it would be possible to find groups of documents that describe the same events; \emph{similar sentences and paragraphs} are found by sentence-level similarity measures, inside each group of documents: corroborated and omitted sentences are identified~\cite{bountouridis2018explaining}.
 \end{itemize}
 % We start with an example of analysis together with the processing pipeline, % that enables this and 
@@ -43,20 +61,23 @@ In order to do so, we propose the following processing pipeline:
 \label{sec:prop_rq1}
 
 % RQ1: framing differences
-To address the first Research Question (revealing the framing differences in articles presenting the same event), we aim to automatically identify \textit{signals of framing} that otherwise would not be noticeable: %on top of this representation,
+To address the first Research Question \textbf{(revealing the framing differences in articles presenting the same event)}\todo{rewrite here RQ1 as question}, we aim to automatically identify \textit{signals of framing} that otherwise would not be noticeable: %on top of this representation,
 differences in emphasis, selection of details and identifying how sources reuse contents from others~\cite{mensio2020towards}.
-These signals, while they are defined in the theoretical works, they have not been targeted in the framing analysis
+These signals, while they are defined in the theoretical works, they have not been targeted in the framing analysis.
 
 Starting with the \textit{emphasis}, we aim to analyse how different articles give importance to specific details. Comparing between different articles we can spot differences in the main focus of the article (e.g., the title is an indicator) or look at how the details are presented in a different order to set the priorities for the reader.
 And this can be combined with loaded language analysis, to see how certain details are emphasised and pushed with specific words in very different ways.
+\todo{figure}
+
 To understand the \textit{selection of details} instead, the idea is to compare the articles and get the common, unique and omitted pieces~\cite{bountouridis2018explaining} and then use some linguistic features (e.g., subjectivity, framing devices) to understand what is their role, may them be full sentences or just specific words that have been added or removed strategically.
 With this analysis, we aim to provide for each article, multiple sides of the same story with an insight into what changes between them.
+\todo{figure}
 
+% RQ 1.2: cross-article signals
+In order to describe and characterise the framing we started from the literature review to gather concrete manifestations of framing, and we found a few that are mentioned and just exist when we consider more than one article at a time.
+We described them in a position paper~\cite{mensio2020towards} and defined as \emph{cross-article comparative signals}:
 
-
-
-\subsection{Cross-article Signals (Text2Story)}
-This is is the starting point to identify the differences, with a contrastive analysis. We propose here a set of \emph{cross-article comparative signals} that can bring the narrative analysis a step further:
+% This is is the starting point to identify the differences, with a contrastive analysis. We propose here a set of  that can bring the narrative analysis a step further:
 \begin{itemize}
     \item The \textbf{main focus} of the compared articles is on a different part or detail of the story: this means that while they are both describing the same broad event, they are trying to emphasise or prioritise two different aspects.
     % Prioritisation is usually based on negativity / unexpectedness / superlativeness \cite{zahid2019towards}.
@@ -95,6 +116,9 @@ This is is the starting point to identify the differences, with a contrastive an
 % From the signals in Figure~\ref{fig:comparison}, we can see that the first article pushes the narrative towards \texttt{risk} and other negative frames, to sustain the idea presented in the title ``Britain on Edge''.
 % The second article, even though it has a lot of information in common with the first one, is more confident on the preparedness of the National Health Service to face the virus (e.g., \texttt{confidence}, \texttt{expertise}).
 % The extraction of these cross-article signals is the first step to finding possible cases of manipulation.
+
+The expansion and refinement of these signals will help us answer the first Research Question.
+Hypothesis: 
 
 
 

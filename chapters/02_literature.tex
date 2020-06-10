@@ -12,9 +12,10 @@
 
 Given the aims identified in the introduction, this chapter investigates the existing work that can help us understand the framing phenomenon (theory), how it has been detected by automatic approaches (detection), usually performed on single articles.
 % how we can expand the current state of detection by using the information coming from other articles.
-But, as mentioned previously, this type of analysis struggles to detect the framing when it is very subtle and manifests through devices such as selections of details or words, omissions and ordering~\cite{morstatter2018identifying}. For this type of framing, it is very complicated to spot what belongs to framing or not, and we argue that the methods would benefit from taking a look at other articles.
+But, as mentioned previously, this type of analysis struggles to detect the framing when it is very subtle and manifests through devices such as selections of details or words, omissions and ordering~\cite{morstatter2018identifying}.
+For these specific cases, it is very complicated to spot what belongs to framing or not, and we argue that the methods would benefit from taking a look at other articles.
 
-This multi-article knowledge requires introducing a second family of methods that aims at finding similarities between articles (clustering), by using document and sentence representations (representations), and to find which pieces appear in multiple documents or not (corroborations). In this way the common ground can be identified, as well as the diversity in information reported.
+This multi-article knowledge requires introducing a second family of methods that aims at finding similarities between articles (clustering), by using document and sentence representations (representations), and to find which pieces appear in multiple documents or not (corroborations). In this way the common ground can be identified, as well as the diversity in the information reported.
 
 The analysis on these two separate fields shows that there is an intersection area that is not much explored, that is the analysis of framing differences. Given the differences identified by this second group of methods, we need to expand the framing analysis to work with multiple documents and understand why modifications in the text happen.
 We have some works that analyse this specific field, but under the perspective of social science (manual, not automated), and the automation of this type of analysis is an existing gap.
@@ -36,7 +37,7 @@ Before exploring the framing analysis area, we need to define what we mean with 
 % - broad framing as perception of the world (goffman)
 The broadest definition comes from ~\cite{goffman1974frame}, and defines framing as how people organise experiences about the world.
 % - semantic frames
-Then we have the Frame Semantics~\cite{fillmore2006frame} that instead defines a frame as "\textit{any system of concepts related in such a way that to understand any one of them you have to understand the whole structure in which it fits}". This second definition goes into the direction of annotating sentences with units of meaning (semantics) that are evoked by specific words (TODO make example of FrameNet).
+Then we have the Frame Semantics~\cite{fillmore2006frame} that instead defines a frame as "\textit{any system of concepts related in such a way that to understand any one of them you have to understand the whole structure in which it fits}". This second definition goes into the direction of annotating sentences with units of meaning (semantics) that are evoked by specific words, e.g. FrameNet~\cite{baker1998berkeley}.
 
 % - media framing
 But the definition that we rely on, instead focuses on media as a powerful tool to present facts under a specific light: instead of focusing on what is contained in a text (semantics), we focus on how it is described. This facet of the term "framing" can be seen in
@@ -55,12 +56,11 @@ We are expanding on framing theories in Subection~\ref{ssec:lit_framing_theory},
 % We have a group of theoretical studies that define the concept of \textit{media framing}~\cite{gamson1989media,scheufele2007framing},
 
 % concepts
-Media framing has several concepts.
-We have a set of processes coming from~\cite{scheufele1999framing}.
+Media framing is composed of several concepts/processes~\cite{scheufele1999framing}.
 % 1. frame building
 \textit{Frame building} is the process of creating a narrative and make the document coherent to some objectives~\cite{TODO}. It produces ``media frames'' that are embedded in the articles.
 % 2. frame setting
-Then there is the process of \textit{frame setting} that refers to transferring the frame from the reader to the consumer. How the document has been written creates the ``audience frames'': the reader is placed in a certain mental perspective.
+Then there is the process of \textit{frame setting} that refers to transferring the frame from the writer to the consumer. How the document has been written creates the ``audience frames'': the reader is placed in a certain mental perspective.
 % 3. individual level effects of framing
 And then there is the individual effects on the audience, in other words the internalisation (attribution of responsibilities, attitudes, behaviours).
 
@@ -78,7 +78,7 @@ For the macro-level, usually, each article is associated with a set of media fra
 % framing: practical automated approaches
 
 % what is framing detection?
-Automated framing detection has been addressed as an task where the objective is to annotate specific pieces of text with labels that express some forms of perspective.
+Automated framing detection has been addressed as a task where the objective is to annotate specific pieces of text with labels that express some forms of perspective.
 
 TODO expand
 
@@ -114,9 +114,8 @@ TODO expand
 \cite{mandal2017overview,gao2018neural,asghar2016automatic} (catchphrases, methaphors, causality).
 
 Framing manifests also through the usage of loaded language, and for this reason, \textit{sentiment and subjectivity analysis} can provide further signals~\cite{liu2010sentiment}.
-Sentiment analysis for detecting not only biased news but also comments made by news readers~\cite{park2011politics}
+Sentiment analysis for detecting not only biased news but also comments made by news readers~\cite{park2011politics}.
 
-loaded language
 
 In addition to these characterisations, we can add other signals derived from studies on \emph{subjectivity}.
 % and sentiment intensity.
@@ -135,8 +134,7 @@ And there exist also works that analyse the framing of the whole news source by 
 % - strong sentiment, loaded language, subjectivity
 
 Narrative structural roles
-\cite{zahid2019towards}
-
+\cite{zahid2019towards}:
 some research considers the \emph{structural role} of a sentence in the document (e.g., is it providing some background, the main event, an evaluation).
 Different structural roles have been defined in the literature, such as 
 %Different works define sets of structural roles: 
@@ -150,7 +148,7 @@ Such signals could be used to identify the differences between similar sentences
 \label{ssec:lit_framing_limit}
 
 Limitations of single-article framing analysis
-- can't see what is missing or added or modified
+- the method can't see what is missing or added or modified
 - narrow to one article only
 - can't have external confirmation
 - does not see different perspectives, it just shows one side labelling as "framing biased" or not. Bias is everywhere
@@ -159,7 +157,7 @@ Limitations of single-article framing analysis
 
 
 
-\section{Overlap of Different Documents}
+\section{Similarity between different documents}
 \label{sec:lit_relationships}
 
 % relationships: motivation
@@ -173,6 +171,12 @@ Since we are interested in finding articles discussing the same information, we 
 % Other relationships could add interesting features, such as the order of publication which would help to identify which of the articles might have taken inspiration from the other. For the time being, we focus on studying and understanding the role of similarity.
 
 Here in this section, we first describe approaches that deal with language representation, then moving to clustering methods and then finally approaches to plagiarism detection and analysis of how the information repeats in multiple documents.
+
+\subsection{What similarity is}
+
+\subsection{Similarity application (used for)}
+
+\subsection{Similarity how}
 
 \subsection{Language Representation}
 \label{ssec:lit_relationships_representation}

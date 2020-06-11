@@ -1,1 +1,139 @@
-<mxfile host="app.diagrams.net" modified="2020-06-11T11:40:39.996Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36" etag="jcWpqZjxiOf7Q--ZoNDR" version="13.2.1" type="github"><diagram id="7T68ok9usWCE8idKFhK-" name="Page-1">ddHNEoIgEADgp+GuUJZnM7t08tCZkU2YQddBGq2nTwfMGOvCLN8uLD+EZc1YGN7JKwrQhEZiJOxEKE13yTTO8HSwZx5qo4SjeIVSvcBj5PWhBPRBoUXUVnUhVti2UNnAuDE4hGV31GHXjtewgbLieqs3Jax0eqSH1S+garl0jpPUZRq+FPub9JILHL6I5YRlBtG6qBkz0PPbLe/i1p3/ZD8HM9DaHwumYN17mgQfxPI3</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2020-06-11T12:12:10.230Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36" etag="idbhAuPdVWArgcS-FYR5" version="13.2.1" type="github">
+  <diagram id="7T68ok9usWCE8idKFhK-" name="Page-1">
+    <mxGraphModel dx="946" dy="536" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="80m16F6b2pWgyMr5H69u-1" value="Pipeline" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="10" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-2" value="RQ1.1: Which signals of framing can be identified from the comparison of multiple articles?" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="320" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-3" value="retrieve" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="70" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-4" value="process" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="100" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-5" value="link" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="130" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-6" value="RQ1.2: How is our method performing?" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="320" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-7" value="Cross-article framing dataset collection/annotation&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFE6CC;" vertex="1" parent="1">
+          <mxGeometry x="250" y="570" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-8" value="User study" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFE6CC;" vertex="1" parent="1">
+          <mxGeometry x="110" y="570" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-9" value="Evaluation" style="text;html=1;strokeColor=none;fillColor=#FFE6CC;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="15" y="580" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-11" value="Outputs" style="text;html=1;strokeColor=none;fillColor=#CCFFCC;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="20" y="730" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-12" value="RQ1:&amp;nbsp;How can we&amp;nbsp; automatically reveal&amp;nbsp; the framing differences in articles presenting the same event?" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="240" width="260" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-13" value="Cross-article framing signals" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+          <mxGeometry x="110" y="720" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-14" value="Hypotheses" style="text;html=1;strokeColor=none;fillColor=#CCCCFF;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="10" y="447.5" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-15" value="Research Questions" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="30" y="250" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-19" value="We can identify quite a few signals that can only be seen when considering multiple articles. See Text2Story" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CCCCFF;" vertex="1" parent="1">
+          <mxGeometry x="110" y="430" width="120" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-20" value="We can provide a baseline providing reasonable results" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CCCCFF;" vertex="1" parent="1">
+          <mxGeometry x="250" y="430" width="120" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-26" value="Association model between outlets features and framing performed, further indicator of outlet &quot;bias&quot;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;fillColor=#CCFFCC;" vertex="1" parent="1">
+          <mxGeometry x="480" y="720" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-27" value="Implementation and data collection" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFE6CC;" vertex="1" parent="1">
+          <mxGeometry x="620" y="570" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-28" value="Propagation of information model" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+          <mxGeometry x="620" y="720" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-29" value="" style="endArrow=classic;html=1;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="80m16F6b2pWgyMr5H69u-5" target="80m16F6b2pWgyMr5H69u-7">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="320" as="sourcePoint" />
+            <mxPoint x="480" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-30" value="" style="endArrow=classic;html=1;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="80m16F6b2pWgyMr5H69u-5" target="80m16F6b2pWgyMr5H69u-10">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="170" as="sourcePoint" />
+            <mxPoint x="410" y="670" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-31" value="" style="endArrow=classic;html=1;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="80m16F6b2pWgyMr5H69u-5" target="80m16F6b2pWgyMr5H69u-25">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="440" y="180" as="sourcePoint" />
+            <mxPoint x="390" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-32" value="" style="endArrow=classic;html=1;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="80m16F6b2pWgyMr5H69u-5" target="80m16F6b2pWgyMr5H69u-27">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="190" as="sourcePoint" />
+            <mxPoint x="400" y="600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-16" value="RQ2:&amp;nbsp;How do news sources with different characteristics change stories over time?" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="240" width="260" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-17" value="RQ2.1: How well does the framing analysis relate with the information available on affiliation, newsgroup and bias of the single outlets?" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="480" y="320" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-18" value="RQ2.2: To what extent can we identify cascades of information using temporal information?" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="620" y="320" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-22" value="There are some features (e.g., how extreme is the source) that will show a predominance of certain framing techniques" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;fillColor=#CCCCFF;" vertex="1" parent="1">
+          <mxGeometry x="480" y="430" width="120" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-24" value="We can identify patterns between certain sources that take contents from others and perform specific modifications" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CCCCFF;" vertex="1" parent="1">
+          <mxGeometry x="620" y="430" width="120" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-33" value="" style="endArrow=classic;html=1;fontSize=11;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="80m16F6b2pWgyMr5H69u-13" target="80m16F6b2pWgyMr5H69u-25">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="600" as="sourcePoint" />
+            <mxPoint x="480" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-10" value="Baseline creation and evaluation" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFE6CC;" vertex="1" parent="1">
+          <mxGeometry x="250" y="640" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-37" value="" style="endArrow=classic;html=1;fontSize=11;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="80m16F6b2pWgyMr5H69u-27">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="230" y="780" as="sourcePoint" />
+            <mxPoint x="490" y="610" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-25" value="Implementation and data collection (outlet info + framing annotations)&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFE6CC;" vertex="1" parent="1">
+          <mxGeometry x="480" y="570" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-21" value="A baseline to identify the signals" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+          <mxGeometry x="250" y="720" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-38" value="" style="endArrow=classic;html=1;fontSize=11;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="80m16F6b2pWgyMr5H69u-21" target="80m16F6b2pWgyMr5H69u-25">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="250" y="800" as="sourcePoint" />
+            <mxPoint x="500" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="80m16F6b2pWgyMr5H69u-39" value="" style="endArrow=classic;html=1;fontSize=11;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="80m16F6b2pWgyMr5H69u-21" target="80m16F6b2pWgyMr5H69u-27">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="380" y="790" as="sourcePoint" />
+            <mxPoint x="490" y="640" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

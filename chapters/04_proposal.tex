@@ -22,8 +22,8 @@ In this chapter, we propose an overall description of the framework we want to b
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\linewidth]{figures/diagram.pdf}
-    \caption{Caption}
-    \label{fig:my_label}
+    \caption{The relationships between the research questions and the evaluations.}
+    \label{fig:diagram}
 \end{figure}
 
 % outline
@@ -73,19 +73,20 @@ This representation would allow us to navigate between different articles and se
 
 % RQ1: framing differences
 To address the first Research Question
-\textbf{(How can we automatically reveal the framing differences in articles presenting the same event?)},
-we aim to automatically identify \textit{signals of framing} that otherwise would not be noticeable: differences in emphasis and selection of details.
-These signals, while they are defined in the theoretical works, they have not been targeted in the automatic framing analysis.
+\textbf{(How can we automatically reveal the framing differences in articles presenting the same event?)}, we plan to divide into the two subquestions (see Figure~\ref{fig:diagram}): the first one analyses on \textit{what} the differences represent in the framing perspective, and the second one on \textit{how} we can build a tool to identify them automatically.
 
-Starting with the \textit{emphasis}, we aim to analyse how different articles give importance to specific details.
-While existing works just focus on the usage of loaded terms and repetitions to indicate the presence of emphasis, we can enrich this analysis by seeing how other articles describe the same event.
-Comparing between different articles we can spot differences in the main focus of the article (e.g., the title is an indicator) or look at how the details are presented in a different order to set the priorities for the reader.
-And this can be combined with loaded language analysis, to see how certain details are emphasised and pushed with specific words in very different ways.
-\todo{figure}
+% we aim to automatically identify \textit{signals of framing} that otherwise would not be noticeable: differences in emphasis and selection of details.
+% These signals, while they are defined in the theoretical works, they have not been targeted in the automatic framing analysis.
 
-To understand the \textit{selection of details} instead, the idea is to compare the articles and get the common, unique and omitted pieces~\cite{bountouridis2018explaining} and then use some linguistic features (e.g., subjectivity, framing devices) to understand what is their role, may them be full sentences or just specific words that have been added or removed strategically.
-With this analysis, we aim to provide for each article, multiple sides of the same story with an insight into what changes between them.
-\todo{figure}
+% Starting with the \textit{emphasis}, we aim to analyse how different articles give importance to specific details.
+% While existing works just focus on the usage of loaded terms and repetitions to indicate the presence of emphasis, we can enrich this analysis by seeing how other articles describe the same event.
+% Comparing between different articles we can spot differences in the main focus of the article (e.g., the title is an indicator) or look at how the details are presented in a different order to set the priorities for the reader.
+% And this can be combined with loaded language analysis, to see how certain details are emphasised and pushed with specific words in very different ways.
+% \todo{figure}
+
+% To understand the \textit{selection of details} instead, the idea is to compare the articles and get the common, unique and omitted pieces~\cite{bountouridis2018explaining} and then use some linguistic features (e.g., subjectivity, framing devices) to understand what is their role, may them be full sentences or just specific words that have been added or removed strategically.
+% With this analysis, we aim to provide for each article, multiple sides of the same story with an insight into what changes between them.
+\todo{figure with some examples}
 
 \subsection{RQ1.1}
 % RQ 1.1: cross-article signals
@@ -93,58 +94,74 @@ In order to describe and characterise the framing we started from the literature
 
 % Hypothesis
 Our hypothesis is that all these signals will reveal far more than the single-article framing analysis.
-We described them in a position paper~\cite{mensio2020towards} and defined as \emph{cross-article comparative signals}:
+We described them in a position paper~\cite{mensio2020towards} and defined as \emph{cross-article comparative signals}.
 
-% This is is the starting point to identify the differences, with a contrastive analysis. We propose here a set of  that can bring the narrative analysis a step further:
-\begin{itemize}
-    \item The \textbf{main focus} of the compared articles is on a different part or detail of the story: this means that while they are both describing the same broad event, they are trying to emphasise or prioritise two different aspects.
-    % Prioritisation is usually based on negativity / unexpectedness / superlativeness \cite{zahid2019towards}.
-    This signal can be computed by looking at the most similar sentence to the article title (proxy of the emphasis), and seeing how it is represented in other documents.
-    % Two articles that are semantically similar overall (they also have sentence-sentence pairs very similar) focus on different details when the titles are similar to different sentence-level cliques.
+% % This is is the starting point to identify the differences, with a contrastive analysis. We propose here a set of  that can bring the narrative analysis a step further:
+% \begin{itemize}
+%     \item The \textbf{main focus} of the compared articles is on a different part or detail of the story: this means that while they are both describing the same broad event, they are trying to emphasise or prioritise two different aspects.
+%     % Prioritisation is usually based on negativity / unexpectedness / superlativeness \cite{zahid2019towards}.
+%     This signal can be computed by looking at the most similar sentence to the article title (proxy of the emphasis), and seeing how it is represented in other documents.
+%     % Two articles that are semantically similar overall (they also have sentence-sentence pairs very similar) focus on different details when the titles are similar to different sentence-level cliques.
     
-    \item \textbf{Ordering}: the compared articles present the same details, but in a different order.
-    Re-ordering events tends to be an efficient way of creating implicit cause-effect relationships. 
-    To do this comparison, it is sufficient to find the crossovers in the sentence-level connections.
+%     \item \textbf{Ordering}: the compared articles present the same details, but in a different order.
+%     Re-ordering events tends to be an efficient way of creating implicit cause-effect relationships. 
+%     To do this comparison, it is sufficient to find the crossovers in the sentence-level connections.
 
-    \item \textbf{Selection of details}:
-    One article is \emph{omitting} certain details that have been reported by other articles, or is describing events that are \emph{corroborated} by other sources, or has \emph{unique parts} that do not occur in other articles~\cite{bountouridis2018explaining}.
-    In addition to seeing which parts are selected or omitted, the narrative analysis can help us to find some insights about them (e.g., the article is omitting subjective statements reported by others, or is describing a background event that others did not include).
-    % For the detection of this case, we rely on the work~\cite{bountouridis2018explaining}.
+%     \item \textbf{Selection of details}:
+%     One article is \emph{omitting} certain details that have been reported by other articles, or is describing events that are \emph{corroborated} by other sources, or has \emph{unique parts} that do not occur in other articles~\cite{bountouridis2018explaining}.
+%     In addition to seeing which parts are selected or omitted, the narrative analysis can help us to find some insights about them (e.g., the article is omitting subjective statements reported by others, or is describing a background event that others did not include).
+%     % For the detection of this case, we rely on the work~\cite{bountouridis2018explaining}.
     
-    \item The articles are \textbf{framing} the narrative in different ways from each other. This manifests through comparing linked sentences to observe the differences in terms of framing features: the considered articles are describing the same events but with different framing and reasoning.
-    One concrete example is the usage of \emph{causality}: one article may contain causality signposting between a pair of sentences that is absent elsewhere.
-    % \item The article uses \textbf{causality as a weapon} (where there is no proof of causality).
-    % An article is expressing causality when there are certain devices (signposting) between two sentences/events.
-    % Different articles may show the causality with different levels, so one sees it as causal and the other one does not link the events.
-    Or as another example, the usage of \emph{specific words} can reveal a specific framing: talking about the same detail or entity, the usage of verbs or adjectives may change.
-    % find strong sentiment and subjective words 
-    % (as adjectives for the same entity, or as verbs).
-    % Detail (e.g. black man instead of just saying man, to add a subtle bias).
-    For detecting such peculiarities, %and comparing them, we can combine the framing signals with 
-    features as Named Entities and subjectivity may be combined.
-    % use features coming from subjective and sentiment analysis.
+%     \item The articles are \textbf{framing} the narrative in different ways from each other. This manifests through comparing linked sentences to observe the differences in terms of framing features: the considered articles are describing the same events but with different framing and reasoning.
+%     One concrete example is the usage of \emph{causality}: one article may contain causality signposting between a pair of sentences that is absent elsewhere.
+%     % \item The article uses \textbf{causality as a weapon} (where there is no proof of causality).
+%     % An article is expressing causality when there are certain devices (signposting) between two sentences/events.
+%     % Different articles may show the causality with different levels, so one sees it as causal and the other one does not link the events.
+%     Or as another example, the usage of \emph{specific words} can reveal a specific framing: talking about the same detail or entity, the usage of verbs or adjectives may change.
+%     % find strong sentiment and subjective words 
+%     % (as adjectives for the same entity, or as verbs).
+%     % Detail (e.g. black man instead of just saying man, to add a subtle bias).
+%     For detecting such peculiarities, %and comparing them, we can combine the framing signals with 
+%     features as Named Entities and subjectivity may be combined.
+%     % use features coming from subjective and sentiment analysis.
 
-    \item The comparison can be also done on the \textbf{subjectivity} of the article: both at the document level (saying that this is an opinion piece, while a similar one is more factual) or at the sentence level, by interweaving this signal with the ones proposed before.
-    % is a \textbf{mix of factual and opinionated / subjective} content: subjectivity values on the full document and on specific sentences.
-    % A sentence is on one article subjective and a similar one on a different article is objective.
-    % Also look at the role of the sentence (commentary, action, background). 
+%     \item The comparison can be also done on the \textbf{subjectivity} of the article: both at the document level (saying that this is an opinion piece, while a similar one is more factual) or at the sentence level, by interweaving this signal with the ones proposed before.
+%     % is a \textbf{mix of factual and opinionated / subjective} content: subjectivity values on the full document and on specific sentences.
+%     % A sentence is on one article subjective and a similar one on a different article is objective.
+%     % Also look at the role of the sentence (commentary, action, background). 
 
-\end{itemize}
+% \end{itemize}
 
 % From the signals in Figure~\ref{fig:comparison}, we can see that the first article pushes the narrative towards \texttt{risk} and other negative frames, to sustain the idea presented in the title ``Britain on Edge''.
 % The second article, even though it has a lot of information in common with the first one, is more confident on the preparedness of the National Health Service to face the virus (e.g., \texttt{confidence}, \texttt{expertise}).
 % The extraction of these cross-article signals is the first step to finding possible cases of manipulation.
 
-The expansion and refinement of these signals will help us answer RQ1.1.
+% The expansion and refinement of these signals will help us answer RQ1.1.
 
 
 % evaluation
-In order to validate our hypothesis, we will need to run a user study:
+In order to validate our hypothesis, we will run a \textbf{user study} where participants will be presented with different short texts that present differences (hand-picked samples from sources with different political alignment).
+Participants will be presented with some highlights of the texts and will be asked if they value the selected differences as signals of the different point of view of the sources (framing), and what they think that the difference is (is it that they are omitting something, commenting, emphasising, other)?
 
+The annotations will be manually examined to understand better categories of the differences.
 
 
 \subsection{RQ1.2}
 % how would a cross-article framing analysis perform
+
+The second part of the first RQ requires building and evaluating the performances of our approach.
+
+% implementation
+Taking the outputs of the first study, we will expand the processing pipeline with strategies to identify the framing signals. This will involve reasoning over the features already provided by the pipeline and building a model that provides as outputs span annotations of framing that will say which framing technique has been used.
+
+% dataset building
+In order to evaluate the baseline built, we will need to collect a larger \textbf{dataset} than the User Study 1, where manual annotators will be given the the task description and will annotate the documents (help of pipeline to provide similar articles and candidate sentences).
+This dataset will be made available as a resource paper.
+
+% evaluation
+The baseline will be evaluated by looking at the accuracy/precision/recall of the spans that contain framing differences compared to the gold standard
+
+% outputs
 
 
 

@@ -1,0 +1,116 @@
+\chapter{Timeline}
+\label{chap:plan}
+% Work Plan
+
+This final chapter of this report describes the timeline, considering both the work to date and the plan for the next two years of research.
+While the previous chapter described the methodology and evaluation, here we describe when each part of the project is expected to be addressed.
+
+\section{Work to date}
+% until now: what has been done
+% - initial experiments
+% - formalisation and problem definition
+% - data
+
+This first year can be divided into three tasks.
+
+
+First is a set of \emph{practical experiments} that started by analysing the paper by~\citet{bountouridis2018explaining} which presents a methodology to analyse how much information overlaps between different similar documents, identifying points of information that are corroborated or omitted.
+The implementation provided with the paper has been analysed and reproduced, to get a deep understanding of how it works.
+Then, after finding and exploring methods that are better at finding the similarity between texts~\cite{cer2018universal,devlin2018bert,yang2019xlnet} by using language models, I experimented on how to use these methods to perform clustering both at the article level and at the sentence level.
+
+
+sorting similarity
+
+hierarchical clustering: example with diagram
+
+sentence clusters: example with figure
+
+
+Then the second task is the \emph{formalisation and definition} of the approach presented in Chapter~\ref{chap:proposal}.
+From how to connect the different pieces together
+And a position paper has been submitted, accepted and presented at a workshop on narrative analysis (Text2Story at ECIR) in April.
+This position paper focused on describing the gap and the proposed cross-article signals that would show differences in how stories are narrated.
+
+
+And finally the third task, \emph{data collection}, that has been done since the first steps on this projects.
+The data that I am interested in belongs to different natures.
+A wide set of articles is needed, so some datasets of news articles have been retrieved.
+But also specific data that contains articles grouped by stories (document clustered) is very important to have, in order to have:
+- a gold standard for document clustering experiments
+- a solid starting point to analyse differences between articles that talk about the same events.
+
+We have collected the following:
+- allnews
+- allsides
+- google news
+
+\section{Plan}
+
+realistic
+clearly stated milestones
+dependencies explicit
+contingency planning – risks identified
+timeline – dates
+resources
+skills
+pretty presentation
+
+GANTT chart
+\begin{figure}[!htb]
+    \centering
+        \begin{ganttchart}[
+            y unit title=1cm,
+            y unit chart=1cm,
+            vgrid,
+            hgrid,
+            time slot format=isodate-yearmonth,
+            time slot unit=month,
+            title/.append style={draw=none, fill=barblue},
+            title label font=\sffamily\bfseries\color{white},
+            title label node/.append style={below=-1.6ex},
+            title left shift=.05,
+            title right shift=-.05,
+            title height=1,
+            bar/.append style={draw=none, fill=groupblue},
+            bar height=.6,
+            bar label font=\normalsize\color{black!50},
+            group right shift=0,
+            group top shift=.6,
+            group height=.3,
+            group peaks height=.2,
+            bar incomplete/.append style={fill=green}
+       ]{2020-07}{2022-09}
+       \gantttitlecalendar{year, month}\\
+        %   \ganttbar[
+        %     progress=100,
+        %     bar progress label font=\small\color{barblue},
+        %     bar progress label node/.append style={right=4pt},
+        %     bar label font=\normalsize\color{barblue},
+        %     name=pp
+        %   ]{Preliminary Project}{2020-09}{2020-12} \\
+        % \ganttset{progress label text={}, link/.style={black, -to}}
+        \ganttgroup{Pipeline}{2020-07}{2020-12} \\
+            \ganttbar[progress=20, name=T0]{Implementation}{2020-07}{2020-12} \\
+            % \ganttlinkedbar[progress=0]{Task B}{2021-07}{2021-12} \\
+        \ganttgroup{RQ1}{2020-07}{2021-05} \\
+            \ganttbar[progress=15, name=T11]{RQ1.1: Hypothesis}{2020-07}{2020-09} \\
+            \ganttlinkedbar[progress=0]{RQ1.1: User study}{2020-10}{2020-10} \\
+            \ganttlinkedbar[progress=0]{RQ1.1: Analysis}{2020-11}{2020-12} \\
+            % \ganttbar[progress=0]{RQ1.2: Hypothesis}{2020-07}{2020-12} \\
+            \ganttlinkedbar[progress=0,name=T12]{RQ1.2: User study}{2021-01}{2021-01}
+            \ganttlink[link mid=.4]{T0}{T12}\\
+            \ganttbar[progress=0]{RQ1.2: Analysis}{2021-02}{2021-03} \\
+        \ganttgroup{RQ2}{2021-03}{2021-12} \\
+          \ganttbar[progress=0,name=T21]{RQ2.1: Implementation}{2021-03}{2021-05}
+          \ganttlink[link mid=.4]{T0}{T21}\\
+            \ganttlinkedbar[progress=0]{RQ2.1: Analysis}{2021-05}{2021-06} \\
+            % \ganttbar[progress=0]{RQ1.2: Hypothesis}{2020-07}{2020-12} \\
+            \ganttbar[progress=0,name=T12]{RQ1.2: Implementation}{2021-07}{2021-09}\\
+            \ganttlinkedbar[progress=0]{RQ1.2: Analysis}{2021-09}{2021-10} \\
+        \ganttgroup{Thesis}{2022-03}{2022-09} \\
+          \ganttbar[progress=0]{Writing}{2022-03}{2022-09}
+    \end{ganttchart}
+    \caption{Gantt chart}
+    \label{fig:gantt}
+\end{figure}
+

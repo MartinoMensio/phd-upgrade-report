@@ -157,7 +157,7 @@ Limitations of single-article framing analysis
 
 
 
-\section{Similarity between different documents}
+\section{Similarity between articles}
 \label{sec:lit_relationships}
 
 % relationships: motivation
@@ -170,16 +170,50 @@ There are different possible types of relationships between news articles, such 
 Since we are interested in finding articles discussing the same information, we focus on similarity relationships.
 % Other relationships could add interesting features, such as the order of publication which would help to identify which of the articles might have taken inspiration from the other. For the time being, we focus on studying and understanding the role of similarity.
 
-Here in this section, we first describe approaches that deal with language representation, then moving to clustering methods and then finally approaches to plagiarism detection and analysis of how the information repeats in multiple documents.
+% Here in this section, we first describe approaches that deal with language representation, then moving to clustering methods and then finally approaches to plagiarism detection and analysis of how the information repeats in multiple documents.
+Here in this section, we first explore what we mean with similarity, then we look at how it is used, and how it is computed, concluding with some limitations of this branch of studies.
 
-\subsection{What similarity is}
+\subsection{Similarity definition}
+% What is similarity?
 
-\subsection{Similarity application (used for)}
+Similarity is a pretty straightforward concept: it is defined as ``\emph{the fact that people or things look or are the same}''\footnote{\url{https://dictionary.cambridge.org/dictionary/english/similarity}}. In our case, we take the specific \textbf{semantic textual similarity} from the corresponding benchmark \footnote{\url{http://nlpprogress.com/english/semantic\_textual\_similarity.html}} that expresses how two different pieces of text are similar considering their semantics.
+% different liinguistic surface
+The similarity can match with how similar the corresponding strings of the text are (character-wise similarity) but has also to account for entities, relationships and concepts can be expressed by using different words that share the same meaning.
+For example if we consider two synonyms, their semantic similarity needs to be high. 
+% also dependent on the context
+And another requirement is that the similarity depends on the context of the words~\cite{miller1991contextual}. The same word can have different meanings depending on the sentence it is used in.
+TODO example
+\todo{from here on, rewrite 2.2}
 
-\subsection{Similarity how}
+\subsection{Applications of similarity}
+% What is similarity used for?
 
-\subsection{Language Representation}
-\label{ssec:lit_relationships_representation}
+Similarity is used in many applications that deal with news/documents.
+
+% Clustering
+First of all, in Information Retrieval, a common application is document clustering. Given big quantities of articles
+
+
+
+
+
+Plagiarism and Manipulation detection (diff\&co)
+
+% TODO figure sent-sent similarity
+Some methods are able to extract which information appears in multiple documents or is omitted in some others~\cite{bountouridis2018explaining}, being really useful to analyse the selection of details that each article has made.
+
+% why
+Once the articles and parts of them are linked in clusters, there are some works that exploit this information to see how much information is shared between them. This is the field of plagiarism detection, or also some other works that compute how much information is corroborated externally or omitted.
+
+
+
+Even for recommender systems (user-items recommendations based on similarity)
+
+\subsection{Similarity computation}
+% How is similarity computed?
+
+\subsubsection{Language Representation}
+Language representation
 
 % why
 This group of methods tackles one question: \emph{What is contained in the text?}
@@ -212,9 +246,19 @@ Talk about SentEval\footnote{\url{http://nlpprogress.com/english/semantic_textua
 % And with the recent advance of language models~\cite{devlin2018bert,cer2018universal,yang2019xlnet}, we have available robust methods to analyse the overlap of different articles and sub-parts of them by using their representation.
 
 
-\subsection{News Clustering}
-\label{ssec:lit_relationships_clustering}
-% news clustering
+
+
+
+
+
+Specific similarity functions: euclidean, cosine, ...
+
+
+
+
+
+\subsubsection{News Clustering}
+Clustering
 
 % why
 Once documents and sentences are transformed to a representation, we can apply clustering techniques to find similarity relationships both at the article level (to identify articles that talk about the same event) and at the sentence level (to identify parts of article, details, which are similar, in order to be able to relate sub-document parts).
@@ -257,21 +301,15 @@ that can bring together articles talking about the same events.
 
 
 
-\subsection{Corroboration analysis}
-\label{ssec:lit_relationships_corroboration}
-
-% TODO figure sent-sent similarity
-Some methods are able to extract which information appears in multiple documents or is omitted in some others~\cite{bountouridis2018explaining}, being really useful to analyse the selection of details that each article has made.
-% Talk about the same event
-% How much information they share
-% Document and sentence Embedding
-% Common parts, omissions, unique parts 
-
-% what about plagiarism?
 
 
-% why
-Once the articles and parts of them are linked in clusters, there are some works that exploit this information to see how much information is shared between them. This is the field of plagiarism detection, or also some other works that compute how much information is corroborated externally or omitted.
+
+
+
+
+
+\subsubsection{Corroboration analysis}
+Corroboration analysis
 
 % what (details)
 Furthermore, there are works that not only link the articles at a document level, but also investigate in more detail the connections between sentences.
@@ -282,10 +320,7 @@ We aim to use this idea of applying similarity to both article-level and sentenc
 not only we might be able to recognise which sentences appear in multiple documents (with different degrees of similarity) but also we would be able to identify the specific words that have been changed.
 
 
-% strengths, limitations
-However, this set of approaches is limited to bringing to the attention of the reader the linked information pieces with a measure of similarity, without characterising the differences. The reader would then need to evaluate the differences in the role of the sentence, the framing that it implies and how it compares with other sentences in terms of subjectivity.
-Different documents may express the same set of details, but give them a different role (reporting an action, commenting, contextualising, doing a digression, identifying causes and consequences) and use different words that are semantically similar but may imply a different framing perspective.
-For this reason, the next subsection presents a set of narrative linguistic signals that could provide us with the missing features.
+
 
 Citation Networks?
 
@@ -295,18 +330,23 @@ Time evolution? TODO find stuff
 
 \subsection{Limitations}
 \label{ssec:lit_relationships_limitations}
+% The main problems of this set of approaches:
+% - analysis of what the differences mean is left to the reader
 
-The main problems of this set of approaches:
-- analysis of what the differences mean is left to the reader
+% strengths, limitations
+However, this set of approaches is limited to bringing to the attention of the reader the linked information pieces with a measure of similarity, without characterising the differences. The reader would then need to evaluate the differences in the role of the sentence, the framing that it implies and how it compares with other sentences in terms of subjectivity.
+Different documents may express the same set of details, but give them a different role (reporting an action, commenting, contextualising, doing a digression, identifying causes and consequences) and use different words that are semantically similar but may imply a different framing perspective.
+% For this reason, the next subsection presents a set of narrative linguistic signals that could provide us with the missing features.
 
 
 
 
 
-\section{Integration gap}
+
+\section{Comparing different perspectives}
 \label{sec:lit_gap}
 % limitations
-Although these two areas have done significant progress, they have evolved independently without points of contact.
+Although these two previous research areas have done significant progress, they have evolved independently without many points of contact.
 
 % acknowledge existing works on framing differences, but manual and not annotated
 Manual framing difference approaches:

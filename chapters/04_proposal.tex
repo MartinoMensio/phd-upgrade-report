@@ -33,6 +33,8 @@ Even though there are multiple works on automated framing analysis, the implemen
 Here instead we want to have a generic pipeline that would work for any topic.
 ???
 
+This pipeline
+
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/figure_pipeline.pdf}
@@ -55,17 +57,22 @@ As we can see in Figure~\ref{fig:pipeline}, the processing pipeline is made of d
 % First we describe how we think is more reasonable to process the documents (similarity, cliques, hierarchical topic/stories).
 % Then we describe which are the  (baseline)(with list).
 
-
+At the end of the pipeline, we will have available a representation for the articles that accounts for how they are similar on the document level and at the sentence level.
+% also single-article framing features
+This representation would allow us to navigate between different articles and see their features. We will exploit this representation for answering the two Research Questions, as shown in the following sections.
 
 \section{Expanding framing analysis to multiple articles (RQ1)}
 \label{sec:prop_rq1}
 
 % RQ1: framing differences
-To address the first Research Question \textbf{(revealing the framing differences in articles presenting the same event)}\todo{rewrite here RQ1 as question}, we aim to automatically identify \textit{signals of framing} that otherwise would not be noticeable: %on top of this representation,
-differences in emphasis, selection of details and identifying how sources reuse contents from others~\cite{mensio2020towards}.
-These signals, while they are defined in the theoretical works, they have not been targeted in the framing analysis.
+To address the first Research Question
+\textbf{(How can we automatically reveal the framing differences in articles presenting the same event?)},
+we aim to automatically identify \textit{signals of framing} that otherwise would not be noticeable: differences in emphasis and selection of details.
+These signals, while they are defined in the theoretical works, they have not been targeted in the automatic framing analysis.
 
-Starting with the \textit{emphasis}, we aim to analyse how different articles give importance to specific details. Comparing between different articles we can spot differences in the main focus of the article (e.g., the title is an indicator) or look at how the details are presented in a different order to set the priorities for the reader.
+Starting with the \textit{emphasis}, we aim to analyse how different articles give importance to specific details.
+While existing works just focus on the usage of loaded terms and repetitions to indicate the presence of emphasis, we can enrich this analysis by seeing how other articles describe the same event.
+Comparing between different articles we can spot differences in the main focus of the article (e.g., the title is an indicator) or look at how the details are presented in a different order to set the priorities for the reader.
 And this can be combined with loaded language analysis, to see how certain details are emphasised and pushed with specific words in very different ways.
 \todo{figure}
 
@@ -73,8 +80,12 @@ To understand the \textit{selection of details} instead, the idea is to compare 
 With this analysis, we aim to provide for each article, multiple sides of the same story with an insight into what changes between them.
 \todo{figure}
 
-% RQ 1.2: cross-article signals
+\subsection{RQ1.1}
+% RQ 1.1: cross-article signals
 In order to describe and characterise the framing we started from the literature review to gather concrete manifestations of framing, and we found a few that are mentioned and just exist when we consider more than one article at a time.
+
+% Hypothesis
+Our hypothesis is that all these signals will reveal far more than the single-article framing analysis.
 We described them in a position paper~\cite{mensio2020towards} and defined as \emph{cross-article comparative signals}:
 
 % This is is the starting point to identify the differences, with a contrastive analysis. We propose here a set of  that can bring the narrative analysis a step further:
@@ -117,8 +128,16 @@ We described them in a position paper~\cite{mensio2020towards} and defined as \e
 % The second article, even though it has a lot of information in common with the first one, is more confident on the preparedness of the National Health Service to face the virus (e.g., \texttt{confidence}, \texttt{expertise}).
 % The extraction of these cross-article signals is the first step to finding possible cases of manipulation.
 
-The expansion and refinement of these signals will help us answer the first Research Question.
-Hypothesis: 
+The expansion and refinement of these signals will help us answer RQ1.1.
+
+
+% evaluation
+In order to validate our hypothesis, we will need to run a user study:
+
+
+
+\subsection{RQ1.2}
+% how would a cross-article framing analysis perform
 
 
 
@@ -126,15 +145,47 @@ Hypothesis:
 \label{sec:prop_rq2}
 % RQ2: also the sources
 
+The purpose of the second research question is to understand the link between news sources features and how they frame (change, take information from other sources).
+
+It 
+
+\subsection{RQ2.1}
 % RQ2.1: relationship with source information
-Once this stage is operational, we can target the second Research Question: how do stories change between news sources?
+% Once this stage is operational, we can target the second Research Question: how do stories change between news sources?
 We want to analyse the relationships between the framing choices done by the authors and the news sources where the articles are published. In other words, we want to understand the relationships between the ideological alignment of the news outlets (political alignment, bias, newsgroups) and the effective differences contained in the articles.
 
 Data requirements: info for each source
 
 
 
+% {RQ2.1: How well does the framing analysis relate with the information available on affiliation, newsgroup and bias of the single outlets?} With different features available for news sources, we want to see if some of them are related to the amount and type of framing that occurs on their articles.
 
+With RQ2.1 we ask how does the framing analysis relate with the information of the single outlets (affiliation, newsgroup, bias, ...).
+
+% Hypothesis
+
+% requirement: data on news outlets
+This question can be answered by pulling together information about news outlets.
+
+- MBFC: political bias and factuality
+
+- newsgroup: search info
+
+- Others?
+
+% how to answer RQ?
+And once this information is available, we can aggregate a set of framing features (to be defined!!!) by the source of the articles.
+
+With these two groups of information, we can study their correlation.
+
+% possible outcomes
+What a correlation analysis may say? For example that sources heavily biased (score on the source) tend to perform omissions or use loaded language.
+
+
+% significance
+
+
+\subsection{RQ2.2}
 % RQ2.2
 And if we also take the timing information (publication time), we can expand this model to characterise the evolution of information, describing how different news sources reuse contents from others and how the details are selected and changed over time.
 In this way we aim to extract \textit{information flows}, showing over time how different sources treat different details of the events, evolving the narrative, acquiring new elements from other sources and dropping other information pieces.\textbf{}
@@ -145,12 +196,13 @@ Is it reliable? How to manage intervals and not only instants
 
 
 
-\section{Possible outputs}
+
+% \section{Possible outputs}
 
 
-Tool for finding other stories on the same event
-External facts not considered
-Highlight words that are used differently
-Tool to analyse the practices of news outlets
-From where do they get info
-How they change it
+% Tool for finding other stories on the same event
+% External facts not considered
+% Highlight words that are used differently
+% Tool to analyse the practices of news outlets
+% From where do they get info
+% How they change it

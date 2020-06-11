@@ -1,23 +1,14 @@
-<mxfile host="app.diagrams.net" modified="2020-06-11T12:12:10.230Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36" etag="idbhAuPdVWArgcS-FYR5" version="13.2.1" type="github">
+<mxfile host="app.diagrams.net" modified="2020-06-11T12:17:02.039Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36" etag="x2tTX69LSPQvINBD-lfX" version="13.2.1" type="github">
   <diagram id="7T68ok9usWCE8idKFhK-" name="Page-1">
     <mxGraphModel dx="946" dy="536" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="80m16F6b2pWgyMr5H69u-1" value="Pipeline" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="360" y="10" width="120" height="60" as="geometry" />
+          <mxGeometry x="380" y="490" width="80" height="60" as="geometry" />
         </mxCell>
         <mxCell id="80m16F6b2pWgyMr5H69u-2" value="RQ1.1: Which signals of framing can be identified from the comparison of multiple articles?" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="110" y="320" width="120" height="90" as="geometry" />
-        </mxCell>
-        <mxCell id="80m16F6b2pWgyMr5H69u-3" value="retrieve" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="360" y="70" width="120" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="80m16F6b2pWgyMr5H69u-4" value="process" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="360" y="100" width="120" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="80m16F6b2pWgyMr5H69u-5" value="link" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="360" y="130" width="120" height="30" as="geometry" />
         </mxCell>
         <mxCell id="80m16F6b2pWgyMr5H69u-6" value="RQ1.2: How is our method performing?" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="250" y="320" width="120" height="90" as="geometry" />
@@ -61,27 +52,27 @@
         <mxCell id="80m16F6b2pWgyMr5H69u-28" value="Propagation of information model" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
           <mxGeometry x="620" y="720" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="80m16F6b2pWgyMr5H69u-29" value="" style="endArrow=classic;html=1;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="80m16F6b2pWgyMr5H69u-5" target="80m16F6b2pWgyMr5H69u-7">
+        <mxCell id="80m16F6b2pWgyMr5H69u-29" value="" style="endArrow=classic;html=1;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="80m16F6b2pWgyMr5H69u-1" target="80m16F6b2pWgyMr5H69u-7">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="430" y="320" as="sourcePoint" />
+            <mxPoint x="430" y="220" as="sourcePoint" />
             <mxPoint x="480" y="270" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="80m16F6b2pWgyMr5H69u-30" value="" style="endArrow=classic;html=1;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="80m16F6b2pWgyMr5H69u-5" target="80m16F6b2pWgyMr5H69u-10">
+        <mxCell id="80m16F6b2pWgyMr5H69u-30" value="" style="endArrow=classic;html=1;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="80m16F6b2pWgyMr5H69u-1" target="80m16F6b2pWgyMr5H69u-10">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="430" y="170" as="sourcePoint" />
+            <mxPoint x="430" y="220" as="sourcePoint" />
             <mxPoint x="410" y="670" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="80m16F6b2pWgyMr5H69u-31" value="" style="endArrow=classic;html=1;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="80m16F6b2pWgyMr5H69u-5" target="80m16F6b2pWgyMr5H69u-25">
+        <mxCell id="80m16F6b2pWgyMr5H69u-31" value="" style="endArrow=classic;html=1;fontSize=11;entryX=0;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="80m16F6b2pWgyMr5H69u-1" target="80m16F6b2pWgyMr5H69u-25">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="440" y="180" as="sourcePoint" />
+            <mxPoint x="400" y="220" as="sourcePoint" />
             <mxPoint x="390" y="590" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="80m16F6b2pWgyMr5H69u-32" value="" style="endArrow=classic;html=1;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="80m16F6b2pWgyMr5H69u-5" target="80m16F6b2pWgyMr5H69u-27">
+        <mxCell id="80m16F6b2pWgyMr5H69u-32" value="" style="endArrow=classic;html=1;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="80m16F6b2pWgyMr5H69u-1" target="80m16F6b2pWgyMr5H69u-27">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="450" y="190" as="sourcePoint" />
+            <mxPoint x="430" y="220" as="sourcePoint" />
             <mxPoint x="400" y="600" as="targetPoint" />
           </mxGeometry>
         </mxCell>

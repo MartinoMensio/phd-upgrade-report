@@ -11,29 +11,97 @@ While the previous chapter described the methodology and evaluation, here we des
 % - formalisation and problem definition
 % - data
 
-This first year can be divided into three tasks.
+During the first year several activities have been done, with the goal to find and formulate proper Research Questions and to prepare the execution of the proposal.
 
 
+\subsection{Seed paper reproduction}
+% Experiment 1
 First is a set of \emph{practical experiments} that started by analysing the paper by~\citet{bountouridis2018explaining} which presents a methodology to analyse how much information overlaps between different similar documents, identifying points of information that are corroborated or omitted.
 The implementation provided with the paper has been analysed and reproduced, to get a deep understanding of how it works.
-Then, after finding and exploring methods that are better at finding the similarity between texts~\cite{cer2018universal,devlin2018bert,yang2019xlnet} by using language models, I experimented on how to use these methods to perform clustering both at the article level and at the sentence level.
 
 
-sorting similarity
 
+\subsection{Similarity models analysis}
+% Experiment 2
+After finding and exploring more advanced methods to find the similarity between texts by using language models, we experimented on how to use these methods.
+% why?
+
+% how?
+Specifically on the sentence level, we experimented to see how the different methods were able to pick similar sentences, by setting up a small benchmark. The task was to find the most similar pairs of sentences coming from selected pairs of news articles which cover the same event (selection done manually, by considering three constraints: \textit{i)} describing the same event \textit{ii)} from different news outlets, \textit{iii)} published the same day).
+Each model would extract the most similar 10 pairs, and we compared the results obtained qualitatively.
+
+The selected models used in the benchmark are the following:
+\begin{itemize}
+    \item \textbf{TF-IDF}: with a feature size of 2000, preprocessing consists of lowercasing and tokenizing
+    \item \textbf{GloVe-average}: considering GloVe (Which???) word embeddings, and doing an average of the vectors over the sentence
+    \item \textbf{BERT}: using the embeddings provided by BERT~\cite{devlin2018bert} pre-trained on ???
+    \item \textbf{USE}: using embeddings coming from Universal Sentence Encoder~\cite{cer2018universal}
+\end{itemize}
+The representations from these models have been used together with the cosine similarity.
+
+For each pair of sentences that was provided by any of the models, we listed by manual analysis which differences were contained, by saying if some details were added or removed, or if different words were used.
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\linewidth]{figures/lyra.pdf}
+    \caption{Caption}
+    \label{fig:lyra}
+\end{figure}
+
+An example can be seen in figure~\ref{fig:lyra} that shows a sentence from BBC and one from Sky, where the differences are the following:
+
+\begin{itemize}
+    \item the detail ``4x4'' just appears on the BBC article
+    \item the detail ``on the night of 18 April 2019'' just appears on the BBC article
+    \item Active vs passive sentence ``a masked gunman fired'' vs ``she was hit by a bullet fired by a masked gunman''
+    \item the detail ``a bullet'' just appears in the Sky article
+    \item ``Towards officers and onlookers'' vs ``towards officers'': in the second, the target of the gunman are just officers
+\end{itemize}
+
+With this kind of information on the types and magnitude of changes contained in the sentences, we can get a qualitative idea of how the different models say that two sentences are similar.
+
+
+% Observations
+The observations that we have for the TF-IDF model is that
+Feature size changes a lot the results
+Requires to be computed on a set of documents all together (which also changes which features are selected), not possible to encode an additional document without changing the representation of the already encoded documents
+Pre-processing affects the results: if we don’t add a lemmatization step to the pipeline, it is sufficient to change the verb tense to have a different term.
+Given these limitations, we find that sentences that are very similar in the meaning but have some differences in the linguistic surface see a drop in their similarity.
+
+GloVe-average
+To get the document-level or sentence level: average word vector for sentences and documents. This choice has been implemented by SpaCy https://spacy.io/usage/vectors-similarity , but has many negative aspects (e.g. “Luke hates John” == “John hates Luke”) 
+
+BERT
+The values provided are very similar. This per-se is not a problem if some geometric properties are valid (ordering, proportions)
+
+
+Then we discovered STS benchmark
+
+What this means for us:
+- we need to use a similarity resistant to changes in the linguistic surface
+- we need a measure that is able to represent well the different levels of similarity
+- we must be able to switch the model used easily, in case new public benchmarks on STS show a different winner. (example XLNet~\cite{yang2019xlnet}
+
+
+\subsection{Sentence clustering}
+% Experiment 3
 hierarchical clustering: example with diagram
+\begin{figure}
+    \centering
+    \includegraphics{figures/dendrogram.png}
+    \caption{Caption}
+    \label{fig:my_label}
+\end{figure}
 
 sentence clusters: example with figure
 
 
-Then the second task is the \emph{formalisation and definition} of the approach presented in Chapter~\ref{chap:proposal}.
-From how to connect the different pieces together
-And a position paper has been submitted, accepted and presented at a workshop on narrative analysis (Text2Story at ECIR) in April.
-This position paper focused on describing the gap and the proposed cross-article signals that would show differences in how stories are narrated.
 
 
-And finally the third task, \emph{data collection}, that has been done since the first steps on this projects.
-The data that I am interested in belongs to different natures.
+\subsection{Data collection}
+We also started the \emph{data collection}, that has been done since the first steps on this projects.
+The data that we are interested in belongs to different natures.
 A wide set of articles is needed, so some datasets of news articles have been retrieved.
 But also specific data that contains articles grouped by stories (document clustered) is very important to have, in order to have:
 - a gold standard for document clustering experiments
@@ -42,7 +110,24 @@ But also specific data that contains articles grouped by stories (document clust
 We have collected the following:
 - allnews
 - allsides
-- google news
+- google news (more than 500k articles)
+
+\subsection{Formalisation and dissemination}
+Then the second task is the \emph{formalisation and definition} of the approach presented in Chapter~\ref{chap:proposal}.
+From how to connect the different pieces together
+And a position paper has been submitted, accepted and presented at a workshop on narrative analysis (Text2Story at ECIR) in April.
+This position paper focused on describing the gap and the proposed cross-article signals that would show differences in how stories are narrated.
+
+Presentations:
+- KMi
+- Text2Story
+- OU Poster Competition
+- CRC PhD conference
+
+
+
+
+
 
 \section{Plan}
 

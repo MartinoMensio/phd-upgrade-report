@@ -10,19 +10,21 @@
 
 % motivation
 
-Given the aims identified in the introduction, this chapter investigates the existing work that can help us understand the framing phenomenon (theory), how it has been detected by automatic approaches (detection), usually performed on single articles.
+Given the aims identified in the introduction, this chapter investigates the existing work that can help us understand the \emph{framing} phenomenon, and how it has been detected by automatic approaches, usually performed on single articles.
 % how we can expand the current state of detection by using the information coming from other articles.
-But, as mentioned previously, this type of analysis struggles to detect the framing when it is very subtle and manifests through devices such as selections of details or words, omissions and ordering~\cite{morstatter2018identifying}.
-For these specific cases, it is very complicated to spot what belongs to framing or not, and we argue that the methods would benefit from taking a look at other articles.
+But, as mentioned previously, this type of analysis struggles to detect the framing when it is very subtle and manifests through techniques such as focusing on certain aspects, or selecting which details to include or omit, or even selecting a specific order inside a story~\cite{morstatter2018identifying}.
+For these specific cases, it is very complicated to spot what belongs to framing or not, and we argue that an automated analysis would benefit from comparing different articles that talk about the same event but have different perspectives. %taking a look at other articles.
 
-This multi-article knowledge requires introducing a second family of methods that aims at finding similarities between articles (clustering), by using document and sentence representations (representations), and to find which pieces appear in multiple documents or not (corroborations). In this way the common ground can be identified, as well as the diversity in the information reported.
+This multi-article knowledge requires introducing a second family of methods that aims at finding \emph{similarities} between articles, by using document and sentence representations, and to find which pieces appear in multiple documents. In this way the common ground can be identified, as well as the diversity in the information reported.
+With this second family of methods we can see that for a certain event there are several articles which overlap in part, and some have unique pieces or specific words that differ from the others. But this analysis needs an interpretation framework that is able to describe the framing role of the choices done by each of the sources.
 
-The analysis on these two separate fields shows that there is an intersection area that is not much explored, that is the analysis of framing differences. Given the differences identified by this second group of methods, we need to expand the framing analysis to work with multiple documents and understand why modifications in the text happen.
-We have some works that analyse this specific field, but under the perspective of social science (manual, not automated), and the automation of this type of analysis is an existing gap.
+Exploring these two different fields of research, we can see that there is an intersection area that is not much explored, that is the analysis of framing differences. Given the differences identified by this second group of methods, we need to expand the framing analysis to work with multiple documents and understand why modifications in the text happen.
+We have some works that analyse this specific field, but using manual handcrafted analysis, that for example show how events are described from sources belonging to different political leanings. We want to target this specific area with an automated analysis.
+%under the perspective of social science (manual analysis, not automated), and the automation of this type of analysis is an existing gap.
 
 % structure
 
-For these reasons, this chapter is structured in three parts: framing on single documents (Section~\ref{sec:lit_framing}), relationships of similarity between multiple documents (Section~\ref{sec:lit_relationships}) and finally the point of contact between the two (Section~\ref{sec:lit_gap}), as our target niche.
+For these reasons, this chapter is structured in three parts: framing analysis of single documents (Section~\ref{sec:lit_framing}), similarities between multiple documents (Section~\ref{sec:lit_relationships}) and finally the point of contact between the two (Section~\ref{sec:lit_gap}), as our target niche.
 
 % The structure of 2.1 and 2.2 is inside 2.1 and 2.2
 % expanding on framing theories in Section~\ref{ssec:lit_framing_theory}, then moving to automated framing analysis in Section~\ref{ssec:lit_framing_auto}. Section~\ref{ssec:lit_framing_other} is providing some insights about related analyses that are quite related to framing (e.g., subjectivity, source bias and factuality) and Section~\ref{ssec:lit_framing_limit} exposes the limits of the single-article framing analysis.
@@ -33,21 +35,28 @@ For these reasons, this chapter is structured in three parts: framing on single 
 \label{sec:lit_framing}
 
 % definition
-Before exploring the framing analysis area, we need to define what we mean with framing, because multiple definitions exist.
+As we are using the term \emph{framing}, we need to define what we mean with it, because multiple definitions do exist.
+% Before exploring the framing analysis area, we need to define what we mean with framing, because multiple definitions exist.
 % - broad framing as perception of the world (goffman)
-The broadest definition comes from ~\cite{goffman1974frame}, and defines framing as how people organise experiences about the world.
+The broadest definition comes from \citet{goffman1974frame} who defines framing as how people organise experiences about the world.
 % - semantic frames
-Then we have the Frame Semantics~\cite{fillmore2006frame} that instead defines a frame as "\textit{any system of concepts related in such a way that to understand any one of them you have to understand the whole structure in which it fits}". This second definition goes into the direction of annotating sentences with units of meaning (semantics) that are evoked by specific words, e.g. FrameNet~\cite{baker1998berkeley}.
+Then we have the Frame Semantics~\cite{fillmore2006frame} that instead defines a frame as ``\textit{any system of concepts related in such a way that to understand any one of them you have to understand the whole structure in which it fits}''. This second definition goes into the direction of annotating sentences with units of meaning (semantics) that are evoked by specific words, e.g. FrameNet~\cite{baker1998berkeley}.
 
 % - media framing
-But the definition that we rely on, instead focuses on media as a powerful tool to present facts under a specific light: instead of focusing on what is contained in a text (semantics), we focus on how it is described. This facet of the term "framing" can be seen in
-Entman~\cite{entman1993framing} that defines framing as ``\textit{select[ing] some aspects of a perceived reality and make them more salient in a communicating text}''.
-Or from Goffman that describes framing as ``\textit{how a certain story is presented to shape mass opinion}''~\cite{goffman1974frame}.
+But the definition that we rely on, instead focuses on the power of media to present facts under a specific light: instead of focusing on \emph{what} is contained in a text (semantics), we focus on \emph{how} it is described.
+This facet of the term \emph{framing} can be seen in the work of
+\citet{entman1993framing} that defines framing as ``\textit{select[ing] some aspects of a perceived reality and make them more salient in a communicating text}''.
+Or from \citet{goffman1974frame} that describes framing as ``\textit{how a certain story is presented to shape mass opinion}''.
+% some description and insight about how it is described
+Using this connotation, framing becomes an additional layer on top of the factual information focusing on the presentation side, giving a structure (identifying problems, causes, resolutions) where each of the semantic elements is given a role to create a coherent story~\cite{pan1993framing}.
+
+
 
 % ``the central organising themes ... that connect different semantic elements of a news story (headlines, quotes, leads, visual representations, and narrative structure) into a coherent whole to suggest what is an issue.''~\cite{pan1993framing}
 
 % Structure of 2.1
-We are expanding on framing theories in Subection~\ref{ssec:lit_framing_theory}, then moving to automated framing analysis in Subection~\ref{ssec:lit_framing_auto}. Subection~\ref{ssec:lit_framing_other} is providing some insights about related analyses that are quite related to framing (e.g., subjectivity, source bias and factuality) and Subection~\ref{ssec:lit_framing_limit} exposes the limits of the single-article framing analysis.
+We expand in the following on \textit{i)} framing theories, where we can see which techniques have been defined in previous research, then we move to practical framing detection models and finally to the identification of concepts that are very much related to framing but have an independent meaning.
+% We are expanding on framing theories in Subection~\ref{ssec:lit_framing_theory}, then moving to automated framing analysis in Subection~\ref{ssec:lit_framing_auto}. Subection~\ref{ssec:lit_framing_other} is providing some insights about related analyses that are quite related to framing (e.g., subjectivity, source bias and factuality) and Subection~\ref{ssec:lit_framing_limit} exposes the limits of the single-article framing analysis.
 
 \subsection{Framing theories and definitions}
 \label{ssec:lit_framing_theory}
@@ -56,16 +65,18 @@ We are expanding on framing theories in Subection~\ref{ssec:lit_framing_theory},
 % We have a group of theoretical studies that define the concept of \textit{media framing}~\cite{gamson1989media,scheufele2007framing},
 
 % concepts
-Media framing is composed of several concepts/processes~\cite{scheufele1999framing}.
+Media framing, under the theoretical side, is composed of several concepts and processes~\cite{scheufele1999framing}.
 % 1. frame building
-\textit{Frame building} is the process of creating a narrative and make the document coherent to some objectives~\cite{TODO}. It produces ``media frames'' that are embedded in the articles.
+\textit{Frame building} is the process of creating a narrative in which the articles can fit. It corresponds to defining the objectives of the communication in which several articles can be fitted document coherent to them.
+%~\cite{scheufele1999framing}
+It produces ``media frames'' that are embedded in the articles.
 % 2. frame setting
-Then there is the process of \textit{frame setting} that refers to transferring the frame from the writer to the consumer. How the document has been written creates the ``audience frames'': the reader is placed in a certain mental perspective.
-% 3. individual level effects of framing
-And then there is the individual effects on the audience, in other words the internalisation (attribution of responsibilities, attitudes, behaviours).
+Then there is the process of \textit{frame setting} that refers to transferring the frame from the writer to the consumer. How the document has been written creates the ``audience frames'': the reader is placed in a certain mental perspective. For this to happen, a big role is played by the selection of media coverage (which issues to cover or not, with what emphasis, how to fit them into a broader coherent narrative that has been built).
+% % 3. individual level effects of framing
+% And then there is the individual effects on the audience, in other words the internalisation (attribution of responsibilities, attitudes, behaviours).
 
-Another term that is quite common is "agenda setting" that corresponds to select the information for the reader (what to think about, not how) that is used to influence the relevance of a certain event: the number of article that are published about each event is an indicator of this process (avalanche effect, a lot of outlets want to have their piece on the same event too).
-But the agenda setting ca be seen also at a more fine-grained level: stories are made of details and different sources can emphasise with different weights.
+Another term that is quite common is ``agenda setting''~\cite{mccombs1972agenda} that corresponds to select the information for the reader (what to think about, not how) that is used to influence the relevance of a certain event: the number of article that are published about each event is an indicator of this process (avalanche effect, a lot of outlets want to have their piece on the same event too).
+But the agenda setting ca be seen also at a more fine-grained level: stories are made of details and different sources can emphasise them with different weights.
 
 % and how it acts as an intermediary between the writers and the consumers of the news, via the processes of frame setting and individual-level effects on the public~\cite{scheufele1999framing} (diagram of media vs public and processes)
 
@@ -73,9 +84,21 @@ But the agenda setting ca be seen also at a more fine-grained level: stories are
 Framing is usually defined at macro and micro levels.
 For the macro-level, usually, each article is associated with a set of media framing packages, which correspond to a central idea with a surrounding interpretive structure that gives meaning to an issue~\cite{gamson1989media}. And then the micro-level analysis focuses on seeing how the defined frames come out from specific words, used as \textit{framing devices} (e.g., word choice, metaphors, catchphrases, use of contrast, quantification) and \textit{reasoning devices} (e.g., problem definition, cause, consequence, solution, action).
 
+We can take from the literature the following phenomena:
+
+\begin{itemize}
+    \item narrative lines / themes (frame building theory, themes, also with stance)
+    \item which stories in the coverage (agenda setting)
+    \item which details to emphasise (loaded language, headline alignment)
+    \item reasoning devices (structural role), problem definition-...  Entman 1993 (as seen in https://www.aclweb.org/anthology/N15-1171.pdf)
+    \item framing packages (metaphors, ....)
+    \item loaded language?
+\end{itemize}
+\todo{reorganise comprehensive list of framing techniques}
+
 % lift RQ1.1: signals
+Observing these techniques, we see that all the framing techniques defined in the literature
 \todo{motivation for RQ1.1: single-article framing is well defined, but is not enough. Need to extend it}
-We see
 
 \subsection{Framing detection}
 \label{ssec:lit_framing_auto}
@@ -87,6 +110,22 @@ Automated framing detection has been addressed as a task where the objective is 
 TODO expand
 
 % The approaches used in practice usually come from specifically built lexicons~\cite{TODO} or by human annotations~\cite{card2015media,morstatter2018identifying}.
+
+What framing detection means in literature:
+- frames as themes inside an article (e.g. health, energy, security, economy) https://pdfs.semanticscholar.org/f5c8/dbeea0112227486b7fc3bd20a73726ffea88.pdf this corresponds to measuring agenda-setting / attention allocation
+- frames as headline point of view (e.g. on articles about gun violence, there can be: gun control vs 2nd amendment vs mental health) https://www.aclweb.org/anthology/K19-1047.pdf + dataset
+https://derrywijaya.github.io/GVFC.html
+- framing bias: select and emphasize certain facts and interpretations over others when telling their story. Goal: identify type and polarity of framing bias in a sentence: there are 10 defined frames for the selected topic and the classifiers tells which one with the polarity https://isi.edu/~fredmors/paperpdfs/a5-morstatter.pdf
+- problem definition, relationship with other problems, people linked, suggested remedy: Entman 1993 (as seen in https://www.aclweb.org/anthology/N15-1171.pdf)
+- detection of framing packages  \textit{A frame consists of a variety of components, including “keywords, stock phrases, stereotype images, sources of information” (Entman, 1993, p. 52), “metaphors, exemplars, catchphrases, depictions, [...] visual images” (Gamson and Modigliani, 1989, p. 3), and other devices that provide an interpretive lens or “package.”} https://www.aclweb.org/anthology/N15-1171.pdf
+- problem definition, causal interpretation, moral evaluation, and/or treatment recommendation (same as Entman definition) https://onlinelibrary.wiley.com/doi/10.1111/j.1460-2466.2008.00384.x
+- Boydstun et al. (2013) suggest that approaches based on hierarchical topic modeling may be an effective means of identifying both issue-specific and generic frames
+- what language is perceived as being most related to framing (stereotypes, metaphors, images, catchphrases, and other elements): https://www.aclweb.org/anthology/N15-1171.pdf
+- framing and epistemological bias: https://www.aclweb.org/anthology/P13-1162.pdf framing bias is realized by subjective words or phrases linked with a particular point of view. Epistemological bias, is related to linguistic features that subtly (often via presupposition) focus on the believability of a proposition
+- quoting patterns as systematic bias https://cs.stanford.edu/people/jure/pubs/quotus-www15.pdf: which new quotes an outlet will select to broadcast. Also tool http://snap.stanford.edu/quotus/vis/
+- implicit sentiment / perspective / packaging https://pdfs.semanticscholar.org/3a81/77dc1b3d7aa4948f6cab50a1d3545e476617.pdf
+- “entailment,” “implicature,” and “subjectivity” help in identifying framing bias https://www.aclweb.org/anthology/N15-1171.pdf
+
 
 % resources/datasets
 \cite{card2015media} dataset where each document has spans annotated with media frames (broad, non dependent on the specific topic): Economic, Capacity and resources, Morality, Fairness and equality, Legality, constitutionality and jurisprudence, Policy prescription and evaluation, Crime and punishment, Security and defense, Health and safety, Quality of life, Cultural identity, Public opinion, Political, External regulation and reputation, Other.
@@ -115,6 +154,20 @@ TODO expand
 \subsection{Related concepts}
 \label{ssec:lit_framing_other}
 % framing: exchange with other dimensions
+
+Difference between framing and others:
+``framing differs from subjectivity, sentiment, bias, and related constructs. Subjectivity detection may not effectively identify well-established,
+codified frames.
+Sentiment analysis focuses on assessing the valence
+(e.g., positive, neutral, or negative) of an entity’s description. Bias involves a clear, often intentional,
+preference shown in writing for one position or opinion on an issue. In contrast, there does not exist
+a one-to-one mapping between framing and opinions (Gamson and Modigliani, 1989)
+different framings are used to support the same position on an issue. [...] identifying framing requires features and techniques that
+go beyond any one of these related concepts.''~\cite{TODO https://www.aclweb.org/anthology/N15-1171.pdf}
+Some related concepts:
+- hedging: Choi et al. (2012) identify hedging in discussion of GMOs using an SVM trained on n-grams from annotated cue phrases
+- sentiment: Greene and Resnik (2009) showed how examining grammatical construction (i.e., syntax) can reveal implicit sentiment;
+- bias: Recasens et al. (2013) used edits from Wikipedia intended to enforce a neutral point of view to identify biased sentences and the terms indicative of that bias
 
 
 \cite{mandal2017overview,gao2018neural,asghar2016automatic} (catchphrases, methaphors, causality).
@@ -169,7 +222,7 @@ Limitations of single-article framing analysis
 \label{sec:lit_relationships}
 
 % relationships: motivation
-Just analysing the framing of single articles alone provides a good set of signals that can be used to understand the framing that is in action. But if we take multiple stories, written by authors with different perspectives, we can use the variety of news to our advantage.
+Just analysing the framing of single articles alone provides a good set of signals that can be used to understand the framing that is in action, and this is where the current works on framing belong to. But if we take multiple stories, written by authors with different perspectives, we can use the variety of news to our advantage.
 % We need the second area because we want to use methods that can tell us how similar or dissimilar are news articles or sub-parts of them.
 
 
@@ -322,6 +375,7 @@ Corroboration analysis
 % what (details)
 Furthermore, there are works that not only link the articles at a document level, but also investigate in more detail the connections between sentences.
 In one recent work~\cite{bountouridis2018explaining}, groups of similar articles are found, then broken down to pieces of information and analysed to find if these details are \emph{corroborated} (occurring in multiple documents) or \emph{omitted} (occurring in other documents of the same group, but not the current one). 
+\todo{figure from Bountouridis paper}
 %is good for getting relationships between paragraphs and documents. Corroboration and omission
 % \begin{added}
 We aim to use this idea of applying similarity to both article-level and sentence-level, extending it even to the word-level. By doing so,
@@ -355,30 +409,77 @@ Different documents may express the same set of details, but give them a differe
 \label{sec:lit_gap}
 % limitations
 Although these two previous research areas have done significant progress, they have evolved independently without many points of contact.
+We need to bring together the works on framing and on similarities in order to spot more subtle examples of framing.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\linewidth]{figures/johnson_flood.png}
+    \caption{Example where omitting a detail provides a different framing.}
+    \label{fig:johnson_flood}
+\end{figure}
+
+% example that needs cross-article analysis
+If we take the example of Figure~\ref{fig:johnson_flood}, we take two sentences coming from two different news outlets (on the vertical axis from BBC\footnote{\url{https://www.bbc.co.uk/news/uk-england-hereford-worcester-51791346}} while on the horizontal from Daily Mail\footnote{\url{https://www.dailymail.co.uk/news/article-8088805/Britons-facing-heavy-downpours-four-inches-rain-50mph-winds-set-batter-UK.html}}) and compare the words they contain by using a similarity metric~\cite{cer2018universal}.
+From this figure we can see that in the green boxes we have information reported from both sources, while in the red curly brace we have a detail that has been reported only by the BBC.
+This specific detail, describing a ``mixed reaction'', gets omitted from the sentence from Daily Mail that is known to be right-leaning\footnote{\url{https://mediabiasfactcheck.com/daily-mail/}}.
+% Daily Mail: "While many locals greeted him warmly, he also faced heckles of 'traitor' as he viewed flood barriers - and one person told him to 'do your f***ing job' as he posed with teenagers for a selfie on a bridge in the town."
+
+% limitation of current framing
+This example present one specific manifestation of framing that current techniques do not focus on detecting, that is the selection of details.
+And the main reason is that such techniques requires a method that goes beyond the analysis of one single article at a time.
+We cannot know when something has been omitted if we don't have or a ground truth or different stories to corroborate with, using the richness of information available from multiple points of view.
+% RQ1.1 lift
+There are facets of framing that have not been tackled by automated approaches because they cannot be pointed out by considering a single article, and we need to investigate which ones we can define more rigorously and how important they are.
 
 % acknowledge existing works on framing differences, but manual and not annotated
-Manual framing difference approaches:
+% Manual framing difference approaches
+There exist some efforts in this joint area, that try to provide multiple points of view of the same events by considering sources that come from different political leanings.
+For example, AllSides\footnote{\url{https://www.allsides.com/story/admin}} is a platform that collects articles from different news sources providing a hand-curated set of stories where articles with different political bias are put together.
 
-- break your bubble and similar (Blue Feed, Red Feed): feed populated with news from different sides. But not specific on a certain event.
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\linewidth]{figures/allsides.png}
+    \caption{Example of analysis from AllSides: \url{https://www.allsides.com/story/trump-tweets-about-protesters-ahead-saturday-tulsa-rally}}
+    \label{fig:allsides}
+\end{figure}
 
-- AllSides\footnote{\url{https://www.allsides.com/story/admin}}: publishes list of parallel news: the same event seen by left, center and right sources
+In Figure~\ref{fig:allsides} we can see an example that is displaying how a source from the left, one from the center and one from the right frame differently Trump tweeting about his upcoming rally in Tulsa.
+% - which signals
+Sources from the left use the term ``threat'' while sources from the right use ``warning'', which can be seen in the specific words used in the headlines.
+This \emph{selection of terms} gives a specific framing which can be seen as an emphasis from the left on the strength of the tweet versus an attenuation of the right, plus the centre is instead keeping in an intermediate position.
+But if we look at the articles, this term is not the only difference. The sources from the left give more space to the narrative about Juneteenth\footnote{\url{https://en.wikipedia.org/wiki/Juneteenth}} and the past history of the city, which emerges also in the image of the article from ABC News.
+We need to have a more precise definition of what constitutes framing and how it manifests in the articles.
+% - how could we detect
+% - bias vs framing?
 
+
+% limitations:
+% Only US, handmade (lift RQ1.2)
+Considering AllSides, its main limitations are due to the fact that the analysis is handmade and therefore they publish just a few stories per week and only focusing on the US.
+With this work we want to provide a similar analysis but powered by an automated method, which will need to rely on existing works of framing analysis and document similarities.
+
+
+% - break your bubble and similar (Blue Feed, Red Feed): feed populated with news from different sides. But not specific on a certain event.
 
 % lack of automated framing difference analysis
-We argue that by the integration of these two fields, a deeper analysis of framing can be achieved, with the goal to understand better how, from the same event, multiple different stories are generated.
+We argue that by the integration of these two fields, a deeper analysis of framing can be achieved, with the goal to understand better how, from the same event, multiple stories are generated.
 
-Framing analysis, being limited to single-article analysis, cannot analyse specific framing manifestations that have been described in theoretical works: for example selecting or omitting details. This is the area that we want to tackle.
+% Framing analysis, being limited to single-article analysis, cannot analyse specific framing manifestations that have been described in theoretical works: for example selecting or omitting details. This is the area that we want to tackle.
 
-\todo{buildup floor to subquestions}
+% just left-right political leaning is considered (lift RQ2.1)
+With respect to AllSides or other tools (Blue Feed, Red Feed\footnote{\url{https://graphics.wsj.com/blue-feed-red-feed/}}) that just focus on the left/right political bias (mainly from US with liberal/conservative), we want to conduct an analysis that compares several characteristics of the news outlets, such as the newsgroup they belong to, or how they are rated by multiple news rating organisations (factuality, bias), or their ideology in general.
+
+% \todo{buildup floor to subquestions}
 
 
-1.1 Need for signals
+% 1.1 Need for signals
 
-1.2 Need for baseline
+% 1.2 Need for baseline
 
-2.1 Correlation source bias/features
+% 2.1 Correlation source bias/features
 
-2.2 Temporal chains
+% 2.2 Temporal chains
+\todo{RQ2.2???}
 
 
 

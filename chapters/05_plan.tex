@@ -16,8 +16,26 @@ During the first year several activities have been done, with the goal to find a
 
 \subsection{Seed paper reproduction}
 % Experiment 1
-First is a set of \emph{practical experiments} that started by analysing the paper by~\citet{bountouridis2018explaining} which presents a methodology to analyse how much information overlaps between different similar documents, identifying points of information that are corroborated or omitted.
+% why
+We started by analysing the paper by~\citet{bountouridis2018explaining} which presents a methodology to analyse how much information overlaps between different similar documents, identifying points of information that are corroborated or omitted.
 The implementation provided with the paper has been analysed and reproduced, to get a deep understanding of how it works.
+The main limitations of the implementation\footnote{\url{https://github.com/dbountouridis/InCredible}} provided with the paper are:
+
+\begin{itemize}
+    \item just reproduces the second part (sentence-level cliques) and not the first one
+    \item Their demo\footnote{\url{http://fairnews.ewi.tudelft.nl/InCredible/}} just shows one specific article as main and one specific clique (not very interesting)
+    \item a lot of parameters are not specified
+\end{itemize}
+
+% how
+
+
+% limitations
+In addition to these problems, the model described is based on TF-IDF which is not as robust with changes on the linguistic surface (as we saw in the next experiment). --> this is the motivation for 5.1.2
+And also, it uses the similarity between TF-IDF just with a threshold, modelling the graph and cliques as unweighted (the weights are just used to select the most appropriate clique during their creation).
+
+% role of this experiment
+This experiment helped seeing the limitation of this type of work, that belongs to the second area of research evidenced in the Literature Review (\ref{sec:lit_relationships}. This paper provides a great way to analyse the overlap between articles and extracts pieces that have been omitted or that are corroborated, but does not investigate further in the reason behind the selection of what to include or not. This lead into researching more into the framing analysis. 
 
 
 
@@ -78,6 +96,7 @@ The values provided are very similar. This per-se is not a problem if some geome
 
 Then we discovered STS benchmark
 
+% role of this experiment
 What this means for us:
 - we need to use a similarity resistant to changes in the linguistic surface
 - we need a measure that is able to represent well the different levels of similarity
@@ -86,10 +105,14 @@ What this means for us:
 
 \subsection{Sentence clustering}
 % Experiment 3
+
+% why
+
+% how
 hierarchical clustering: example with diagram
-\begin{figure}
+\begin{figure}[!htb]
     \centering
-    \includegraphics{figures/dendrogram.png}
+    \includegraphics[width=\linewidth]{figures/dendrogram.png}
     \caption{Caption}
     \label{fig:my_label}
 \end{figure}
@@ -97,9 +120,10 @@ hierarchical clustering: example with diagram
 sentence clusters: example with figure
 
 
-
+% role of this experiment
 
 \subsection{Data collection}
+% why
 We also started the \emph{data collection}, that has been done since the first steps on this projects.
 The data that we are interested in belongs to different natures.
 A wide set of articles is needed, so some datasets of news articles have been retrieved.
@@ -107,10 +131,13 @@ But also specific data that contains articles grouped by stories (document clust
 - a gold standard for document clustering experiments
 - a solid starting point to analyse differences between articles that talk about the same events.
 
+% how
 We have collected the following:
 - allnews
 - allsides
 - google news (more than 500k articles)
+
+% role of this
 
 \subsection{Formalisation and dissemination}
 Then the second task is the \emph{formalisation and definition} of the approach presented in Chapter~\ref{chap:proposal}.

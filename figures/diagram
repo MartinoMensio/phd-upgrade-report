@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-06-24T14:19:22.580Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36" etag="oLM-uA9fGN7iI7ybcFdd" version="13.3.2" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2020-06-24T17:57:51.776Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36" etag="jT9OroCGc4qEFvQx_KCN" version="13.3.2" type="github" pages="2">
   <diagram id="7T68ok9usWCE8idKFhK-" name="RQ">
     <mxGraphModel dx="946" dy="536" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -34,7 +34,7 @@
         <mxCell id="80m16F6b2pWgyMr5H69u-15" value="Research Questions" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="30" y="250" width="40" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="80m16F6b2pWgyMr5H69u-19" value="We can identify quite a few signals that can only be seen when considering multiple articles (some in Text2Story)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CCCCFF;" parent="1" vertex="1">
+        <mxCell id="80m16F6b2pWgyMr5H69u-19" value="- Having multiple articles helps users to detect framing&lt;br&gt;- Some signals can only be seen by comparing articles" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CCCCFF;" parent="1" vertex="1">
           <mxGeometry x="110" y="430" width="120" height="85" as="geometry" />
         </mxCell>
         <mxCell id="80m16F6b2pWgyMr5H69u-20" value="We can provide a baseline providing reasonable results" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CCCCFF;" parent="1" vertex="1">

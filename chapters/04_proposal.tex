@@ -14,10 +14,11 @@
 % \section{Proposed method} <-- everything here
 
 % motivation
-Our goal is to provide a tool for doing framing analysis of multiple articles about a certain event, to highlight the different framing techniques and compare the resulting articles.
-In this chapter, we propose an overall description of the framework we want to build and evaluate in order to answer the research questions.
+% Our goal is to provide a tool for doing framing analysis of multiple articles about a certain event, to highlight the different framing techniques and compare the resulting articles.
+In this chapter, we propose an overall description of the framework we want to build and evaluate in order to highlight the different framing techniques and compare the resulting articles.
 % This needs to be taken as a description of the requirements
 % This description of the framework acts as a wireframe, where specific choices will be done based on evidence, 
+As we can see in Figure~\ref{fig:diagram}, taking the research questions and sub-questions from the previous chapter, we have a a set of hypothesis to be tested with an analysis plan.
 
 \begin{figure}[!htb]
     \centering
@@ -27,53 +28,19 @@ In this chapter, we propose an overall description of the framework we want to b
 \end{figure}
 
 % outline
-This chapters begins with Section~\ref{sec:prop_pipeline} that outlines how we want to take existing works from the framing and similarity research areas.
-Then in Section~\ref{sec:prop_rq1} we target RQ1, giving some insights about some new analysis that we can do that would extend the existing automated framing analysis.
-And then in Section~\ref{sec:prop_rq2} we explain how we can analyse the role of news sources, for the relationship between their alignment and the framing they apply and how the stories are changed over time.
+Each one of the vertical columns is described in a different section below.
+% This chapters begins with Section~\ref{sec:prop_pipeline} that outlines how we want to take existing works from the framing and similarity research areas.
+% Then in Section~\ref{sec:prop_rq1} we target RQ1, giving some insights about some new analysis that we can do that would extend the existing automated framing analysis.
+% And then in Section~\ref{sec:prop_rq2} we explain how we can analyse the role of news sources, for the relationship between their alignment and the framing they apply and how the stories are changed over time.
 
-\section{Processing Pipeline}\todo{remove? does it make sense?}
-\label{sec:prop_pipeline}
-The first objective is to build a representation that describes how the articles, and parts of them, are related between each other, together with the framing features coming from the single-article analysis.
 
-This is the starting point that is required to do all the expansions investigated by the research questions.
-Even though there are multiple works on automated framing analysis, the implementations are sparse and mostly focused on specific topics.
-Here instead we want to have a generic pipeline that would work for any topic.
-???
 
-This pipeline
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/figure_pipeline.pdf}
-    \caption{The processing pipeline that retrieves, processes and links together different articles.}
-    \label{fig:pipeline}
-\end{figure}
-
-As we can see in Figure~\ref{fig:pipeline}, the processing pipeline is made of different stages:
-% The processing pipeline we propose for this purpose is made of multiple steps:
-\begin{itemize}
-    \item \textbf{preprocessing}: documents are retrieved, cleaned up and fragmented into paragraphs and sentences;
-    \item \textbf{narrative features} are attached to each document, paragraph and sentence belonging to three main types:
-    \emph{structural role} using and highlighting the linguistic devices provided by~\cite{zahid2019towards};
-    \emph{framing features} are extracted (framing and reasoning devices) finding some linguistic representatives from~\cite{gamson1989media,fillmore2006frame};
-    \emph{subjectivity} is computed, and strong word choices are highlighted~\cite{liu2010sentiment};\todo{expand on single-article framing signals}
-    \item \textbf{linking}: \emph{similar articles} are found by using document-level similarity measures: in this way it would be possible to find groups of documents that describe the same events; \emph{similar sentences and paragraphs} are found by sentence-level similarity measures, inside each group of documents: corroborated and omitted sentences are identified~\cite{bountouridis2018explaining}.
-\end{itemize}
-% We start with an example of analysis together with the processing pipeline, % that enables this and 
-% then we introduce some cross-article signals that highlight the difference in the narratives used.
-% First we describe how we think is more reasonable to process the documents (similarity, cliques, hierarchical topic/stories).
-% Then we describe which are the  (baseline)(with list).
-
-At the end of the pipeline, we will have available a representation for the articles that accounts for how they are similar on the document level and at the sentence level.
-% also single-article framing features
-This representation would allow us to navigate between different articles and see their features. We will exploit this representation for answering the two Research Questions, as shown in the following sections.
-
-\section{Expanding framing analysis to multiple articles (RQ1)}
+\section{Cross-article framing analysis (RQ1)}
 \label{sec:prop_rq1}
 
 % RQ1: framing differences
 To address the first Research Question
-\textbf{(How can we automatically reveal the framing differences in articles presenting the same event?)}, we plan to divide into the two subquestions (see Figure~\ref{fig:diagram}): the first one analyses on \textit{what} the differences represent in the framing perspective, and the second one on \textit{how} we can build a tool to identify them automatically.
+\textbf{(How can we automatically reveal the framing differences in articles presenting the same event?)}, our plan is divided for the two subquestions: the first one analyses on \textit{what} the differences represent in the framing perspective, and the second one on \textit{how} we can build a tool to identify them automatically.
 
 % we aim to automatically identify \textit{signals of framing} that otherwise would not be noticeable: differences in emphasis and selection of details.
 % These signals, while they are defined in the theoretical works, they have not been targeted in the automatic framing analysis.
@@ -90,12 +57,20 @@ To address the first Research Question
 
 \subsection{RQ1.1}
 % RQ 1.1: cross-article signals
-In order to describe and characterise the framing we started from the literature review to gather concrete manifestations of framing, and we found a few that are mentioned and just exist when we consider more than one article at a time.
+In order to describe and characterise the framing we started from the literature review to gather concrete manifestations of framing, both in theoretical works and in detection methods.
+As we have seen in subsection~\ref{ssec:lit_framing_theory}, different manifestations have been theorised and studied in practical studies
+% what we mean by signal
+We call these manifestation as \emph{signals} because they are signalling the presence of the framing, which is a abstract concept, but are tangible and can be seen as concrete features.
+For example, loaded language can be seen as a signal that can be observed on specific words that have a strong sentiment, and evokes frames of strength, violence, threat and similar.
+What we want to investigate is whether we can extend this set of signals by exiting the limitations of a single-article analysis. 
+Our specific subquestion is \textbf{Which framing signals can be identified from the comparison of multiple articles?}
 
 % Hypothesis
 Our hypothesis is that all these signals will reveal far more than the single-article framing analysis.
+We find that some framing signals just exist when we consider more than one article at a time, and have not been studied in automated detection methods.
 We described them in a position paper~\cite{mensio2020towards} and defined as \emph{cross-article comparative signals}.
 
+\todo{write a short abstract of the signals we expect to identify}
 % % This is is the starting point to identify the differences, with a contrastive analysis. We propose here a set of  that can bring the narrative analysis a step further:
 % \begin{itemize}
 %     \item The \textbf{main focus} of the compared articles is on a different part or detail of the story: this means that while they are both describing the same broad event, they are trying to emphasise or prioritise two different aspects.
@@ -139,17 +114,44 @@ We described them in a position paper~\cite{mensio2020towards} and defined as \e
 % The expansion and refinement of these signals will help us answer RQ1.1.
 
 
-% evaluation
-In order to validate our hypothesis, we will run a \textbf{user study} where participants will be presented with different short texts that present differences (hand-picked samples from sources with different political alignment).
-Participants will be presented with some highlights of the texts and will be asked if they value the selected differences as signals of the different point of view of the sources (framing), and what they think that the difference is (is it that they are omitting something, commenting, emphasising, other)?
+% requirements
+In order to validate our hypothesis, we will run a \textbf{user study} where participants will be presented with different short texts that present differences.
+% data (hand-picked samples from sources with different political alignment)
+This data will come from a small set of samples made of pairs of documents that are presenting the same detail, with some differences in the terms used. To collect this data we will use articles that are already clustered as discussing the same specific event (from AllSides and other news aggregators like Google News).
 
-The annotations will be manually examined to understand better categories of the differences.
+% analysis
+Participants will be presented with two articles and will be asked a set of questions that investigate the effect of having different terms, different details and how user think this is related to try to push for a certain perspective on the events described.
+% Do the articles have the same point of view? Do they convey the same message? Title? Details?
+% Sentences
+% - Do these sentences have different information?
+% - Do they provide different perspective?
+% - Are there any terms that push for a certain perspective?
+% - What is the difference in the intent of communication?
+%   - Detail (random, look like professional and detailed, mislead, emphasise on something)
+%   - Word choice: emphasise, promote, demote
+% if they value the selected differences as signals of the different point of view of the sources (framing), and what they think that the difference is (is it that they are omitting something, commenting, emphasising, other)?
+
+Or study 2 (better):
+To test the hypothesis that framing is easier to spot when multiple articles are presented. First present to the user just one article and ask to find the framing signals. Then show second article with different details and ask again.
+It is important to divide the annotators of a certain pair in two subgrups in order to divide the effect of ``seeing again the same article twice'' from ``seeing the article compared to another one''. For this reason, if we consider A1 and A2, user U1 will first see A1 then A1+A2, while U2 will first see A2 then A1+A2. In this way we can sum CA1\_before+CA2 for U1 and CA1+CA2\_before for U2 where each observation is done at first sight of the article.
+Hypothesis: users will be able to see more signals in the second phase.
+
+The data required from the user is to highlight parts of the article(s) and to say why it is providing a certain view angle, as a free text. Suggesting some techniques from literature.
+
+% outputs
+The annotations will be manually examined with two goals.
+First, to see if the annotators (using inter-annotator agreement measures) are able to spot more signals with different articles in their front.
+This will prove or disprove our hypothesis that framing can be revealed easier with
+to understand how to categorise the signals.
+
+
+\todo{what about an figure/example of the task?}
 
 
 \subsection{RQ1.2}
 % how would a cross-article framing analysis perform
 
-The second part of the first RQ requires building and evaluating the performances of our approach.
+The second part of the first RQ requires building and evaluating an automated method to extract the signals identified.
 
 % implementation
 Taking the outputs of the first study, we will expand the processing pipeline with strategies to identify the framing signals. This will involve reasoning over the features already provided by the pipeline and building a model that provides as outputs span annotations of framing that will say which framing technique has been used.
@@ -162,7 +164,44 @@ This dataset will be made available as a resource paper.
 The baseline will be evaluated by looking at the accuracy/precision/recall of the spans that contain framing differences compared to the gold standard
 
 % outputs
+Outputs
 
+\subsubsection{Processing Pipeline}\todo{remove? does it make sense? 4.1.2}
+\label{sec:prop_pipeline}
+The first objective is to build a representation that describes how the articles, and parts of them, are related between each other, together with the framing features coming from the single-article analysis.
+
+This is the starting point that is required to do all the expansions investigated by the research questions.
+Even though there are multiple works on automated framing analysis, the implementations are sparse and mostly focused on specific topics.
+Here instead we want to have a generic pipeline that would work for any topic.
+???
+
+This pipeline
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/figure_pipeline.pdf}
+    \caption{The processing pipeline that retrieves, processes and links together different articles.}
+    \label{fig:pipeline}
+\end{figure}
+
+As we can see in Figure~\ref{fig:pipeline}, the processing pipeline is made of different stages:
+% The processing pipeline we propose for this purpose is made of multiple steps:
+\begin{itemize}
+    \item \textbf{preprocessing}: documents are retrieved, cleaned up and fragmented into paragraphs and sentences;
+    \item \textbf{narrative features} are attached to each document, paragraph and sentence belonging to three main types:
+    \emph{structural role} using and highlighting the linguistic devices provided by~\cite{zahid2019towards};
+    \emph{framing features} are extracted (framing and reasoning devices) finding some linguistic representatives from~\cite{gamson1989media,fillmore2006frame};
+    \emph{subjectivity} is computed, and strong word choices are highlighted~\cite{liu2010sentiment};\todo{expand on single-article framing signals}
+    \item \textbf{linking}: \emph{similar articles} are found by using document-level similarity measures: in this way it would be possible to find groups of documents that describe the same events; \emph{similar sentences and paragraphs} are found by sentence-level similarity measures, inside each group of documents: corroborated and omitted sentences are identified~\cite{bountouridis2018explaining}.
+\end{itemize}
+% We start with an example of analysis together with the processing pipeline, % that enables this and 
+% then we introduce some cross-article signals that highlight the difference in the narratives used.
+% First we describe how we think is more reasonable to process the documents (similarity, cliques, hierarchical topic/stories).
+% Then we describe which are the  (baseline)(with list).
+
+At the end of the pipeline, we will have available a representation for the articles that accounts for how they are similar on the document level and at the sentence level.
+% also single-article framing features
+This representation would allow us to navigate between different articles and see their features. We will exploit this representation for answering the two Research Questions, as shown in the following sections.
 
 
 \section{The role of news sources (RQ2)}

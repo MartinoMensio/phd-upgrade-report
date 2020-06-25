@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-06-25T08:44:26.643Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36" etag="JwXJe5Qgvhs9utqEbOx1" version="13.3.4" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2020-06-25T11:07:51.041Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36" etag="PrZExyRv3qmsiJ_UgCBX" version="13.3.4" type="github" pages="2">
   <diagram id="7T68ok9usWCE8idKFhK-" name="RQ">
     <mxGraphModel dx="946" dy="536" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -58,7 +58,7 @@
         <mxCell id="80m16F6b2pWgyMr5H69u-16" value="RQ2:&amp;nbsp;How do news sources change stories over time?" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="470" y="240" width="280" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="80m16F6b2pWgyMr5H69u-17" value="RQ2.1: How does the affiliation of a news source relate with the&amp;nbsp; framing techniques it uses?" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" parent="1" vertex="1">
+        <mxCell id="80m16F6b2pWgyMr5H69u-17" value="RQ2.1: Which features of a news source relate with the framing techniques it uses?" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" parent="1" vertex="1">
           <mxGeometry x="470" y="320" width="130" height="90" as="geometry" />
         </mxCell>
         <mxCell id="80m16F6b2pWgyMr5H69u-18" value="RQ2.2: To what extent can we identify the evolution of the framing of a certain event?" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">

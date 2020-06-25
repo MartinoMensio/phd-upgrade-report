@@ -267,34 +267,38 @@ Here we want to analyse the relationship between the features of a news source a
 \textbf{Which features of a news source relate with the framing techniques it uses?}
 We want to analyse the relationships between the framing choices done by the authors and the news sources where the articles are published. In other words, we want to understand the relationships between the ideological alignment of the news outlets (political alignment, bias, newsgroups) and the effective differences contained in the articles.
 
-Data requirements: info for each source
 
-
-
-% {RQ2.1: How well does the framing analysis relate with the information available on affiliation, newsgroup and bias of the single outlets?} With different features available for news sources, we want to see if some of them are related to the amount and type of framing that occurs on their articles.
-
-With RQ2.1 we ask how does the framing analysis relate with the information of the single outlets (affiliation, newsgroup, bias, partisanship, ...).
+% With RQ2.1 we ask how does the framing analysis relate with the information of the single outlets (affiliation, newsgroup, bias, partisanship, ...).
 
 % Hypothesis
+The hypothesis that we have is that certain features, such as the political alignment, have bigger effects than others, especially when the news topic is about politics.
+Instead for other topics we want to understand what is the effect of other features and discover which ones make the articles to be framed in a certain way.
 
 % requirement: data on news outlets
-This question can be answered by pulling together information about news outlets.
+In order to test this hypothesis we need two sets of information: the data for each of the sources and the framing analysis.
+In the first group, we can use many features:
 
-- MBFC: political bias and factuality
+\begin{itemize}
+    \item political alignment: AllSides, Media Bias/Fact Check
+    \item newsgroup (TODO find)
+    \item geographical information: country, region
+    \item factuality rating (MBFC, NewsGuard)
+    \item ideology (MBFC)
+    \item 
+\end{itemize}
 
-- newsgroup: search info
+On the other side, the framing analysis will provide how much each source uses each of the framing techniques, by doing an aggregation on the source level of the analysis of the articles.
 
-- geography: country, region
+% analysis
+The analysis will be done by comparing the two sets and extracting the most important correlations.
+% And once this information is available, we can aggregate a set of framing features (to be defined!!!) by the source of the articles.
+\todo{describe more}
 
-- Others?
-
-% how to answer RQ?
-And once this information is available, we can aggregate a set of framing features (to be defined!!!) by the source of the articles.
-
-With these two groups of information, we can study their correlation.
+% With these two groups of information, we can study their correlation.
 
 % possible outcomes
-What a correlation analysis may say? For example that sources heavily biased (score on the source) tend to perform omissions or use loaded language.
+This correlation analysis will tell us if there are any characteristics of the news sources that make them heavily use framing techniques.
+One example that we may discover is that sources heavily biased (score on the source) tend to perform omissions (as seen in~\citet{bountouridis2018explaining}) or use loaded language.
 
 
 % significance
@@ -302,18 +306,27 @@ What a correlation analysis may say? For example that sources heavily biased (sc
 
 \subsection{RQ2.2}
 % RQ2.2
+The last sub-question instead takes the direction of analysing the evolution over time of an event in how it is presented in the media landscape.
 \textbf{To what extent can we identify the evolution of the framing of a certain event?}
 And if we also take the timing information (publication time), we can expand this model to characterise the evolution of information, describing how different news sources reuse contents from others and how the details are selected and changed over time.
-In this way we aim to extract \textit{information flows}, showing over time how different sources treat different details of the events, evolving the narrative, acquiring new elements from other sources and dropping other information pieces.\textbf{}
+In this way we aim to extract \textit{information flows}, showing over time how different sources treat different details of the events, evolving the narrative, acquiring new elements from other sources and dropping other information pieces.
 
+% hypothesis
+Hypothesis: We can identify patterns between certain sources that take contents from others and perform specific modifications
+
+% requirements
 Data requirements: timing information.
 Is it reliable? How to manage intervals and not only instants
 
+% analysis
+\todo{describe analysis}
+
+% outputs
+\todo{describe outputs}
 
 
 
 
-% \section{Possible outputs}
 
 
 % Tool for finding other stories on the same event

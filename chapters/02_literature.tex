@@ -99,8 +99,8 @@ We can take from the literature the following phenomena:
 \todo{reorganise comprehensive list of framing techniques}
 
 % lift RQ1.1: signals
-Observing these techniques, we see that all the framing techniques defined in the literature
-\todo{motivation for RQ1.1: single-article framing is well defined, but is not enough. Need to extend it}
+Observing these techniques, we see that all the framing techniques defined in the literature mostly focus on single articles, and do not use the external knwoledge from other articles both in the definition and in the detection.
+\todo{motivation for RQ1.1: single-article framing is well defined, but is not enough. Need to extend it to cross-article}
 
 \subsection{Framing detection}
 \label{ssec:lit_framing_auto}
@@ -213,8 +213,8 @@ Such signals could be used to identify the differences between similar sentences
 Limitations of single-article framing analysis
 - the method can't see what is missing or added or modified
 - narrow to one article only
-- can't have external confirmation
-- does not see different perspectives, it just shows one side labelling as "framing biased" or not. Bias is everywhere
+- cannot have external confirmation
+- does not see different perspectives, it just shows one side labelling as "framing biased" or not. Every source has its own biases
 
 
 
@@ -239,7 +239,8 @@ Here in this section, we first explore what we mean with similarity, then we loo
 \subsection{Similarity definition}
 % What is similarity?
 
-Similarity is a pretty straightforward concept: it is defined as ``\emph{the fact that people or things look or are the same}''\footnote{\url{https://dictionary.cambridge.org/dictionary/english/similarity}}. In our case, we take the specific \textbf{semantic textual similarity} from the corresponding benchmark \footnote{\url{http://nlpprogress.com/english/semantic\_textual\_similarity.html}} that expresses how two different pieces of text are similar considering their semantics.
+The concept of similarity is is widely defined as ``\emph{the fact that people or things look or are the same}''\footnote{\url{https://dictionary.cambridge.org/dictionary/english/similarity}}. In our case, we want to focus on the specific \textbf{semantic textual similarity}, that expresses how two different pieces of text are similar considering their semantics.
+This narrower definition is used in the NLP community, and there exists even a benchmark that evaluates and scores the models capacity of seeing the semantic similarity or difference between texts.\footnote{\url{http://nlpprogress.com/english/semantic\_textual\_similarity.html}}
 % different liinguistic surface
 The similarity can match with how similar the corresponding strings of the text are (character-wise similarity) but has also to account for entities, relationships and concepts can be expressed by using different words that share the same meaning.
 For example if we consider two synonyms, their semantic similarity needs to be high. 
@@ -404,6 +405,8 @@ Different documents may express the same set of details, but give them a differe
 
 
 
+Motivation for RQ2.2: overlap of information is high. Is it a coincidence? Or there is a flow of information / recycle between news sources? Who uses contents from the others, and how is it modified?
+
 
 
 
@@ -448,7 +451,7 @@ For example, AllSides\footnote{\url{https://www.allsides.com/story/admin}} is a 
 In Figure~\ref{fig:allsides} we can see an example that is displaying how a source from the left, one from the center and one from the right frame differently Trump tweeting about his upcoming rally in Tulsa.
 % - which signals
 Sources from the left use the term ``threat'' while sources from the right use ``warning'', which can be seen in the specific words used in the headlines.
-This \emph{selection of terms} gives a specific framing which can be seen as an emphasis from the left on the strength of the tweet versus an attenuation of the right, plus the centre is instead keeping in an intermediate position.
+This \emph{selection of terms} gives a specific framing which can be seen as an emphasis from the left on the strength of the tweet versus an attenuation from the right, plus the centre is instead keeping in an intermediate position.
 But if we look at the articles, this term is not the only difference. The sources from the left give more space to the narrative about Juneteenth\footnote{\url{https://en.wikipedia.org/wiki/Juneteenth}} and the past history of the city, which emerges also in the image of the article from ABC News.
 We need to have a more precise definition of what constitutes framing and how it manifests in the articles.
 % - how could we detect
@@ -470,18 +473,21 @@ We argue that by the integration of these two fields, a deeper analysis of frami
 
 % just left-right political leaning is considered (lift RQ2.1)
 With respect to AllSides or other tools (Blue Feed, Red Feed\footnote{\url{https://graphics.wsj.com/blue-feed-red-feed/}}) that just focus on the left/right political bias (mainly from US with liberal/conservative), we want to conduct an analysis that compares several characteristics of the news outlets, such as the newsgroup they belong to, or how they are rated by multiple news rating organisations (factuality, bias), or their ideology in general.
+We want to have an idea of the correlation between certain features of the sources and the type of framing that they use. This goes beyond the left/right spectrum because not all the news is focused on the political topic.
 
-% \todo{buildup floor to subquestions}
 
+% lift RQ2.2
+Furthermore, seeing that the overlap of information between the different sources is quite high, we want to analyse more deeply how the content is reused by different sources (as evidenced in \ref{ssec:lit_relationships_limitations}). The main focus is not in evidencing plagiarism (as other studies have done), but instead to find how the news is modified considering the time of publishing
+Motivation for RQ2.2: overlap of information is high. Is it a coincidence? Or there is a flow of information / recycle between news sources? Who uses contents from the others, and how is it modified?
+\todo{rephrase this last paragraph}
 
-% 1.1 Need for signals
+% 1.1 Need for cross-article signals
 
 % 1.2 Need for baseline
 
 % 2.1 Correlation source bias/features
 
 % 2.2 Temporal chains
-\todo{RQ2.2???}
 
 
 

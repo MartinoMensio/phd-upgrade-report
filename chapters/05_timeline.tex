@@ -1,0 +1,270 @@
+\chapter{Timeline}
+\label{chap:plan}
+% Work Plan
+
+This final chapter of this report describes the timeline, considering both the work that has been done up to the current date and the plan for the next two years of research.
+While the previous chapter described the methodology and evaluation that is planned, here we describe when each part of the project is expected to be addressed.
+
+\section{Work to date}
+% until now: what has been done
+% - initial experiments
+% - formalisation and problem definition
+% - data
+
+During the first year several activities have been done.
+Some have been done as initial explorations in the field of research, understanding what other researchers have done, ``getting the hands dirty'' with data and NLP tools.
+And their function within the PhD project has been to lead to the Research Questions that we described earlier.
+Some other activities have been done to kick start the future experimentation, for example doing data collection of news articles or by beginning to implement some of the stages of the processing pipeline that will be used.
+% , with the goal to find and formulate proper Research Questions and to prepare the execution of the proposal.
+
+
+\subsection{Paper reproduction~\cite{bountouridis2018explaining}}
+% Experiment 1
+% what
+We started by analysing the paper by~\citet{bountouridis2018explaining} which presents a methodology to analyse how much information overlaps between different similar documents, identifying points of information that are corroborated or omitted.
+% why
+We wanted to analyse this resource because it seems to be going in the broad direction of this project, analysing different presentations in the news of the same event.
+
+% how
+The paper has been analysed and reproduced, to get a deep understanding of how it works. The implementation started with the code publicly provided by the authors,\footnote{\url{https://github.com/dbountouridis/InCredible}} but its incompleteness in some stages of the processing (e.g., the creation of the article-level cliques, and all the specific hyperparameters of the algorithms used) required an integration of the codebase.\footnote{\url{https://github.com/MartinoMensio/InCredible}}
+
+% limitations
+With the experiments reproduced, we have been able to inspect the cliques of documents and sentences identified by the model, seeing the following limitations:
+
+\begin{itemize}
+    % \item Their demo\footnote{\url{http://fairnews.ewi.tudelft.nl/InCredible/}} just shows one specific article as main and one specific clique (not very interesting)
+    \item The \emph{document clustering} seems split similar articles over different clusters, or in some cases having different stories that talk about a different detail within the same cluster (e.g., when a news story re-emerges because further details are discovered). This can be a consequence of having TF-IDF as underlying method to represent the documents. While it is fast and efficient for coarse topic detection, because it is based on bag of words which works well when specific terms that distinguish certain topics, when we need to have a finer-grained clustering such in this case, the limitation of such method may surface because the terms of two political events with the same entities mentioned result in having similar feature vectors.
+    \item The \emph{sentence clustering} method provided just says that two sentences are similar, but does not point to which specific words are responsible for the similarities and differences. This would require a framing analysis that in this paper is not included. Furthermore, sentences in a clique are very similar and no big differences have been observed because the similarity metrics is based again on TF-IDF. This method is not robust enough to the usage of synonyms and other variations on the linguistic surface, while at the same time is unable to distinguish two sentences that use the same words but have different meanings because of the sentence structure, so it makes selecting a threshold value very difficult.
+    \item The \emph{clique algorithms} are not the best choice for doing clustering when we have the information of how much similar two items are (a real-value is available for the similarity metric). The approach considers an unweighted version of the similarity graph by using a threshold (weights are just used to select the most appropriate clique during their creation), but instead dealing with the original weighted graph would allow better clustering techniques. %, like agglomerative clustering
+\end{itemize}
+
+
+% In addition to these problems, the model described is based on TF-IDF which is not as robust with changes on the linguistic surface (as we saw in the next experiment).
+% Models flourished
+% This is the motivation for 5.1.2
+
+% And also, it uses the similarity between TF-IDF just with a threshold, modelling the graph and cliques as unweighted (the weights are just used to select the most appropriate clique during their creation).
+
+% role of this experiment
+This experiment helped seeing the limitation of this type of work, that belongs to the \emph{similarity} area of research (Section~\ref{sec:lit_relationships}).
+This paper provides a great way to analyse the overlap between articles and extracts pieces that have been omitted or that are corroborated, but does not investigate further in the reason behind the selection of what to include or not.
+This opened up for more investigation in \emph{i)} how to represent better documents to have better similarity metrics, \emph{ii)} investigating the works that analyse framing, \emph{iii)} experimentation with document and sentence clustering to bring up differences, and \emph{iv)} data collection of more recent articles that would be more relevant and interesting.
+
+
+\subsection{Similarity models analysis}
+% Experiment 2
+% what
+Moving to the problem of representing documents and sentences in a way that captures more the semantic similarity, we decided to analyse closer the existing works, including word embeddings and language models.
+We wanted to see in practice how the usage of different representation models would affect the measurements of similarity, experimenting with a small set of articles. 
+% finding and exploring more advanced methods to find the similarity between texts by using language models, we experimented on how to use these methods.
+% why?
+Having a solid base for computing the distances between articles and sentences is a pillar for comparing different articles. The applications of similarity range from document clustering to identification of omitted pieces of information in a cluster, therefore it is very important to use a proper method that is not fooled by usage of synonyms and other linguistic variations in communicating the same information. To study the differences in the language of framing we first need to be able to tell whether two pieces of text are discussing the same information, and distinguish properly degrees of similarity.
+
+% how?
+% Specifically on the sentence level, we experimented to see how different models were able to pick similar sentences, by setting up a small benchmark.
+We set up a small benchmark where the goal is to find the most similar pairs of sentences coming from selected pairs of news articles which cover the same event. Each model candidate has to tell which 10 most similar pairs of sentences has found, one from one article and one from the other.
+The pairs of articles have been chosen manually, by considering three constraints: \textit{i)} description of the same event, \textit{ii)} from different news outlets, \textit{iii)} published near in time, with a maximum distance of one day.
+Each model would extract the most similar 10 pairs, and we then compare the pairs provided and their relative order.
+
+The selected models used in the benchmark are the following:
+\begin{itemize}
+    \item \textbf{TF-IDF}: with a feature size of 2000, with a preprocessing made of lowercasing and tokenizing, without lemmatisation;
+    \item \textbf{GloVe-average}: considering GloVe word embeddings trained on the CommonCrawl dataset, and doing an average of the vectors over the sentence;\footnote{\url{https://spacy.io/models/en\#en_core_web_lg}}
+    \item \textbf{BERT}: using the most popular embeddings provided by Google Research~\cite{devlin2018bert} with the base uncased pretrained weights;\footnote{\url{https://spacy.io/models/en-starters\#en_trf_bertbaseuncased_lg}}
+    \item \textbf{USE}: using sentence embeddings coming from Universal Sentence Encoder~\cite{cer2018universal} which have been specifically trained for sentence similarity\footnote{\url{https://tfhub.dev/google/universal-sentence-encoder/}}
+\end{itemize}
+
+In all the cases, the representations from these models have been compared with the cosine similarity.
+For each pair of sentences that was provided by any of the models, we listed by manual analysis which differences were contained, by listing the details that changed, or if different words were used.
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\linewidth]{figures/lyra.pdf}
+    \caption{The comparison between two sentences, one from BBC and the other from Sky News, where multiple differences exist.}
+    \label{fig:lyra}
+\end{figure}
+\todo{crop figure, title not needed (already caption)}
+
+An example can be seen in figure~\ref{fig:lyra} that shows a sentence from BBC and one from Sky News, where the differences are the following:
+
+\begin{itemize}
+    \item the detail ``4x4'' just appears on the BBC article;
+    \item the detail ``on the night of 18 April 2019'' just appears on the BBC article;
+    \item Active vs passive sentence ``a masked gunman fired'' vs ``she was hit by a bullet fired by a masked gunman'';
+    \item the detail ``a bullet'' just appears in the Sky article;
+    \item ``Towards officers and onlookers'' vs ``towards officers'': in the second, the targets of the gunman are just the officers.
+\end{itemize}
+
+With this kind of information on the number, type and magnitude of changes contained in different pairs of sentences, we can get a qualitative idea of how the measures of similarity coming from the different models are representative of the effective differences. If a model scores more similar a pair of sentences that appear to us to be less related than another pair, that is a negative sign for that model. 
+
+
+% Observations
+\todo{rewrite better the observations}
+The observations that we have for the TF-IDF model is that
+Feature size changes a lot the results
+It requires to be computed on a set of documents all together (which also changes which features are selected), not possible to encode an additional document without changing the representation of the already encoded documents
+Pre-processing affects the results: if we don’t add a lemmatization step to the pipeline, it is sufficient to change the verb tense to have a different term.
+Given these limitations, we find that sentences that are very similar in the meaning but have some differences in the linguistic surface see a drop in their similarity.
+
+GloVe-average
+To get the document-level or sentence level: average word vector for sentences and documents. This choice has been implemented by SpaCy https://spacy.io/usage/vectors-similarity , but has many negative aspects (e.g. “Luke hates John” == “John hates Luke”) 
+
+BERT
+The values provided are very similar. This per-se is not a problem if some geometric properties are valid (ordering, proportions)
+
+
+\todo{an example of two pairs where we can see some of the limitations?}
+
+% role of this experiment
+What this means for us:
+- we need to use a similarity resistant to changes in the linguistic surface
+- we need a measure that is able to represent well the different levels of similarity
+- we must be able to switch the model used easily, in case new public benchmarks for STS show a different winner (example XLNet~\cite{yang2019xlnet}).
+This experiment is not a definitive choice and is not set up to rank the models. Its purpose is to have a good observation of how different types of models can be effective or not, and to experiment with them to use in the implementation.
+Benchmark, availability of code and maybe further measures on our system will decide the final ``winner''.
+Purpose: implementation and building of the pipeline.
+
+
+\subsection{Sentence clustering and extraction of differences}
+% Experiment 3
+% what
+The next experimentation that we have done regards the usage of the similarity values to group together sentences describing the same details and at the same time study the uniqueness of the words used.
+% why
+\todo{from here on}
+This comes from the limitation of the first experiment of reproduction of the paper. (from experiment 1)
+(from experiment on similarity)
+
+% how
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\linewidth]{figures/dendrogram.png}
+    \caption{A portion of the dendrogram that shows how different sentences are merged together in the clusters by increasing distance values.}
+    \label{fig:my_label}
+\end{figure}
+
+1. distance computation
+2. hierarchical clustering (example with diagram)
+sentence clusters: example with figure
+3. extract degree of uniqueness of words (from pairwise to clusterwise, with bag-of-words or difftool (order matters, duplicates))
+
+
+% role of this experiment and outcomes
+This methodology can be used in our framework to help the preparation of the dataset:
+- selecting which articles have to be compared (using at the article-level the same methodology)
+- the annotators to see both which sentences are most similar, and the words that differ inside
+
+It evidenced the need to explore more on the interpretation of the differences by running a user study to decide how to label and group them.
+
+
+\subsection{Data collection}
+% what
+We also started the \emph{data collection}, that has been done since the first steps on this projects.
+% why
+The data that we are interested in belongs to different natures.
+A wide set of articles is needed, so some datasets of news articles have been retrieved.
+But also specific data that contains articles grouped by stories (document clustered) is very important to have, in order to have:
+- a gold standard for document clustering experiments
+- a solid starting point to analyse differences between articles that talk about the same events.
+
+% how
+We have collected the following:
+- allnews: standard benchmark, wide adopted (find refs)
+- allsides: human-created with interesting framing differences
+- google news (more than 500k articles) daily. Some stats about the number of sources involved
+
+% role of this
+The data collected will be used in different stages of the analysis, serving as the seed to create the labelled dataset that we are aiming to create at the end of the journey of the first Research Question and also providing a wide set of articles from different news sources to empower the studies of the second Research Question.
+Having articles from so many different news sources, we can on one side provide some indication of framing for news sources that are not usually targeted by manual framing studies because not enough ``important'', and on the other side be more confident to observe some phenomenon of information flow/re-usage that is the underlying hypothesis for the last sub-question.
+
+\subsection{Formalisation and dissemination}\todo{do we need this?}
+% what
+The last type of activity carried out during this year has been the presentation of this work to other researchers throughout different events with different audiences.
+% why
+From how to connect the different pieces together
+
+% how
+And a position paper has been submitted, accepted and presented at a workshop on narrative analysis (Text2Story at ECIR) in April.
+This position paper focused on describing the gap and the proposed cross-article signals that would show differences in how stories are narrated.
+
+Presentations:
+- KMi
+- Text2Story
+- OU Poster Competition
+- CRC PhD conference
+
+
+
+
+
+
+\section{Plan}
+
+realistic
+clearly stated milestones
+dependencies explicit
+contingency planning – risks identified
+timeline – dates
+resources
+skills
+pretty presentation
+
+GANTT chart\todo{do with details}
+\begin{figure}[!htb]
+    \centering
+        \begin{ganttchart}[
+            y unit title=1cm,
+            y unit chart=1cm,
+            vgrid,
+            hgrid,
+            time slot format=isodate-yearmonth,
+            time slot unit=month,
+            title/.append style={draw=none, fill=barblue},
+            title label font=\sffamily\bfseries\color{white},
+            title label node/.append style={below=-1.6ex},
+            title left shift=.05,
+            title right shift=-.05,
+            title height=1,
+            bar/.append style={draw=none, fill=groupblue},
+            bar height=.6,
+            bar label font=\normalsize\color{black!50},
+            group right shift=0,
+            group top shift=.6,
+            group height=.3,
+            group peaks height=.2,
+            bar incomplete/.append style={fill=green}
+       ]{2020-07}{2022-09}
+       \gantttitlecalendar{year, month}\\
+        %   \ganttbar[
+        %     progress=100,
+        %     bar progress label font=\small\color{barblue},
+        %     bar progress label node/.append style={right=4pt},
+        %     bar label font=\normalsize\color{barblue},
+        %     name=pp
+        %   ]{Preliminary Project}{2020-09}{2020-12} \\
+        % \ganttset{progress label text={}, link/.style={black, -to}}
+        \ganttgroup{Pipeline}{2020-07}{2020-12} \\
+            \ganttbar[progress=20, name=T0]{Implementation}{2020-07}{2020-12} \\
+            % \ganttlinkedbar[progress=0]{Task B}{2021-07}{2021-12} \\
+        \ganttgroup{RQ1}{2020-07}{2021-05} \\
+            \ganttbar[progress=15, name=T11]{RQ1.1: Hypothesis}{2020-07}{2020-09} \\
+            \ganttlinkedbar[progress=0]{RQ1.1: User study}{2020-10}{2020-10} \\
+            \ganttlinkedbar[progress=0]{RQ1.1: Analysis}{2020-11}{2020-12} \\
+            % \ganttbar[progress=0]{RQ1.2: Hypothesis}{2020-07}{2020-12} \\
+            \ganttlinkedbar[progress=0,name=T12]{RQ1.2: User study}{2021-01}{2021-01}
+            \ganttlink[link mid=.4]{T0}{T12}\\
+            \ganttbar[progress=0]{RQ1.2: Analysis}{2021-02}{2021-03} \\
+        \ganttgroup{RQ2}{2021-03}{2021-12} \\
+          \ganttbar[progress=0,name=T21]{RQ2.1: Implementation}{2021-03}{2021-05}
+          \ganttlink[link mid=.4]{T0}{T21}\\
+            \ganttlinkedbar[progress=0]{RQ2.1: Analysis}{2021-05}{2021-06} \\
+            % \ganttbar[progress=0]{RQ1.2: Hypothesis}{2020-07}{2020-12} \\
+            \ganttbar[progress=0,name=T12]{RQ1.2: Implementation}{2021-07}{2021-09}\\
+            \ganttlinkedbar[progress=0]{RQ1.2: Analysis}{2021-09}{2021-10} \\
+        \ganttgroup{Thesis}{2022-03}{2022-09} \\
+          \ganttbar[progress=0]{Writing}{2022-03}{2022-09}
+    \end{ganttchart}
+    \caption{Gantt chart}
+    \label{fig:gantt}
+\end{figure}
+

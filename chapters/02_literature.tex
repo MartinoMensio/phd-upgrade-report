@@ -50,16 +50,18 @@ Or from \citet{goffman1974frame} that describes framing as ``\textit{how a certa
 % some description and insight about how it is described
 Using this connotation, framing becomes an additional layer on top of the factual information focusing on the presentation side, giving a structure (identifying problems, causes, resolutions) where each of the semantic elements is given a role to create a coherent story~\cite{pan1993framing}.
 
-
+% difference with propaganda
+propaganda is targeted for a specific goal, framing instead is what is used to do propaganda. Framing exists also without propaganda, as for example
 
 % ``the central organising themes ... that connect different semantic elements of a news story (headlines, quotes, leads, visual representations, and narrative structure) into a coherent whole to suggest what is an issue.''~\cite{pan1993framing}
 
 % Structure of 2.1
-We expand in the following on \textit{i)} framing theories, where we can see which techniques have been defined in previous research, then we move to practical framing detection models and finally to the identification of concepts that are very much related to framing but have an independent meaning.
+We expand in the following on \textit{i)} framing techniques, where we can see how previous research identified a set of concrete phenomena, then we move to practical framing detection models and finally to the identification of concepts that are very much related to framing but have an independent meaning.
 % We are expanding on framing theories in Subection~\ref{ssec:lit_framing_theory}, then moving to automated framing analysis in Subection~\ref{ssec:lit_framing_auto}. Subection~\ref{ssec:lit_framing_other} is providing some insights about related analyses that are quite related to framing (e.g., subjectivity, source bias and factuality) and Subection~\ref{ssec:lit_framing_limit} exposes the limits of the single-article framing analysis.
 
-\subsection{Framing theories and definitions}
+\subsection{Framing techniques}
 \label{ssec:lit_framing_theory}
+% Framing theories and definitions
 % framing: definition and theory
 
 % We have a group of theoretical studies that define the concept of \textit{media framing}~\cite{gamson1989media,scheufele2007framing},
@@ -84,7 +86,7 @@ But the agenda setting ca be seen also at a more fine-grained level: stories are
 Framing is usually defined at macro and micro levels.
 For the macro-level, usually, each article is associated with a set of media framing packages, which correspond to a central idea with a surrounding interpretive structure that gives meaning to an issue~\cite{gamson1989media}. And then the micro-level analysis focuses on seeing how the defined frames come out from specific words, used as \textit{framing devices} (e.g., word choice, metaphors, catchphrases, use of contrast, quantification) and \textit{reasoning devices} (e.g., problem definition, cause, consequence, solution, action).
 
-We can take from the literature the following phenomena:
+We can take from the literature the following techniques:
 
 \begin{itemize}
     \item narrative lines / themes (frame building theory, themes, also with stance)
@@ -98,9 +100,19 @@ We can take from the literature the following phenomena:
 \end{itemize}
 \todo{reorganise comprehensive list of framing techniques}
 
-% lift RQ1.1: signals
-Observing these techniques, we see that all the framing techniques defined in the literature mostly focus on single articles, and do not use the external knwoledge from other articles both in the definition and in the detection.
-\todo{motivation for RQ1.1: single-article framing is well defined, but is not enough. Need to extend it to cross-article}
+
+% lift RQ1.1: cross-article signals
+While these theoretical works and studies in political and social communication sciences focus on defining these signals, it is unclear how important it is to corroborate from multiple sources to reveal the framing around a news.
+% - techniques that need external knowledge/comparison
+We can see that some of these techniques really need some comparison to be seen: \todo{sublist}
+% - techniques that can be observed on one single article (but still can benefit from comparison)
+And some others that, even if they can be seen on articles on their own
+\todo{what about a table that groups them?}
+% some nice things?
+A common suggestion for media literacy referring to misinformation is to search for external sources to find corroboration of the claims, but we do not see the same for more subtle influences on the opinion of the readers, that happen when framing occurs.
+
+% Observing these techniques, we see that all the framing techniques defined in the literature mostly focus on single articles, and do not use the external knwoledge from other articles both in the definition and in the detection.
+% \todo{motivation for RQ1.1: single-article framing is well defined, but is not enough. Need to extend it to cross-article}
 
 \subsection{Framing detection}
 \label{ssec:lit_framing_auto}
@@ -113,7 +125,7 @@ TODO expand
 
 % The approaches used in practice usually come from specifically built lexicons~\cite{TODO} or by human annotations~\cite{card2015media,morstatter2018identifying}.
 
-What framing detection means in literature:
+What framing detection means in literature (move before the definitions):
 - frames as themes inside an article (e.g. health, energy, security, economy) https://pdfs.semanticscholar.org/f5c8/dbeea0112227486b7fc3bd20a73726ffea88.pdf this corresponds to measuring agenda-setting / attention allocation
 - frames as headline point of view (e.g. on articles about gun violence, there can be: gun control vs 2nd amendment vs mental health) https://www.aclweb.org/anthology/K19-1047.pdf + dataset
 https://derrywijaya.github.io/GVFC.html
@@ -165,7 +177,7 @@ Sentiment analysis focuses on assessing the valence
 preference shown in writing for one position or opinion on an issue. In contrast, there does not exist
 a one-to-one mapping between framing and opinions (Gamson and Modigliani, 1989)
 different framings are used to support the same position on an issue. [...] identifying framing requires features and techniques that
-go beyond any one of these related concepts.''~\cite{TODO https://www.aclweb.org/anthology/N15-1171.pdf}
+go beyond any one of these related concepts.''~\cite{TODO:https://www.aclweb.org/anthology/N15-1171.pdf}
 Some related concepts:
 - hedging: Choi et al. (2012) identify hedging in discussion of GMOs using an SVM trained on n-grams from annotated cue phrases
 - sentiment: Greene and Resnik (2009) showed how examining grammatical construction (i.e., syntax) can reveal implicit sentiment;
@@ -184,6 +196,10 @@ In addition to these characterisations, we can add other signals derived from st
 As found by recent research, in contemporary journalism the line between opinion and facts is blurring more and more~\cite{blake2019news}. For this reason, having signals of subjectivity on the document and paragraph-level would be very useful~\cite{liu2010sentiment}.
 %Furthermore, subjectivity is closely related to sentiment, since sentiment analysis is about finding the value of opinion while subjectivity is about distinguishing if the text is having an opinion or just reporting factual events~\cite{liu2010sentiment}.
 In this way, each article and each paragraph can be characterised with an indication of subjectivity.
+
+Sensationalism:
+% http://linguistics-research-digest.blogspot.com/2014/11/sensationalism-unmasked-how-to-design.html
+The climax – the part of the story with the greatest suspense – goes first, followed by the complication – a technical term for bits of narrative that say what happened. The resolution, or the ‘how it all ended’ bit concludes the list. Beginning with the climax arouses  the reader’s curiosity and makes them want to find out more about this story.
 
 
 
@@ -286,7 +302,7 @@ This group of methods tackles one question: \emph{What is contained in the text?
 Starting with very naive methods,
 Bag of words, stopwords
 
-TF-IDF: how relevant and unique words are\cite{jones1972statistical}
+TF-IDF: how relevant and unique words are\cite{jones1972statistical,ramos2003using}
 
 Knowledge extraction: Entity Recognition and Linking, triplets extraction. Is it worth?
 
@@ -462,6 +478,8 @@ We need to have a more precise definition of what constitutes framing and how it
 % Only US, handmade (lift RQ1.2)
 Considering AllSides, its main limitations are due to the fact that the analysis is handmade and therefore they publish just a few stories per week and only focusing on the US.
 With this work we want to provide a similar analysis but powered by an automated method, which will need to rely on existing works of framing analysis and document similarities.
+
+\todo{limits of automated framing / propaganda analysis: https://propaganda.qcri.org/}
 
 
 % - break your bubble and similar (Blue Feed, Red Feed): feed populated with news from different sides. But not specific on a certain event.

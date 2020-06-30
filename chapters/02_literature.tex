@@ -269,83 +269,123 @@ Just analysing the framing of single articles alone provides a good set of signa
 
 
 % Definition of relationship
-\todo{link better to previous introductory paragraph}
-There are different possible types of relationships between news articles, such as similarity (covering the same information), referencing (one is citing another one), and temporal proximity. They can be performed at the document level (e.g., the whole article is similar to another one) or at the sentence level (e.g., the same sentence is corroborated by a sentence in another article~\cite{bountouridis2018explaining}) or even at the paragraph level.
+% \todo{link better to previous introductory paragraph}
+There are different possible types of relationships between news articles, such as similarity (covering the same information), referencing (one article is citing another one), and temporal proximity. They can be performed at the document level (e.g., the whole article is similar to another one) or at the sentence level (e.g., the same sentence is corroborated by a sentence in another article~\cite{bountouridis2018explaining}) or even at the paragraph level.
 Since we are interested in finding articles discussing the same information, we focus on similarity relationships.
 % Other relationships could add interesting features, such as the order of publication which would help to identify which of the articles might have taken inspiration from the other. For the time being, we focus on studying and understanding the role of similarity.
 
 % Here in this section, we first describe approaches that deal with language representation, then moving to clustering methods and then finally approaches to plagiarism detection and analysis of how the information repeats in multiple documents.
 Here in this section, we first explore what we mean with similarity, then we look at how it is used, and how it is computed, concluding with some limitations of this branch of studies.
+Our overall goal is to find the tools that would allow us to enrich the framing analysis by bringing information from other articles. And the articles need to relate to the same events.
 
 \subsection{Similarity definition}
 % What is similarity?
 
 The concept of similarity is widely defined as ``\emph{the fact that people or things look or are the same}''\footnote{\url{https://dictionary.cambridge.org/dictionary/english/similarity}}. In our case, we want to focus on the specific \textbf{semantic textual similarity}, that expresses how two different pieces of text are similar considering their semantics.
-This narrower definition is used in the NLP community, and there exists even a benchmark that evaluates and scores the models capacity of distinguish different levels of semantic similarity between texts.\footnote{\url{http://nlpprogress.com/english/semantic\_textual\_similarity.html}}
+This narrower definition is used in the NLP community, and for several years a specific SentEval task has been targeted to evaluate the capacity of evaluating the level of similarity between sentences~\cite{conneau-kiela-2018-senteval}.\footnote{\url{http://nlpprogress.com/english/semantic\_textual\_similarity.html}}
+% exists even a benchmark that evaluates and scores the models capacity of distinguish different levels of semantic similarity between texts.
 % different linguistic surface
 The similarity can match with how similar the corresponding strings of the text are (character-wise similarity) but has also to account for entities, relationships and concepts that can be expressed by using different words that have the same meaning.
 For example if we consider two synonyms, their semantic similarity needs to be high. 
 % also dependent on the context
 And another requirement is that the similarity depends on the context of the words~\cite{miller1991contextual}. The same word can have different meanings depending on the sentence it is used in.
-TODO example
-\todo{from here on, rewrite 2.2}
+% TODO example
+% \todo{from here on, rewrite 2.2}
 
 \subsection{Applications of similarity}
 % What is similarity used for?
 
-Similarity is used in many NLP applications that deal with documents.
+Similarity is used in many NLP applications that deal with documents and need to find how close they are to each others. This includes both application that work on whole documents, like document clustering, and analysis of overlap of more detailed contents that aims at finding pieces occurring in multiple documents.
 
 % Clustering
-First of all, in Information Retrieval, a common application is document clustering. Given big quantities of articles
+Document clustering is widely used in the Information Retrieval community, to discover topics on different levels, to find similar items and to find possible duplicates. Given big quantities of articles, there are different methods that are able to form groups based on wider or narrower topics.
+
+The literature is quite rich in approaches to news clustering~\cite{carpineto2009survey,jones1972statistical} %also andrews2007recent
+that work in many different ways.
+Some clustering techniques requires specifying the number of clusters wanted (K-Means, Mean-Shift, GMM) as an input, others instead are more flexible, discovering the number of cluster based on other geometric properties (DBSCAN).
+And some others have even nicer properties.
+For example, Agglomerative Hierarchical Clustering allows cutting at different stages of the algorithm which represent a threshold distance to merge clusters.
+
+
+% clustering techniques to find similarity relationships both at the article level (to identify articles that talk about the same event) and at the sentence level (to identify parts of article, details, which are similar, in order to be able to relate sub-document parts).
 
 
 
 
+% Plagiarism and Manipulation detection (diff\&co)
+Then there are applications of similarity at a more fine-grained level.
+The overall objective of this group of works is to study how many parts of a document also appear in other documents.
+% - plagiarism
+The objectives for this analysis may vary from plagiarism detection~\cite{TODO} where the occurrence of text pieces too similar is an indication of non-originality.
+% - finding external confirmation in fact-checking
+Or in the fact-checking perspectives, when external confirmation is searched about a specific detail to be able to corroborate and establish if the content is true~\cite{TODO}
+% - bountouridis
+Or to compute how complete is the reporting from different sources, analysing the overlap between different articles.
 
-Plagiarism and Manipulation detection (diff\&co)
+% % TODO figure sent-sent similarity
+% Some methods are able to extract which information appears in multiple documents or is omitted in some others~\cite{bountouridis2018explaining}, being really useful to analyse the selection of details that each article has made.
 
-% TODO figure sent-sent similarity
-Some methods are able to extract which information appears in multiple documents or is omitted in some others~\cite{bountouridis2018explaining}, being really useful to analyse the selection of details that each article has made.
-
-% why
-Once the articles and parts of them are linked in clusters, there are some works that exploit this information to see how much information is shared between them. This is the field of plagiarism detection, or also some other works that compute how much information is corroborated externally or omitted.
-
+% % why
+% Once the articles and parts of them are linked in clusters, there are some works that exploit this information to see how much information is shared between them.
+% This is the field of plagiarism detection, or also some other works that compute how much information is corroborated externally or omitted.
 
 
-Even for recommender systems (user-items recommendations based on similarity)
+% Corroboration analysis
+% % what (details)
+% Furthermore, there are works that not only link the articles at a document level, but also investigate in more detail the connections between sentences.
+In one recent work~\cite{bountouridis2018explaining}, groups of similar articles are found, then broken down to pieces of information and analysed to find if these details are \emph{corroborated} (occurring in multiple documents) or \emph{omitted} (occurring in other documents of the same group, but not the current one). 
+\todo{figure from Bountouridis paper?}
+%is good for getting relationships between paragraphs and documents. Corroboration and omission
+% \begin{added}
+We aim to use this idea of applying similarity to both article-level and sentence-level, extending it even to the word-level. By doing so,
+not only we might be able to recognise which sentences appear in multiple documents (with different degrees of similarity) but also we would be able to identify the specific words that have been changed.
+
+
+
+
+% Even for recommender systems (user-items recommendations based on similarity)
 
 \subsection{Similarity computation}
 % How is similarity computed?
-In order to be able to compute a similarity between different texts, there are two steps: \emph{i)} representing the texts with 
+In order to be able to compute a similarity between different texts, there are two steps: \emph{i)} representing the texts with a numeric representation, \textit{ii)} use similarity metrics between these representations.
 
-\subsubsection{Language Representation}
-Language representation
-
+% Language representation
+The first step is the one that is more interesting and so many different methods exist.
 % why
-This group of methods tackles one question: \emph{What is contained in the text?}
+The aim of group of methods is to find a condensed representation that contains the meaning of the text, independently from its length.
+% \emph{What is contained in the text?}
 
 % what (details)
-Starting with very naive methods,
-Bag of words, stopwords
+Starting with very naive methods, we have approaches based on \emph{bag of words} that simply take into consideration which words are present in the considered text.
+They run with an initial scan of all the available documents to create a dictionary, and then each document is represented with a one-hot-vector that is saying for each word in the dictionary if it belongs to the current document.
+Many refinements to this basic approach exist, e.g., by removing words that do not carry meaning (stopwords) or by limiting the dictionary based on term frequencies (only the top k words overall are considered, or only words that appear at least n times).
+This group of methods culminates with a model that is called TF-IDF~\cite{ramos2003using} which is based on two components: Term Frequency and Inverse Document Frequency.
+In simple words, the first component gives higher weights to terms that appear more in the considered document, while the second measures how important a term is by promoting rare terms\cite{jones1972statistical}.
 
-TF-IDF: how relevant and unique words are\cite{jones1972statistical,ramos2003using}
+Then we have another group of models that relies on explicit semantic representation. This is the field of knowledge extraction that is based on recognising the entities mentioned in a text (entity recognition and linking) and extracting the relationships expressed between them. Using these models, a text is translated into a knowledge graph.
+The main limitations of this set of models it that they may work accurately enough just when entities that are known are mentioned, and need to be supervisioned with rich knowledge bases.
 
-Knowledge extraction: Entity Recognition and Linking, triplets extraction. Is it worth?
+And finally, we have a whole line of research that is based on distributional semantics.
+The assumption is that the words take their meaning from the context around them. For example two synonyms can be recognised as similar because one can be switched for the other and therefore they have similar contexts.
+This unsupervised learning strategy therefore builds words representation by observing their context.
+A milestone in this area is given by the word embedding models Word2Vec~\cite{TODO} and GloVe~\cite{TODO} which have shown their superiority in a big variety of tasks.
+They are able to work with syntax and semantics and even solve analogy tests~\cite{mikolov2013efficient} with great performances.
 
-The switch to distributional Language models:
-first, Word embeddings
-
-The era of Language Models~\cite{devlin2018bert,cer2018universal,yang2019xlnet}.
-With the recent explosion of Deep Learning representation there emerged many of Language Model tools that can provide document representation, like BERT~\cite{devlin2018bert}, XLnet~\cite{yang2019xlnet}, or even more oriented towards the similarity task: Universal Sentence Encoder~\cite{cer2018universal}.
-And all these models can be used directly without the need to train, thanks to pre-trained models that perform already well out-of-the-box.
+Then in the recent years, new models have arisen in the language representation that are extremely powerful to encode entire documents and capture their meaning. It is the
+era of
+% Language Models~\cite{devlin2018bert,cer2018universal,yang2019xlnet}.
+% With the recent explosion of Deep Learning representation there emerged many of
+Language Model that can provide document representation, like BERT~\cite{devlin2018bert}, XLnet~\cite{yang2019xlnet}, or even more oriented towards the similarity task: Universal Sentence Encoder~\cite{cer2018universal}.
+And all these models can be used directly without the need to be trained, thanks to pre-trained models that perform already well out-of-the-box.
 
 % strenghts, limitations
-Main strength of Language models:
-relate articles that talk about the same events, even if they use different linguistic surface, from articles that may use the same subset of words but talk about different events, it is a semantic matching more than a word-based matching. 
+The main strength of Language models is that they are able to
+relate documents that talk about the same events, even if they use different linguistic surface, from articles that may use the same subset of words but talk about different events.
+It is a semantic matching more than a word-based matching which accounts for the specific order of words (problem of previous models). 
+The semantics they are able to express
+is shallower with respect to the explicit semantics based on Entity Linking, but it is more resistant to changes in the linguistic surface and works without having knowledge bases encoding the reality.
 
-It's a shallower semantic model with respect to the ones based on Entity Linking, but it is more resistant to changes in the linguistic surface.
-
-Talk about SentEval\footnote{\url{http://nlpprogress.com/english/semantic_textual_similarity.html}}: benchmark that evaluates the ability of models to score similarity of sentences
+% Talk about SentEval\footnote{\url{http://nlpprogress.com/english/semantic_textual_similarity.html}}: benchmark that evaluates the ability of models to score similarity of sentences
 
 
 % % language representation
@@ -357,81 +397,85 @@ Talk about SentEval\footnote{\url{http://nlpprogress.com/english/semantic_textua
 
 
 
-Specific similarity functions: euclidean, cosine, ...
+% Specific similarity functions: euclidean, cosine, ...
+Once these models synthesise documents of different length into numeric representations, there are different geometrical measures that can be used to compute the distance / similarity.
+Euclidean / cosine /
+
+
+Example: let us compare TF-IDF, BERT and USE matrices (similar to experiment)
+\todo{finish, link to the discourse}
+
+
+
+% \subsubsection{News Clustering}
+% Clustering
+
+% % why
+% Once documents and sentences are transformed to a representation, we can apply clustering techniques to find similarity relationships both at the article level (to identify articles that talk about the same event) and at the sentence level (to identify parts of article, details, which are similar, in order to be able to relate sub-document parts).
+
+% % what (details)
+% LDA
+% methods mostly used are Latent Dirichlet Allocation (LDA) or document embedding.
+% % News aggregators and LDA topic: can provide article-level aggregation
+% LDA~\cite{blei2003latent} is the most used technique for topic modelling, as it allows the discovery of topics and to group articles accordingly using word distributions.
+
+% Cliques
+
+% Distance-based
+
+% Hierarchical Clustering
+
+% % Topic Detection and Tracking steps
+% % 0. flat clusters: TDT before 2003. Simple LDA clustering methods
+% % 1. hierarchical topics: TDT 2003 (hierarchy of topic --> event --> story)
+% % 2. dependencies: 2004 Napallati~\cite{nallapati2004event}. They introduce edges with two possible reasons: causality or only temporal ordering.
+
+% % News event structure evolution (keep short)
+% % Instead in the direction of the structure of news event, we have a succession of works that went more in details than just creating groups / flat clusters generated by LDA.
+% % First of all \emph{hierarchical} topic modelling~\cite{allan2003flexible} that defined a set of levels (from the broad concept of topic, to the narrow event that belongs to the topic, and then a specific story/anecdote).
+% % And then moved to study the dependencies between events~\cite{nallapati2004event} with causality and temporal ordering.
+% % This recently brought to approaches that are able to find the events belonging to a topic and link them creating a Event Evolution Graph~\cite{yang2009discovering,ansah2019graph} that can be visualised to give an idea of the dependency between the events detected.
+% %\todo[color=yellow]{The removed paragraph was about events hierarchy and dependency}
+% % ~\cite{ansah2019graph} that is able to generate a visual story timeline summarisation, connecting the main events; Event Maps~\cite{yang2009discovering}
+% % Or works that focus on the illustrative side and use the extracted story timeline summarisation~\cite{ansah2019graph}.
+
+% % Furthermore, \cite{cai2019temporal} also presents event maps (original baseline~\cite{yang2009discovering}). With also importance score on the nodes and edges. The event relationships can be temporal, content dependence and event dependence.
+
+
+
+% % strengths, limitations
+
+
+% The literature is quite rich in approaches to news clustering~\cite{carpineto2009survey,jones1972statistical} %also andrews2007recent
+% that can bring together articles talking about the same events.
 
 
 
 
 
-\subsubsection{News Clustering}
-Clustering
-
-% why
-Once documents and sentences are transformed to a representation, we can apply clustering techniques to find similarity relationships both at the article level (to identify articles that talk about the same event) and at the sentence level (to identify parts of article, details, which are similar, in order to be able to relate sub-document parts).
-
-% what (details)
-LDA
-methods mostly used are Latent Dirichlet Allocation (LDA) or document embedding.
-% News aggregators and LDA topic: can provide article-level aggregation
-LDA~\cite{blei2003latent} is the most used technique for topic modelling, as it allows the discovery of topics and to group articles accordingly using word distributions.
-
-Cliques
-
-Distance-based
-
-Hierarchical Clustering
-
-% Topic Detection and Tracking steps
-% 0. flat clusters: TDT before 2003. Simple LDA clustering methods
-% 1. hierarchical topics: TDT 2003 (hierarchy of topic --> event --> story)
-% 2. dependencies: 2004 Napallati~\cite{nallapati2004event}. They introduce edges with two possible reasons: causality or only temporal ordering.
-
-% News event structure evolution (keep short)
-% Instead in the direction of the structure of news event, we have a succession of works that went more in details than just creating groups / flat clusters generated by LDA.
-% First of all \emph{hierarchical} topic modelling~\cite{allan2003flexible} that defined a set of levels (from the broad concept of topic, to the narrow event that belongs to the topic, and then a specific story/anecdote).
-% And then moved to study the dependencies between events~\cite{nallapati2004event} with causality and temporal ordering.
-% This recently brought to approaches that are able to find the events belonging to a topic and link them creating a Event Evolution Graph~\cite{yang2009discovering,ansah2019graph} that can be visualised to give an idea of the dependency between the events detected.
-%\todo[color=yellow]{The removed paragraph was about events hierarchy and dependency}
-% ~\cite{ansah2019graph} that is able to generate a visual story timeline summarisation, connecting the main events; Event Maps~\cite{yang2009discovering}
-% Or works that focus on the illustrative side and use the extracted story timeline summarisation~\cite{ansah2019graph}.
-
-% Furthermore, \cite{cai2019temporal} also presents event maps (original baseline~\cite{yang2009discovering}). With also importance score on the nodes and edges. The event relationships can be temporal, content dependence and event dependence.
-
-
-
-% strengths, limitations
-
-
-The literature is quite rich in approaches to news clustering~\cite{carpineto2009survey,jones1972statistical} %also andrews2007recent
-that can bring together articles talking about the same events.
 
 
 
 
 
+% \subsubsection{Corroboration analysis}
+% Corroboration analysis
+
+% % what (details)
+% Furthermore, there are works that not only link the articles at a document level, but also investigate in more detail the connections between sentences.
+% In one recent work~\cite{bountouridis2018explaining}, groups of similar articles are found, then broken down to pieces of information and analysed to find if these details are \emph{corroborated} (occurring in multiple documents) or \emph{omitted} (occurring in other documents of the same group, but not the current one). 
+% \todo{figure from Bountouridis paper}
+% %is good for getting relationships between paragraphs and documents. Corroboration and omission
+% % \begin{added}
+% We aim to use this idea of applying similarity to both article-level and sentence-level, extending it even to the word-level. By doing so,
+% not only we might be able to recognise which sentences appear in multiple documents (with different degrees of similarity) but also we would be able to identify the specific words that have been changed.
 
 
 
 
+% Citation Networks?
 
-\subsubsection{Corroboration analysis}
-Corroboration analysis
-
-% what (details)
-Furthermore, there are works that not only link the articles at a document level, but also investigate in more detail the connections between sentences.
-In one recent work~\cite{bountouridis2018explaining}, groups of similar articles are found, then broken down to pieces of information and analysed to find if these details are \emph{corroborated} (occurring in multiple documents) or \emph{omitted} (occurring in other documents of the same group, but not the current one). 
-\todo{figure from Bountouridis paper}
-%is good for getting relationships between paragraphs and documents. Corroboration and omission
-% \begin{added}
-We aim to use this idea of applying similarity to both article-level and sentence-level, extending it even to the word-level. By doing so,
-not only we might be able to recognise which sentences appear in multiple documents (with different degrees of similarity) but also we would be able to identify the specific words that have been changed.
-
-
-
-
-Citation Networks?
-
-Edit distances?
+% Edit distances?
 
 Time evolution? TODO find stuff
 

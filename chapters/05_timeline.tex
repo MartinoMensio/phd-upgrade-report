@@ -221,7 +221,7 @@ And another desirable feature would be to have articles that come sources with a
 Given these requirements and after exploring different news aggregators, we found that Google Headlines Full Coverage feature\footnote{\url{https://www.blog.google/products/news/new-google-news-ai-meets-human-intelligence/}} would fit the requirements of covering a big number of news sources (the \texttt{en-gb} version containing articles from more than 10k domains) and being very dense (an average of 9k new articles each day).
 The data comes divided by topics (Latest, United Kingdom, World, Business, Technology, Entertainment, Sports, Science, Health) and inside each topic the articles are grouped in ``stories''. Each story has articles from the most relevant sources (``Top coverage'') and then lists also articles from other less important sources, for an average of 21 articles inside each story.
 The stories are created automatically by Google News and this allows it to be always updated and be so diverse in the sources included.
-We have captured from mid-march every day the published set of stories, and managed to retrieve more than 600k articles (as of the end of June, and not all the articles listed can be retrieved because of paywalls or other filtering techniques by the publishers).
+We have captured from mid-march every day the published set of stories, and managed to retrieve more than 700k articles (as of the end of June, and not all the articles listed can be retrieved because of paywalls or other filtering techniques by the publishers).
 
 % - allsides: human-created with interesting framing differences
 Another data source that we actively retrieve is AllSides which provides a curated set of ``headlines''\footnote{\url{https://www.allsides.com/story/admin}} where three article with a different political alignment are put together and compared in their difference.
@@ -242,19 +242,20 @@ Having articles from so many different news sources, we can on one side provide 
 
 \subsection{Formalisation and dissemination}\todo{do we need this?}
 % what
-The last type of activity carried out during this year has been the presentation of this work to other researchers throughout different events with different audiences.
+The last type of activity carried out during this year has been the presentation of this work to other researchers throughout different events, both internally to the Open University and externally.
 % why
-From how to connect the different pieces together
+The motivation of this activity has been to get some feedback from both people working inside the same research space and also from other fields.
+From the first group, we wanted to get an expert opinion and mainly understand if we are missing some related research work that could be helpful.
+Instead from the more general-audience group we wanted to understand if this type of research makes sense to them and try to explain more motivationally and in an easier format.
 
 % how
-And a position paper has been submitted, accepted and presented at a workshop on narrative analysis (Text2Story at ECIR) in April.
-This position paper focused on describing the gap and the proposed cross-article signals that would show differences in how stories are narrated.
+Belonging to the first group, this work has been presented firstly to an internal seminar in KMi on the 25th March, then to the Text2Story workshop part of the ECIR conference as a position paper which was presented in April\footnote{\url{http://text2story20.inesctec.pt/}}.
+This position paper~\cite{mensio2020towards} focuses on describing some proposed cross-article signals that would show differences in how stories are narrated.
+The proposal described completely in this report has also been presented in the CRC PhD Conference, that is an internal conference for PhD students of KMi and C\&C schools.
 
-Presentations:
-- KMi
-- Text2Story
-- OU Poster Competition
-- CRC PhD conference
+Instead belonging to the more wide audience, during June we submitted a poster to the OU PhD Poster Competition which, involving a more general audience, focused more on being simple to understand.
+
+These documents can be found at the end of this file.
 
 
 
@@ -263,39 +264,51 @@ Presentations:
 
 \section{Plan}
 
-realistic
-clearly stated milestones
-dependencies explicit
-contingency planning – risks identified
-timeline – dates
-resources
-skills
-pretty presentation
+% realistic
+% clearly stated milestones
+% dependencies explicit
+% contingency planning – risks identified
+% timeline – dates
+% resources
+% skills
+% pretty presentation
 
-GANTT chart\todo{do with details}
-\begin{figure}[!htb]
+In Figure~\ref{fig:gantt} we show the time plan.
+\todo{describe a bit the dependencies}
+
+% \begin{landscape}
+\begin{figure}[!p]
     \centering
         \begin{ganttchart}[
-            y unit title=1cm,
-            y unit chart=1cm,
+            % y unit title=1cm,
+            % y unit chart=1cm,
             vgrid,
             hgrid,
             time slot format=isodate-yearmonth,
             time slot unit=month,
-            title/.append style={draw=none, fill=barblue},
-            title label font=\sffamily\bfseries\color{white},
-            title label node/.append style={below=-1.6ex},
-            title left shift=.05,
-            title right shift=-.05,
-            title height=1,
-            bar/.append style={draw=none, fill=groupblue},
-            bar height=.6,
+            % title/.append style={draw=none, fill=barblue},
+            % title label font=\sffamily\bfseries\color{white},
+            % title label node/.append style={below=-1.6ex},
+            % title left shift=.05,
+            % title right shift=-.05,
+            % title height=1,
+            bar/.append style={draw=gray!50, fill=blue!50},
+            % bar incomplete/.append style={fill=green}
+            % bar height=.6,
             bar label font=\normalsize\color{black!50},
-            group right shift=0,
-            group top shift=.6,
-            group height=.3,
-            group peaks height=.2,
-            bar incomplete/.append style={fill=green}
+            % group right shift=0,
+            % group top shift=.6,
+            % group height=.3,
+            % group peaks height=.2,
+            group/.append style={draw=black, fill=black!50},
+            vrule label font=\small,         % <---
+            title label font=\small,         % <---
+            bar label font=\small, 
+            inline,
+  inline bar label node/.append style={
+    align=center,
+    right=30pt
+  },
        ]{2020-07}{2022-09}
        \gantttitlecalendar{year, month}\\
         %   \ganttbar[
@@ -306,28 +319,42 @@ GANTT chart\todo{do with details}
         %     name=pp
         %   ]{Preliminary Project}{2020-09}{2020-12} \\
         % \ganttset{progress label text={}, link/.style={black, -to}}
-        \ganttgroup{Pipeline}{2020-07}{2020-12} \\
-            \ganttbar[progress=20, name=T0]{Implementation}{2020-07}{2020-12} \\
+        % \ganttgroup{Pipeline}{2020-07}{2020-12} \\
+        %     \ganttbar[name=T0]{Implementation}{2020-07}{2020-12} \\
             % \ganttlinkedbar[progress=0]{Task B}{2021-07}{2021-12} \\
-        \ganttgroup{RQ1}{2020-07}{2021-05} \\
-            \ganttbar[progress=15, name=T11]{RQ1.1: Hypothesis}{2020-07}{2020-09} \\
-            \ganttlinkedbar[progress=0]{RQ1.1: User study}{2020-10}{2020-10} \\
-            \ganttlinkedbar[progress=0]{RQ1.1: Analysis}{2020-11}{2020-12} \\
+        \ganttgroup{RQ1.1}{2020-07}{2020-11} \\
+            \ganttbar[]{1.1 User study preparation (data+guidelines)}{2020-07}{2020-09} \\
+            \ganttlinkedbar[]{1.1 Pilot}{2020-9}{2020-9} \\
+            \ganttlinkedbar[]{1.1 User Study}{2020-10}{2020-10} \\
             % \ganttbar[progress=0]{RQ1.2: Hypothesis}{2020-07}{2020-12} \\
-            \ganttlinkedbar[progress=0,name=T12]{RQ1.2: User study}{2021-01}{2021-01}
-            \ganttlink[link mid=.4]{T0}{T12}\\
-            \ganttbar[progress=0]{RQ1.2: Analysis}{2021-02}{2021-03} \\
-        \ganttgroup{RQ2}{2021-03}{2021-12} \\
-          \ganttbar[progress=0,name=T21]{RQ2.1: Implementation}{2021-03}{2021-05}
-          \ganttlink[link mid=.4]{T0}{T21}\\
-            \ganttlinkedbar[progress=0]{RQ2.1: Analysis}{2021-05}{2021-06} \\
+            \ganttlinkedbar[name=res11]{1.1 Results analysis + paper}{2020-10}{2020-11} \\
+            % \ganttlink[link mid=.4]{T0}{T12}\\
+            % \ganttbar[]{RQ1.2: Analysis}{2021-02}{2021-03} \\
+        \ganttgroup{RQ1.2}{2020-07}{2021-04} \\
+          \ganttbar[]{1.2 Pipeline}{2020-07}{2020-09}\\
+            \ganttlinkedbar[name=model12]{1.2 Dataset building}{2020-12}{2021-01}\\
+            \ganttbar[name=model12]{1.2 Model implementation for Signals}{2020-12}{2021-01}\\
             % \ganttbar[progress=0]{RQ1.2: Hypothesis}{2020-07}{2020-12} \\
-            \ganttbar[progress=0,name=T12]{RQ1.2: Implementation}{2021-07}{2021-09}\\
-            \ganttlinkedbar[progress=0]{RQ1.2: Analysis}{2021-09}{2021-10} \\
+            \ganttlinkedbar[]{1.2 Analysis + paper}{2021-01}{2021-02}\\
+            \ganttlinkedbar[]{1.2: Online tool}{2021-03}{2021-04} \\
+        
+          
+        \ganttgroup{RQ2.1}{2021-06}{2021-10} \\
+          \ganttbar[]{2.1 Data retrieval and implementation}{2021-06}{2021-08}\\
+          \ganttlinkedbar[]{2.1 Analysis + paper}{2021-08}{2021-10}\\
+          
+        \ganttgroup{RQ2.2}{2021-11}{2022-02} \\
+          \ganttbar[]{2.2 Implementation}{2021-11}{2021-12}\\
+          \ganttlinkedbar[]{2.2 Analysis + paper}{2021-12}{2022-02}\\
+          
         \ganttgroup{Thesis}{2022-03}{2022-09} \\
-          \ganttbar[progress=0]{Writing}{2022-03}{2022-09}
+          \ganttbar[]{Writing}{2022-03}{2022-09}\\
+          
+         \ganttlink[]{res11}{model12}\\
     \end{ganttchart}
-    \caption{Gantt chart}
+    \caption{Gantt chart showing the time plan}
     \label{fig:gantt}
 \end{figure}
+% \end{landscape}
 
+\todo{improve}

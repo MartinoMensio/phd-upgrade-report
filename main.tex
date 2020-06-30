@@ -28,6 +28,8 @@
 \usepackage[hyphens]{url}
 \usepackage{hyperref}
 \usepackage{footnote}
+\usepackage{pdfpages} %include other pdfs
+\usepackage{pdflscape} % to rotate some pages with landscape environment
 
 % gantt chart
 \usepackage{pgfgantt}
@@ -103,6 +105,10 @@
 
 \bibliographystyle{agsm}
 \bibliography{references}
+
+% attachments
+\includepdf[pages={1-},]{attachments/text2story.pdf}
+\includepdf[]{attachments/poster_final.pdf}
 
 % \appendix
 

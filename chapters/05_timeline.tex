@@ -100,33 +100,34 @@ With this kind of information on the number, type and magnitude of changes conta
 
 
 % Observations
-\todo{rewrite better the observations}
+% \todo{rewrite better the observations}
 The observations that we have for the TF-IDF model is that
-Feature size changes a lot the results
-It requires to be computed on a set of documents all together (which also changes which features are selected), not possible to encode an additional document without changing the representation of the already encoded documents
-Pre-processing affects the results: if we don’t add a lemmatization step to the pipeline, it is sufficient to change the verb tense to have a different term.
-Given these limitations, we find that sentences that are very similar in the meaning but have some differences in the linguistic surface see a drop in their similarity.
+Feature size changes a lot the results.
+It requires to be computed on a set of documents all together (which also changes which features are selected), and it is not possible to encode an additional document without changing the representation of the already encoded documents.
+We also see that the type of pre-processing affects the results: without a lemmatization step to the pipeline, it is sufficient to change the verb tense to have a different term.
+Given these limitations, we find that sentences that are very similar in the meaning but have some differences in the linguistic surface see a drop in their similarity with this model.
 
-GloVe-average
-To get the document-level or sentence level: average word vector for sentences and documents. This choice has been implemented by SpaCy https://spacy.io/usage/vectors-similarity , but has many negative aspects (e.g. “Luke hates John” == “John hates Luke”) 
+Instead considering GloVe-average, we observe in some cases that the measure of similarity provided does not capture substantial changes in the meaning. The problem is that, while it can use wordwise similarity quite well, the sentence structure is not accounted for its representation. The representation is a simple average of the word vectors (e.g. ``Luke insulted John'' results in being equal to ``John insulted Luke'').
 
-BERT
-The values provided are very similar. This per-se is not a problem if some geometric properties are valid (ordering, proportions)
-
-USE
-It spreads the similarity values more evenly, without re-scaling (min-max, log, exp, ???) is the best to create heatmaps.
+For the language models (BERT and USE models), we see a big improvement in the pairs of sentences that come as more similar.
+% The values provided are very similar. This per-se is not a problem if some geometric properties are valid (ordering, proportions)
+We observe that USE provide values less skewed to the higher values, distributing the similarity values more evenly. The numbers make more sense without any re-scaling technique, and therefore the heatmaps showed in this document come from this model.
+It is also the only model considered that is purposely trained on a semantic similarity task, while the other models are able to provide similarity measures just because of how they represent language.
 
 
 \todo{an example of two pairs where we can see some of the limitations?}
 
 % role of this experiment
-What this means for us:
-- we need to use a similarity resistant to changes in the linguistic surface
-- we need a measure that is able to represent well the different levels of similarity
-- we must be able to switch the model used easily, in case new public benchmarks for STS show a different winner (example XLNet~\cite{yang2019xlnet}).
-This experiment is not a definitive choice and is not set up to rank the models. Its purpose is to have a good observation of how different types of models can be effective or not, and to experiment with them to use in the implementation.
-Benchmark, availability of code and maybe further measures on our system will decide the final ``winner''.
-Purpose: implementation and building of the pipeline.
+This experiment shows the need for a similarity model that accounts for the semantics more than the linguistic surface. And given the continuous progress of language models, we need to be able to switch our choice relatively easily.
+For example by looking at the Semantic Textual Similarity benchmark,\footnote{\url{http://nlpprogress.com/english/semantic_textual_similarity.html}} at the moment the best model available is XLNet~\cite{yang2019xlnet} so we will use it for our future experiments.
+% this means for us:
+% - we need to use a similarity resistant to changes in the linguistic surface
+% - we need a measure that is able to represent well the different levels of similarity
+% - we must be able to switch the model used easily, in case new public benchmarks for STS show a different winner (example XLNet~\cite{yang2019xlnet}).
+
+The purpose of this experiment is to have a good observation of how different types of models can be effective or not, and to experiment with them to drive the implementation of the processing pipeline.
+% Benchmark, availability of code and maybe further measures on our system will decide the final ``winner''.
+% Purpose: implementation and building of the pipeline.
 
 
 \subsection{Sentence clustering and extraction of differences}
@@ -154,15 +155,15 @@ We then use agglomerative hierarchical clustering for different reasons:
     \item we can truncate the clustering when we reach a certain level of distance between the clusters, or a certain number of clusters;
     \item We can see the evolution of many different features (e.g., number of clusters, size, internal cohesion) while performing the clustering step by step;
     \item we have a graphical representation (dendrogram) which helps inspecting and understanding what is happening;
-    \item it has widely been used for similar tasks (e.g., \cite{TODO:meedan_talk_similarity:http://ceur-ws.org/Vol-2607/short4.pdf:or_better})
+    \item it has widely been used for similar tasks (e.g., finding related claims~\cite{TODO:meedan_talk_similarity:http://ceur-ws.org/Vol-2607/short4.pdf:or_better})
 \end{itemize}
 
-This clustering algorithm has the following parameters:
-\begin{itemize}
-    \item linkage method: how to choose which clusters to merge. Different strategies exist: Ward: minimise the total within-cluster variance (weighted squared distance between cluster centres). Single: Nearest Point Algorithm. Complete: Farthest Point Algorithm
-    \item distance function: cosine, euclidean, ...
-\end{itemize}
-\todo{describe why ward and cosine look better}
+% This clustering algorithm has the following parameters:
+% \begin{itemize}
+%     \item linkage method: how to choose which clusters to merge. Different strategies exist: Ward: minimise the total within-cluster variance (weighted squared distance between cluster centres). Single: Nearest Point Algorithm. Complete: Farthest Point Algorithm
+%     \item distance function: cosine, euclidean, ...
+% \end{itemize}
+% \todo{describe why ward and cosine look better}
 
 As we can see in Figure~\ref{fig:dendrogram}, we can explore what is the distance required to have different sentences inside the same cluster, and select a certain threshold more consistently.
 \begin{figure}[!htb]
@@ -173,7 +174,8 @@ As we can see in Figure~\ref{fig:dendrogram}, we can explore what is the distanc
 \end{figure}
 \todo{redo figure with cosine distance}
 
-\todo{some observations about the distance values and threshold}
+Using this type of inspection, we can decide specific threshold values more consistently: we can see what is the required similarity to make two pairs of sentences be in the same cluster.
+% \todo{some observations about the distance values and threshold}
 
 % 3. extract degree of uniqueness of words (from pairwise to clusterwise, with bag-of-words or difftool (order matters, duplicates))
 % second motivation: highlight the different words and their uniqueness
@@ -195,16 +197,18 @@ This gives a higher value of uniqueness to the word ``deceased'' that just appea
 
 
 % role of this experiment and outcomes
-This methodology can be used in our framework to help the preparation of the dataset:
-- selecting which articles have to be compared (using at the article-level the same clustering methodology). In this case we will need to use a specific threshold that cuts out unrelated articles but at the same time keeps a considerable number of differences on the document level (not too similar because identical articles, that are a lot, are not useful).
-- the annotators to see both which sentences are most similar, and the words that differ inside
+This methodology can be used in our framework to help the preparation of the dataset in different steps.
+First of all, during the decision of creating article couples that have to be compared (using at the article-level the same clustering methodology). In this case we will need to use a specific threshold that cuts out unrelated articles but at the same time keeps a considerable number of differences on the document level (not too similar because identical articles, that are a lot, are not useful).
+While for the first user study we can exploit hand-curated groups of articles, when doing a larger creation of the dataset we will need to rely on automated techniques.
+This methodology could also be used as support for the annotators, in order to see both which sentences are most similar, and the words that differ inside. This would make the annotation process faster and easier.
 
-It is incomplete, many choices need to be done with better criteria (thresholds, parameters) but it sets up some good intervals (e.g. with euclidean distance around 0.6-1.0 sentences start to have linguistic variations but still very related to the same concepts).
+This experiment needs to be completed, to choose some parameters with better criteria. We want to identify good intervals for the thresholds and parameters (e.g. with euclidean distance around 0.6-1.0 sentences start to have linguistic variations but still very related to the same concepts).
 
-It serves the RQ1.2 by providing a first implementation of the processing pipeline that can be used to compute cross-article features that we can then use for doing the cross-article framing analysis.
+This experiment evidences the need to explore more on the interpretation of the differences, pushing for the user study of RQ1.1.
 
-It evidenced the need to explore more on the interpretation of the differences by running a user study to decide how to label and group them.
-\todo{rewrite this part}
+It serves the RQ1.2 as a first implementation of the processing pipeline by making available different articles and their document and sentence-wise relationships. Building on top of these features, we can then develop the methodology for doing the cross-article framing analysis.
+
+
 
 
 \subsection{Data collection}
@@ -273,8 +277,17 @@ These documents can be found at the end of this file.
 % skills
 % pretty presentation
 
-In Figure~\ref{fig:gantt} we show the time plan.
-\todo{describe a bit the dependencies}
+In Figure~\ref{fig:gantt} we show the time plan, which mirrors the structure of the research questions.
+
+The first phase will target RQ1.1, by doing the user study proposed before. This will require different stages, from the preparation of the data to be annotated and guidelines for the participants, to a small pilot to correct potential errors in the procedure, to the real user study and analysis of the results.
+
+The outputs of the first phase will be needed by the second one, to create and annotate a larger dataset with the specific labels identified in the first study. The implementation of the pipeline is independent from this requirement so it can be done in parallel. The implementation of the detection model will sit on top of the pipeline.
+
+After a month of buffer time, the analysis of the second research question will be faced, with two cycles of data retrieval, implementation and analysis.
+
+We plan for each of the groups to use the results of the analysis in papers that will be submitted to upcoming conferences.
+
+The last six months will be dedicated exclusively to writing the thesis.
 
 % \begin{landscape}
 \begin{figure}[!p]
@@ -347,8 +360,8 @@ In Figure~\ref{fig:gantt} we show the time plan.
           \ganttbar[]{2.2 Implementation}{2021-11}{2021-12}\\
           \ganttlinkedbar[]{2.2 Analysis + paper}{2021-12}{2022-02}\\
           
-        \ganttgroup{Thesis}{2022-03}{2022-09} \\
-          \ganttbar[]{Writing}{2022-03}{2022-09}\\
+        \ganttgroup{Thesis}{2022-04}{2022-09} \\
+          \ganttbar[]{Writing}{2022-04}{2022-09}\\
           
          \ganttlink[]{res11}{model12}\\
     \end{ganttchart}
@@ -357,4 +370,4 @@ In Figure~\ref{fig:gantt} we show the time plan.
 \end{figure}
 % \end{landscape}
 
-\todo{improve}
+\todo{gantt graphical fix needed}

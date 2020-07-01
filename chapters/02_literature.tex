@@ -51,9 +51,9 @@ Or from \citet{goffman1974frame} that describes framing as ``\textit{how a certa
 Using this connotation, framing becomes an additional layer on top of the factual information focusing on the presentation side, giving a structure (identifying problems, causes, resolutions) where each of the semantic elements is given a role to create a coherent story~\cite{pan1993framing}.
 
 % difference with propaganda
-Framing is used every day to influence the and make some messages pass more than others, and becomes really important in the political sphere where it is used as a propaganda technique to promote or demote candidates and ideologies by creating and sustaining narrative lines that coherently align with a specific communication goal.
+Framing is used every day to influence the readers and make some messages pass more than others, and becomes really important in the political sphere where it is used as a propaganda technique to promote or demote candidates and ideologies by creating and sustaining narrative lines that coherently align with a specific communication goal.
 % propaganda is targeted for a specific goal, framing instead is what is used to do propaganda. Framing exists also without propaganda
-Although this is a very common use of framing, in day by day communication there is a lot of framing that makes can influence the readers even though there is not a clear propaganda target.
+Although this is a very common use of framing, in day by day communication there is a lot of framing that can influence the readers even though there is not a clear propaganda target.
 
 % ``the central organising themes ... that connect different semantic elements of a news story (headlines, quotes, leads, visual representations, and narrative structure) into a coherent whole to suggest what is an issue.''~\cite{pan1993framing}
 
@@ -78,8 +78,8 @@ Media framing, under the theoretical perspective, is composed of several concept
 Then there is the process of \textit{frame setting} that instead takes the frames as inputs and describes the transfer from the writer to the readers. How the document has been written creates the ``audience frames'': the reader is placed in a certain mental perspective. For this to happen, a big role is played by the selection of media coverage (which issues to cover or not, how to use emphasis)~\cite{iyengar1994anyone} and the specific use of language that conveys how to think and feel about an issue~\cite{bryant2012fundamentals}.
 % % 3. individual level effects of framing
 % And then there is the individual effects on the audience, in other words the internalisation (attribution of responsibilities, attitudes, behaviours).
-Inside this process we can place the quite known ``agenda setting''~\cite{mccombs1972agenda} theory that describes the ability of news media to influence the importance of the topics, by selecting the information for the reader (what to think about, not how): % that is used to influence the relevance of a certain event:
-the number of article that are published about each event is an indicator of this process, which has an avalanche effect where lot of outlets want to have their piece on the same event too.
+Inside this process we can place the quite known \emph{agenda setting} theory~\cite{mccombs1972agenda} that describes the ability of news media to influence the importance of the topics, by selecting the information for the reader (what to think about, not how): % that is used to influence the relevance of a certain event:
+the number of article that are published about each event is an indicator of this process, which can have an avalanche effect as lot of outlets want to have their piece on the same event too.
 But the agenda setting can be seen also at a more fine-grained level: stories are made of details and different sources can emphasise them with different weights.
 
 % and how it acts as an intermediary between the writers and the consumers of the news, via the processes of frame setting and individual-level effects on the public~\cite{scheufele1999framing} (diagram of media vs public and processes)
@@ -89,40 +89,50 @@ Framing is usually defined at macro and micro levels.
 For the macro-level, usually, each article is associated with a set of media framing packages, which correspond to a central idea with a surrounding interpretive structure that gives meaning to an issue~\cite{gamson1989media}.
 And then the micro-level analysis focuses on seeing how the defined frames come out from specific words, used as \textit{framing devices} (e.g., word choice, metaphors, catchphrases, use of contrast, quantification) and \textit{reasoning devices} (e.g., problem definition, cause, consequence, solution, action).
 The macro-level labelling of framing (e.g., saying that a certain article is belonging to a specific narrative) is very difficult for automatic approaches because of different reasons. Firstly, it needs to be specific for every topic and story, it cannot encode all the possible positions with respect to all the possible issues. And it requires contextual knowledge of the events.
-For these reasons, we want to focus more on the micro-level that instead focuses on \emph{techniques} that are used transversely to the specific issues. These framing techniques need to be simple to describe and capture punctual details.
+For these reasons, we want to focus more on the micro-level that instead targets the detection of \emph{techniques} that are used transversely to the specific topics. These framing techniques need to be simple to describe and capture punctual details.
 
 % techniques described by others
 From the literature many works describe and categorise framing techniques that can be seen on the micro-level. Here we have a list of the most important.
 % the following techniques which try to capture the language of framing:
 
 \begin{itemize}
-    \item \textbf{recurrent themes}: words that evoke a certain theme or topic: attention shifts and agenda setting, commonly known as ‘spin’~\cite{tsur2015frame} (e.g. health, energy, security, economy).
-    \cite{card2015media} where each document is annotated with media frames (broad, non dependent on the specific topic): Economic, Capacity and resources, Morality, Fairness and equality, Legality, constitutionality and jurisprudence, Policy prescription and evaluation, Crime and punishment, Security and defense, Health and safety, Quality of life, Cultural identity, Public opinion, Political, External regulation and reputation, Other.
-    \citet{boydstun2013making} suggest that approaches based on hierarchical topic modeling may be an effective means of identifying both issue-specific and generic frames.
-    This, however, is quite wide and does not tell a lot about how a certain opinion is supported inside the articles. For this reason, in many studies, the authors identify a set of specific set of themes that exist around a certain issue. For example the work by~\citet{morstatter2018identifying} defines a set of 10 themes in relationship to the narrow topic of "ballistic missile defence system in Europe". For this work, framing analysis is defined as the extraction of the presence and polarity with respect to the 10 themes: General Threat (GT), Specific Threat (ST), Collective Security (CS), Deterrence System (DS), Domestic Benefit (DB), Progress/Effectiveness (PE), Political Tensions (PT), Threat to Russia (TR), Russian Roadblocks (RR), Partnership with Russia (PR)
+    \item \textbf{Recurrent themes}: this technique is achieved by repeating and reinforcing certain themes in the articles, making the readers perceive certain topics more important than others because they appear more in the news. This is the direct manifestation of the agenda setting theory, where the press has the power to influence the importance of the issues.
+    % , commonly known as ‘spin’~\cite{tsur2015frame} (e.g. health, energy, security, economy).
+    This can be done on broad granularity, as analysed by different studies~\cite{tsur2015frame,card2015media}, where each document is associated with very wide media frames, not dependent on any specific topic (e.g., economics, politics, health, ...).
+    % Economic, Capacity and resources, Morality, Fairness and equality, Legality, constitutionality and jurisprudence, Policy prescription and evaluation, Crime and punishment, Security and defense, Health and safety, Quality of life, Cultural identity, Public opinion, Political, External regulation and reputation, Other.
+    Or other studies that investigate more on a more fine-grained level using hierarchical topic modelling to identify both issue-specific and generic frames~\cite{boydstun2013making}.
+    This, however, is still limiting the ability to evidence how a certain opinion is supported inside the articles. For this reason, some studies identify a set of specific set of themes that exist around a certain issue and analyse the polarity of the article with respect to them. For example the work by~\citet{morstatter2018identifying} defines a set of 10 themes in relationship to the narrow topic of "ballistic missile defence system in Europe". For this work, framing analysis is defined as the extraction of the presence and polarity with respect to the 10 themes (e.g., Collective Security, Political Tension, Threat to Russia).
+    % : General Threat (GT), Specific Threat (ST), Collective Security (CS), Deterrence System (DS), Domestic Benefit (DB), Progress/Effectiveness (PE), Political Tensions (PT), Threat to Russia (TR), Russian Roadblocks (RR), Partnership with Russia (PR).
     
     % \item which stories in the coverage (agenda setting): macro-level
     
-    \item \textbf{Emphasis}: selectively emphasise on certain details instead of others, using loaded language~\cite{TODO}
-    or having already from the title a certain focus~\cite{TODO}: frames as headline point of view (e.g. on articles about gun violence, there can be gun control vs 2nd amendment vs mental health) ~\cite{liu2019detecting} + dataset https://derrywijaya.github.io/GVFC.html
-    or by repeating over and over the same concept~\cite{TODO}. At the same time, demoting some details and interpret them as secondary.
+    \item \textbf{Emphasis}: this second technique instead uses language to selectively emphasise on certain details instead of others.
+    Some studies focus on the use of specific language which evokes framing~\cite{baumer2015testing}, evidencing some constructs that are recurring when the articles want to give a ``spin''.
+    % subjective language, interpretations and comments. “entailment,” “implicature,” and “subjectivity” help in identifying framing bias
+    This type of studies is related to the analysis of subjectivity because when the authors bring their opinion some signs can be observed, for example loaded terms and specific adjectives that go beyond the impartiality, and contain an implicit sentiment~\cite{greene2009more}.
+    But sometimes the manifestation of emphasis is more subtle and is done with selection of synonyms that have a slightly different connotation~\cite{schuldt2011global,rugg1941experiments,tversky1981framing}.
+    Sometimes the different emphasis can be seen by simply looking at the titles of the articles, which can indicate the point of
+    view of the authors~\cite{liu2019detecting}: for example on articles about gun violence, there can be emphasis on gun control or on the 2nd amendment or on mental health.
+    % dataset https://derrywijaya.github.io/GVFC.html
+    % or by repeating over and over the same concept~\cite{TODO}.
+    The emphasis gives more importance to some details and demotes other details that are just mentioned as secondary.
     
-    \item \textbf{Selection of details} omissions or inclusions (extreme emphasis)
-    quoting patterns as systematic bias \cite{niculae2015quotus}: which new quotes an outlet will select to broadcast. Also tool http://snap.stanford.edu/quotus/vis/
-    implicit sentiment and packaging: lexical choices \cite{greene2009more}
-    
-    \item \textbf{reasoning devices} (structural role), problem definition, relationship with other problems, people linked, suggested remedy \cite{entman1993framing} 
-    
-    \item subjective language, interpretations and comments. “entailment,” “implicature,” and “subjectivity” help in identifying framing bias \cite{baumer2015testing}
     % \item loaded language?
     
-    \item \textbf{framing packages}  \textit{A frame consists of a variety of components, including “keywords, stock phrases, stereotype images, sources of information” (Entman, 1993, p. 52), “metaphors, exemplars, catchphrases, depictions, [...] visual images” \cite{gamson1989media}, and other devices that provide an interpretive lens or “package.”}
+    \item \textbf{Selection of details}: another techniques found in the literature is making use of selection of details that may be supporting the communication objectives or omitting specific details that could make the readers less convinced of a certain opinion. This is different from the recurrent themes because the details are not directly part of a narrative line that is being repeated over and over.
+    Some studies have focused on analysing quoting behaviours from public speeches, observing how different news outlets select different parts and omit others~\cite{niculae2015quotus}.
+    % Also tool http://snap.stanford.edu/quotus/vis/
+    This techniques requires a knowledge external to the article in order to be seen.
+
     
-    \item propaganda techniques \cite{da2019fine}:
-    loaded language
-    ...
+    \item \textbf{Pre-packaging}: in this technique, the narrative of the article identifies structural roles of the details narrated, defining what is the problem, the relationships with other problems, who are the people linked, and what is the suggested solution~\cite{entman1993framing,bell1991language}.
+    This technique is very effective in providing to the readers a way to interpret the different details mentioned.
+    Sometimes the interpretive framework is packaged by using different components such as ``keywords, stock phrases, stereotype images, sources of information''~\cite{entman1993framing} and ``metaphors, exemplars, catchphrases, depictions, [...] visual images''~\cite{gamson1989media}.
+    The role of these specific components is to provide an interpretive lens that packages the issues described
+    
+    \item \textbf{propaganda techniques}: this set is borrowed from the specific case of propaganda analysis, and includes a set of logical fallacies and other oversimplification methods that are very commonly used~\cite{da2019fine} (loaded language, name calling, repetition, exaggeration or minimisation, doubt, appeal to fear or prejudice, flag-waving, causal oversimplification, slogans, appeal to authority, black-and-white, thought-terminating chiché, whataboutism, reductio ad hitlerum, red herring, bandwagon, obfuscation, straw man).
+    Some of these techniques overlap with the previous ones.
 \end{itemize}
-\todo{reorganise comprehensive list of framing techniques}
 % - problem definition, causal interpretation, moral evaluation, and/or treatment recommendation (same as Entman definition) https://onlinelibrary.wiley.com/doi/10.1111/j.1460-2466.2008.00384.x
 % - what language is perceived as being most related to framing (stereotypes, metaphors, images, catchphrases, and other elements): baumer2015testing
 % - framing and epistemological bias: https://www.aclweb.org/anthology/P13-1162.pdf framing bias is realized by subjective words or phrases linked with a particular point of view. Epistemological bias, is related to linguistic features that subtly (often via presupposition) focus on the believability of a proposition
@@ -130,42 +140,59 @@ From the literature many works describe and categorise framing techniques that c
 
 
 % lift RQ1.1: cross-article signals
-While these theoretical works and studies in political and social communication sciences focus on defining these signals, it is unclear how important it is to corroborate from multiple sources to reveal the framing around a news.
+While these studies in political, social communication and linguistics fields focus on defining these signals, it is unclear how important it is for the users to have available news articles from other sources that show the same story under a different perspective.
+It is an intuitive concept that, to see better how someone is trying to convince us to have a certain point of view, it would be helpful to compare his persuasion with ideas coming from different sides.
 % - techniques that need external knowledge/comparison
-We can see that some of these techniques really need some comparison to be seen: \todo{sublist}
+Some of these techniques especially, would need to have external sources of knowledge to be detected easier: how could we know that an article is showing an incomplete picture if we do not have a ground truth available, or at least some other sources with a different opinion to compare?
 % - techniques that can be observed on one single article (but still can benefit from comparison)
-And some others that, even if they can be seen on articles on their own
-\todo{what about a table that groups them?}
+And some others techniques that, even if they can be seen on articles on their own, would anyway benefit from a comparison: we can see that an adjective is emphasising the importance of something, but if we see another sentence that is using a different adjective maybe we can see more where the persuasion is manifesting.
 % some nice things?
-A common suggestion for media literacy referring to misinformation is to search for external sources to find corroboration of the claims, but we do not see the same for more subtle influences on the opinion of the readers, that happen when framing occurs.
+Using external sources is already suggested in other fields that deal with the process of information, for example in guides to spot misinformation: media literacy refers to searching for external sources to find corroboration of the claims, but we do not see the same for more subtle influences on the opinion of the readers, that happen when framing occurs.
 
 % Observing these techniques, we see that all the framing techniques defined in the literature mostly focus on single articles, and do not use the external knwoledge from other articles both in the definition and in the detection.
 % \todo{motivation for RQ1.1: single-article framing is well defined, but is not enough. Need to extend it to cross-article}
 
-\subsection{Framing detection}
+\subsection{Automated framing detection}
 \label{ssec:lit_framing_auto}
 % framing: practical automated approaches
 
 % what is framing detection?
-Automated framing detection has been addressed as a task where the objective is to annotate specific pieces of text with labels that relate to some of the framing techniques identified previously express some forms of perspective.
+Automated framing detection is defined as a task where articles need to be labelled, in their whole or in sub-parts, with categories that relate to some of the framing techniques identified previously.
 
 % why do we want automated framing
-drawing attention to framing may help mitigate framing effects (Baumer et al., 2015) https://www.aclweb.org/anthology/N15-1171.pdf
-at a scale
+The main motivation to develop and use automated framing detection is to analyse at scale and reveal the type and magnitude of influence that the articles are trying to push to the readers. The hypothesis that drawing the attention to framing may help mitigate framing effects has been already stated by other researchers~\cite{baumer2015testing}.
 
-\todo{expand}
 
 % how
-Spans that evoke something:
-- lexicon based: list of terms
+Different strategies have been used.
+% - lexicon based: list of terms
+A first group can be identified by using specific lexicon-based approaches, which work by counting the occurrences of terms in the analysed texts.
+This has been used on large scale identification of recurring themes, which are identified by specific words that have been selected by putting together the manual analysis of annotators~\cite{}.
+Similarly, other works infer automatically the specific words of the recurring themes by using LDA analysis~\cite{tsur2015frame}.
+Other works instead compared different computational approaches to find out that the most important contribution to detect the language of framing is given by analysing the grammatical structure, seconded by lexical features (n-grams)~\cite{baumer2015testing}.
+
 % The approaches used in practice usually come from specifically built lexicons~\cite{TODO} or by human annotations~\cite{card2015media,morstatter2018identifying}.
 
-- Deep learning: classify spans
-example of propaganda labels on top of BERT
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\linewidth]{figures/brexit_propaganda.png}
+    \caption{Propaganda detection on an article about a political event.}
+    \label{fig:brexit_propaganda}
+\end{figure}
 
-Figure example?
+% - Deep learning: classify spans
+More recent works instead make use of complex models based on neural networks. With the advance of language models like BERT~\cite{devlin2018bert}, which are able to face different tasks with great results, more models are making use of them for almost every problem in NLP.
+The work of~\citet{da2019fine}, which is focused on propaganda techniques detection, makes use of a model based on BERT.
+The architecture first uses this language model to provide contextualised representations of the words, and then uses these representation to classify each word with one of the labels available (one label for each of the propaganda techniques, plus one extra label to indicate the absence of propaganda).
+In this way their model needs to train only the weights of the added layer for the specific task, and reuses the rich encoded knowledge of the language owned by BERT.
+In Figure~\ref{fig:brexit_propaganda}, we can see the propaganda analysis performed by this tool, which evidences the usage of several of these techniques.\footnote{\url{https://www.tanbih.org/propaganda/223/BREXIT/}}
 
-What framing detection cannot do at the moment: knowledge
+The methods described focus on detecting how framing looks like, by highlighting occurrences which are quite visible.
+But, as for the human readers, also automated methods will probably benefit by comparing different articles that present the same issue.
+For example, if a detail is missing, methods like the ones presented here would not be able to see the omission.
+External knowledge is required.
+Related research done on verification of facts is already making use of comparison with external documents~\cite{yin2008truth}.
+We would like to bring a similar analysis but with a different goal: instead of chasing the truth, we want to bring together different sides of each story, and compare their use of framing. 
 
 
 % resources/datasets
@@ -186,76 +213,85 @@ What framing detection cannot do at the moment: knowledge
 % use of contrast, quantification) and \emph{reasoning devices} (e.g., problem definition, cause, consequence, solution, action%, moral evaluation
 % ).
 
-\todo{motivation for RQ1.2: framing detection is only done at single-article}
 
 
-\subsection{Related concepts}\todo{merge in techniques?}
-\label{ssec:lit_framing_other}
-% framing: exchange with other dimensions
+% \subsection{Related concepts}\todo{merge in techniques?}
+% \label{ssec:lit_framing_other}
+% % framing: exchange with other dimensions
 
-Difference between framing and others:
-``framing differs from subjectivity, sentiment, bias, and related constructs. Subjectivity detection may not effectively identify well-established,
-codified frames.
-Sentiment analysis focuses on assessing the valence
-(e.g., positive, neutral, or negative) of an entity’s description. Bias involves a clear, often intentional,
-preference shown in writing for one position or opinion on an issue. In contrast, there does not exist
-a one-to-one mapping between framing and opinions (Gamson and Modigliani, 1989)
-different framings are used to support the same position on an issue. [...] identifying framing requires features and techniques that
-go beyond any one of these related concepts.''~\cite{baumer2015testing}
-Some related concepts:
-- hedging: Choi et al. (2012) identify hedging in discussion of GMOs using an SVM trained on n-grams from annotated cue phrases
-- sentiment: Greene and Resnik (2009) showed how examining grammatical construction (i.e., syntax) can reveal implicit sentiment;
-- bias: Recasens et al. (2013) used edits from Wikipedia intended to enforce a neutral point of view to identify biased sentences and the terms indicative of that bias
-
-
-\cite{mandal2017overview,gao2018neural,asghar2016automatic} (catchphrases, methaphors, causality).
-
-Framing manifests also through the usage of loaded language, and for this reason, \textit{sentiment and subjectivity analysis} can provide further signals~\cite{liu2010sentiment}.
-Sentiment analysis for detecting not only biased news but also comments made by news readers~\cite{park2011politics}.
+% Difference between framing and others:
+% ``framing differs from subjectivity, sentiment, bias, and related constructs. Subjectivity detection may not effectively identify well-established,
+% codified frames.
+% Sentiment analysis focuses on assessing the valence
+% (e.g., positive, neutral, or negative) of an entity’s description. Bias involves a clear, often intentional,
+% preference shown in writing for one position or opinion on an issue. In contrast, there does not exist
+% a one-to-one mapping between framing and opinions (Gamson and Modigliani, 1989)
+% different framings are used to support the same position on an issue. [...] identifying framing requires features and techniques that
+% go beyond any one of these related concepts.''~\cite{baumer2015testing}
+% Some related concepts:
+% - hedging: Choi et al. (2012) identify hedging in discussion of GMOs using an SVM trained on n-grams from annotated cue phrases
+% - sentiment: Greene and Resnik (2009) showed how examining grammatical construction (i.e., syntax) can reveal implicit sentiment;
+% - bias: Recasens et al. (2013) used edits from Wikipedia intended to enforce a neutral point of view to identify biased sentences and the terms indicative of that bias
 
 
-In addition to these characterisations, we can add other signals derived from studies on \emph{subjectivity}.
-% and sentiment intensity.
-% https://www.niemanlab.org/2019/05/u-s-journalism-really-has-become-more-subjective-and-personal-at-least-some-of-it/ "a blurring of the line between opinion and fact."
-As found by recent research, in contemporary journalism the line between opinion and facts is blurring more and more~\cite{blake2019news}. For this reason, having signals of subjectivity on the document and paragraph-level would be very useful~\cite{liu2010sentiment}.
-%Furthermore, subjectivity is closely related to sentiment, since sentiment analysis is about finding the value of opinion while subjectivity is about distinguishing if the text is having an opinion or just reporting factual events~\cite{liu2010sentiment}.
-In this way, each article and each paragraph can be characterised with an indication of subjectivity.
+% \cite{mandal2017overview,gao2018neural,asghar2016automatic} (catchphrases, methaphors, causality).
 
-Sensationalism:
-% http://linguistics-research-digest.blogspot.com/2014/11/sensationalism-unmasked-how-to-design.html
-The climax – the part of the story with the greatest suspense – goes first, followed by the complication – a technical term for bits of narrative that say what happened. The resolution, or the ‘how it all ended’ bit concludes the list. Beginning with the climax arouses  the reader’s curiosity and makes them want to find out more about this story.
+% Framing manifests also through the usage of loaded language, and for this reason, \textit{sentiment and subjectivity analysis} can provide further signals~\cite{liu2010sentiment}.
+% Sentiment analysis for detecting not only biased news but also comments made by news readers~\cite{park2011politics}.
 
 
+% In addition to these characterisations, we can add other signals derived from studies on \emph{subjectivity}.
+% % and sentiment intensity.
+% % https://www.niemanlab.org/2019/05/u-s-journalism-really-has-become-more-subjective-and-personal-at-least-some-of-it/ "a blurring of the line between opinion and fact."
+% As found by recent research, in contemporary journalism the line between opinion and facts is blurring more and more~\cite{blake2019news}. For this reason, having signals of subjectivity on the document and paragraph-level would be very useful~\cite{liu2010sentiment}.
+% %Furthermore, subjectivity is closely related to sentiment, since sentiment analysis is about finding the value of opinion while subjectivity is about distinguishing if the text is having an opinion or just reporting factual events~\cite{liu2010sentiment}.
+% In this way, each article and each paragraph can be characterised with an indication of subjectivity.
 
-And there exist also works that analyse the framing of the whole news source by evaluating factors like political alignment, bias, and factuality~\cite{yin2008truth}.
+% Sensationalism:
+% % http://linguistics-research-digest.blogspot.com/2014/11/sensationalism-unmasked-how-to-design.html
+% The climax – the part of the story with the greatest suspense – goes first, followed by the complication – a technical term for bits of narrative that say what happened. The resolution, or the ‘how it all ended’ bit concludes the list. Beginning with the climax arouses  the reader’s curiosity and makes them want to find out more about this story.
 
-\todo{link to RQ2.1}
 
-% Alignment of the sources
-% Micro-level:
-% - Words that evoke framing
-% - strong sentiment, loaded language, subjectivity
 
-Narrative structural roles
-\cite{zahid2019towards}:
-some research considers the \emph{structural role} of a sentence in the document (e.g., is it providing some background, the main event, an evaluation).
-Different structural roles have been defined in the literature, such as 
-%Different works define sets of structural roles: 
-news schema~\cite{bell1991language}, which identifies hierarchical categories (e.g., action, reaction, consequence, context, history), narrative structure~\cite{bell2005news} (e.g., abstract, orientation, evaluation, complication, resolution), or linguistic signals~\cite{zahid2019towards,marcu2000theory}. 
-%One recent study~\cite{zahid2019towards} proposed linguistic signals to be able to recognise the structural role.
-%With such characterisations, we would be able to add to the sentence-level similarity links also their role in the different articles, to understand how their structure differs.
-Such signals could be used to identify the differences between similar sentences with regards to their structural roles in the articles. 
-% And this is an important feature because time structure and story structure are usually different~\cite{bell2005news}.
+% And there exist also works that analyse the framing of the whole news source by evaluating factors like political alignment, bias, and factuality~\cite{yin2008truth}.
+
+% \todo{link to RQ2.1}
+
+% % Alignment of the sources
+% % Micro-level:
+% % - Words that evoke framing
+% % - strong sentiment, loaded language, subjectivity
+
+% Narrative structural roles
+% \cite{zahid2019towards}:
+% some research considers the \emph{structural role} of a sentence in the document (e.g., is it providing some background, the main event, an evaluation).
+% Different structural roles have been defined in the literature, such as 
+% %Different works define sets of structural roles: 
+% news schema~\cite{bell1991language}, which identifies hierarchical categories (e.g., action, reaction, consequence, context, history), narrative structure~\cite{bell2005news} (e.g., abstract, orientation, evaluation, complication, resolution), or linguistic signals~\cite{zahid2019towards,marcu2000theory}. 
+% %One recent study~\cite{zahid2019towards} proposed linguistic signals to be able to recognise the structural role.
+% %With such characterisations, we would be able to add to the sentence-level similarity links also their role in the different articles, to understand how their structure differs.
+% Such signals could be used to identify the differences between similar sentences with regards to their structural roles in the articles. 
+% % And this is an important feature because time structure and story structure are usually different~\cite{bell2005news}.
 
 \subsection{Limitations}
 \label{ssec:lit_framing_limit}
 
-Limitations of single-article framing analysis
-- the method can't see what is missing or added or modified
-- narrow to one article only
-- cannot have external confirmation
-- does not see different perspectives, it just shows one side labelling as "framing biased" or not. Every source has its own biases
+To summarise here we present the limitations found in the framing literature.
 
+On the theoretical side, different framing techniques have been defined. Some of them, in order to be seen, require external knowledge that could be provided by using external articles.
+These techniques include the omission of facts that appear on other sources, or adding details that other sources did not report because of different relevance criteria.
+Or also using specific language choices that other sources do differently.
+For these cases, narrowing the analysis to articles in their singularity is likely to be a limiting factor (both for human reader and for automated detection).
+
+It is very unlikely that how the news are communicated is independent from political forces and also articles that may present 100\% factual information may result in driving the opinions in a certain way.
+Given that every news source has different ideological alignment, we aim at using stories from multiple sources, written by authors with different perspectives.
+In this way we can use the variety of news to our advantage, revealing even more framing occurrences.
+
+% Limitations of single-article framing analysis
+% - the method can't see what is missing or added or modified
+% - narrow to one article only
+% - cannot have external confirmation
+% - does not see different perspectives, it just shows one side labelling as "framing biased" or not. Every source has its own biases
 
 
 
@@ -264,7 +300,8 @@ Limitations of single-article framing analysis
 \label{sec:lit_relationships}
 
 % relationships: motivation
-Just analysing the framing of single articles alone provides a good set of signals that can be used to understand the framing that is in action, and this is where the current works on framing belong to. But if we take multiple stories, written by authors with different perspectives, we can use the variety of news to our advantage.
+From the motivations of the previous section, here we want to expand on exploring relationships between different articles, with the objective to use multiple sources at the same time to help facing the limitations of framing analysis.
+% Just analysing the framing of single articles alone provides a good set of signals that can be used to understand the framing that is in action, and this is where the current works on framing belong to. But .
 % We need the second area because we want to use methods that can tell us how similar or dissimilar are news articles or sub-parts of them.
 
 
@@ -316,7 +353,7 @@ For example, Agglomerative Hierarchical Clustering allows cutting at different s
 Then there are applications of similarity at a more fine-grained level.
 The overall objective of this group of works is to study how many parts of a document also appear in other documents.
 % - plagiarism
-The objectives for this analysis may vary from plagiarism detection~\cite{TODO} where the occurrence of text pieces too similar is an indication of non-originality.
+The objectives for this analysis may vary from plagiarism detection~\cite{potthast2010evaluation} where the occurrence of text pieces too similar is an indication of non-originality.
 % - finding external confirmation in fact-checking
 Or in the fact-checking perspectives, when external confirmation is searched about a specific detail to be able to corroborate and establish if the content is true~\cite{TODO}
 % - bountouridis
@@ -360,7 +397,7 @@ Starting with very naive methods, we have approaches based on \emph{bag of words
 They run with an initial scan of all the available documents to create a dictionary, and then each document is represented with a one-hot-vector that is saying for each word in the dictionary if it belongs to the current document.
 Many refinements to this basic approach exist, e.g., by removing words that do not carry meaning (stopwords) or by limiting the dictionary based on term frequencies (only the top k words overall are considered, or only words that appear at least n times).
 This group of methods culminates with a model that is called TF-IDF~\cite{ramos2003using} which is based on two components: Term Frequency and Inverse Document Frequency.
-In simple words, the first component gives higher weights to terms that appear more in the considered document, while the second measures how important a term is by promoting rare terms\cite{jones1972statistical}.
+In simple words, the first component gives higher weights to terms that appear more in the considered document, while the second measures how important a term is by promoting rare terms~\cite{jones1972statistical}.
 
 Then we have another group of models that relies on explicit semantic representation. This is the field of knowledge extraction that is based on recognising the entities mentioned in a text (entity recognition and linking) and extracting the relationships expressed between them. Using these models, a text is translated into a knowledge graph.
 The main limitations of this set of models it that they may work accurately enough just when entities that are known are mentioned, and need to be supervisioned with rich knowledge bases.
@@ -398,12 +435,16 @@ is shallower with respect to the explicit semantics based on Entity Linking, but
 
 
 % Specific similarity functions: euclidean, cosine, ...
-Once these models synthesise documents of different length into numeric representations, there are different geometrical measures that can be used to compute the distance / similarity.
-Euclidean / cosine /
+Once these models synthesise documents of different length into numeric representations, there are different geometrical measures that can be used to compute the distance or similarity.
+The most commonly used distance measure is Euclidean, although with word and sentence embedding usually the cosine similarity is more common.
+
+And we can compare therefore representations for single words, for sentences or even for complete documents.
+The computation of similarity allows to target all the different applications that we saw previously, exploring commonalities and differences at multiple granularity levels.
+\todo{a figure of sentence comparison to show this?}
 
 
-Example: let us compare TF-IDF, BERT and USE matrices (similar to experiment)
-\todo{finish, link to the discourse}
+% Example: let us compare TF-IDF, BERT and USE matrices (similar to experiment)
+% \todo{finish, link to the discourse}
 
 
 
@@ -477,7 +518,7 @@ Example: let us compare TF-IDF, BERT and USE matrices (similar to experiment)
 
 % Edit distances?
 
-Time evolution? TODO find stuff
+% Time evolution? TODO find stuff
 
 \subsection{Limitations}
 \label{ssec:lit_relationships_limitations}
@@ -485,13 +526,19 @@ Time evolution? TODO find stuff
 % - analysis of what the differences mean is left to the reader
 
 % strengths, limitations
-However, this set of approaches is limited to bringing to the attention of the reader the linked information pieces with a measure of similarity, without characterising the differences. The reader would then need to evaluate the differences in the role of the sentence, the framing that it implies and how it compares with other sentences in terms of subjectivity.
+However, this set of approaches is limited to bringing to the attention of the reader the linked information pieces with a measure of similarity, without characterising the differences.
+The reader would then need to evaluate the impact of each of the multiple versions of the texts, and the framing that they imply. 
 Different documents may express the same set of details, but give them a different role (reporting an action, commenting, contextualising, doing a digression, identifying causes and consequences) and use different words that are semantically similar but may imply a different framing perspective.
-% For this reason, the next subsection presents a set of narrative linguistic signals that could provide us with the missing features.
+And also the fact that a certain detail is present or not in certain articles within a group where other sources mention it, needs to be analysed with framing theories.
 
 
-
-Motivation for RQ2.2: overlap of information is high. Is it a coincidence? Or there is a flow of information / recycle between news sources? Who uses contents from the others, and how is it modified?
+Another limitation of this group of works is that, while they analyse the overlap of information, they do not consider the influence between the sources (one could have taken the content from the other and modified it slightly).
+This problem is currently tackled by works on plagiarism analysis, but this is not studied jointly with framing analysis.
+And furthermore plagiarism detection is done by having one questionable article and a set of original works, while here we do not have this distinction.
+% What plagiarism analysis tells us is that two documents have highly similar parts between them.
+We would like to analyse how the same information is recycled and slightly changed, by tracking it across several news sources.
+% time features that could signal the direction of 
+% Motivation for RQ2.2: overlap of information is high. Is it a coincidence? Or there is a flow of information / recycle between news sources? Who uses contents from the others, and how is it modified?
 
 
 
@@ -510,9 +557,9 @@ We need to bring together the works on framing and on similarities in order to s
 \end{figure}
 
 % example that needs cross-article analysis
-If we take the example of Figure~\ref{fig:johnson_flood}, we take two sentences coming from two different news outlets (on the vertical axis from BBC\footnote{\url{https://www.bbc.co.uk/news/uk-england-hereford-worcester-51791346}} while on the horizontal from Daily Mail\footnote{\url{https://www.dailymail.co.uk/news/article-8088805/Britons-facing-heavy-downpours-four-inches-rain-50mph-winds-set-batter-UK.html}}) and compare the words they contain by using a similarity metric~\cite{cer2018universal}.
+If we take the example of Figure~\ref{fig:johnson_flood}, we have two sentences coming from two different news outlets (on the vertical axis from BBC\footnote{\url{https://www.bbc.co.uk/news/uk-england-hereford-worcester-51791346}} while on the horizontal from Daily Mail\footnote{\url{https://www.dailymail.co.uk/news/article-8088805/Britons-facing-heavy-downpours-four-inches-rain-50mph-winds-set-batter-UK.html}}) and compare the words they contain by using a similarity metric~\cite{cer2018universal}.
 From this figure we can see that in the green boxes we have information reported from both sources, while in the red curly brace we have a detail that has been reported only by the BBC.
-This specific detail, describing a ``mixed reaction'', gets omitted from the sentence from Daily Mail that is known to be right-leaning\footnote{\url{https://mediabiasfactcheck.com/daily-mail/}}.
+This specific detail, describing a ``mixed reaction'', gets omitted from the sentence from Daily Mail that is known to be right-leaning.\footnote{\url{https://mediabiasfactcheck.com/daily-mail/}}
 % Daily Mail: "While many locals greeted him warmly, he also faced heckles of 'traitor' as he viewed flood barriers - and one person told him to 'do your f***ing job' as he posed with teenagers for a selfie on a bridge in the town."
 
 % limitation of current framing
@@ -542,14 +589,14 @@ But if we look at the articles, this term is not the only difference. The source
 We need to have a more precise definition of what constitutes framing and how it manifests in the articles.
 % - how could we detect
 % - bias vs framing?
-
+% \todo{say that framing/propaganda detection is not able to pick up these differences}
 
 % limitations:
 % Only US, handmade (lift RQ1.2)
 Considering AllSides, its main limitations are due to the fact that the analysis is handmade and therefore they publish just a few stories per week and only focusing on the US.
 With this work we want to provide a similar analysis but powered by an automated method, which will need to rely on existing works of framing analysis and document similarities.
 
-\todo{limits of automated framing / propaganda analysis: https://propaganda.qcri.org/}
+% \todo{limits of automated framing / propaganda analysis: https://propaganda.qcri.org/}
 
 
 % - break your bubble and similar (Blue Feed, Red Feed): feed populated with news from different sides. But not specific on a certain event.
@@ -565,9 +612,9 @@ We want to have an idea of the correlation between certain features of the sourc
 
 
 % lift RQ2.2
-Furthermore, seeing that the overlap of information between the different sources is quite high, we want to analyse more deeply how the content is reused by different sources (as evidenced in \ref{ssec:lit_relationships_limitations}). The main focus is not in evidencing plagiarism (as other studies have done), but instead to find how the news is modified considering the time of publishing
-Motivation for RQ2.2: overlap of information is high. Is it a coincidence? Or there is a flow of information / recycle between news sources? Who uses contents from the others, and how is it modified?
-\todo{rephrase this last paragraph}
+Furthermore, seeing that the overlap of information between the different sources is quite high, we want to analyse more deeply how the content is reused by different sources (as evidenced in \ref{ssec:lit_relationships_limitations}). The main focus is not in evidencing plagiarism (as other studies have done), but instead to find how the news is modified considering the time of publishing.
+% Motivation for RQ2.2: overlap of information is high. Is it a coincidence? Or there is a flow of information / recycle between news sources? 
+We need to investigate which sources use contents from others, and how they slightly modify the information contained to provide a different perspective.
 
 % 1.1 Need for cross-article signals
 

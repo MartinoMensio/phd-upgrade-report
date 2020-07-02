@@ -33,7 +33,7 @@ With the experiments reproduced, we have been able to inspect the cliques of doc
 
 \begin{itemize}
     % \item Their demo\footnote{\url{http://fairnews.ewi.tudelft.nl/InCredible/}} just shows one specific article as main and one specific clique (not very interesting)
-    \item The \emph{document clustering} seems split similar articles over different clusters, or in some cases having different stories that talk about a different detail within the same cluster (e.g., when a news story re-emerges because further details are discovered). This can be a consequence of having TF-IDF as underlying method to represent the documents. While it is fast and efficient for coarse topic detection, because it is based on bag of words which works well when specific terms that distinguish certain topics, when we need to have a finer-grained clustering such in this case, the limitation of such method may surface because the terms of two political events with the same entities mentioned result in having similar feature vectors.
+    \item The \emph{document clustering} sometimes splits similar articles over different clusters, or in some cases has different stories that talk about a different detail within the same cluster (e.g., when a news story re-emerges because further details are discovered). This can be a consequence of having TF-IDF as underlying method to represent the documents. While it is fast and efficient for coarse topic detection, because it is based on bag of words which works well when specific terms that distinguish certain topics, when we need to have a finer-grained clustering such in this case, the limitation of such method may surface because the terms of two political events with the same entities mentioned result in having similar feature vectors.
     \item The \emph{sentence clustering} method provided just says that two sentences are similar, but does not point to which specific words are responsible for the similarities and differences. This would require a framing analysis that in this paper is not included. Furthermore, sentences in a clique are very similar and no big differences have been observed because the similarity metrics is based again on TF-IDF. This method is not robust enough to the usage of synonyms and other variations on the linguistic surface, while at the same time is unable to distinguish two sentences that use the same words but have different meanings because of the sentence structure, so it makes selecting a threshold value very difficult.
     \item The \emph{clique algorithms} are not the best choice for doing clustering when we have the information of how much similar two items are (a real-value is available for the similarity metric). The approach considers an unweighted version of the similarity graph by using a threshold (weights are just used to select the most appropriate clique during their creation), but instead dealing with the original weighted graph would allow better clustering techniques. %, like agglomerative clustering
 \end{itemize}
@@ -290,8 +290,9 @@ We plan for each of the groups to use the results of the analysis in papers that
 The last six months will be dedicated exclusively to writing the thesis.
 
 % \begin{landscape}
-\begin{figure}[!p]
-    \centering
+\begin{figure}[!htb]
+    \centering{
+    \resizebox{0.9\textwidth}{!}{
         \begin{ganttchart}[
             % y unit title=1cm,
             % y unit chart=1cm,
@@ -317,7 +318,7 @@ The last six months will be dedicated exclusively to writing the thesis.
             vrule label font=\small,         % <---
             title label font=\small,         % <---
             bar label font=\small, 
-            inline,
+            % inline,
   inline bar label node/.append style={
     align=center,
     right=30pt
@@ -336,38 +337,37 @@ The last six months will be dedicated exclusively to writing the thesis.
         %     \ganttbar[name=T0]{Implementation}{2020-07}{2020-12} \\
             % \ganttlinkedbar[progress=0]{Task B}{2021-07}{2021-12} \\
         \ganttgroup{RQ1.1}{2020-07}{2020-11} \\
-            \ganttbar[]{1.1 User study preparation (data+guidelines)}{2020-07}{2020-09} \\
-            \ganttlinkedbar[]{1.1 Pilot}{2020-9}{2020-9} \\
-            \ganttlinkedbar[]{1.1 User Study}{2020-10}{2020-10} \\
+            \ganttbar[]{User study preparation}{2020-07}{2020-09} \\
+            \ganttlinkedbar[]{Pilot}{2020-9}{2020-9} \\
+            \ganttlinkedbar[]{User Study}{2020-10}{2020-10} \\
             % \ganttbar[progress=0]{RQ1.2: Hypothesis}{2020-07}{2020-12} \\
-            \ganttlinkedbar[name=res11]{1.1 Results analysis + paper}{2020-10}{2020-11} \\
+            \ganttlinkedbar[name=res11]{Results analysis + paper}{2020-10}{2020-11} \\
             % \ganttlink[link mid=.4]{T0}{T12}\\
             % \ganttbar[]{RQ1.2: Analysis}{2021-02}{2021-03} \\
         \ganttgroup{RQ1.2}{2020-07}{2021-04} \\
-          \ganttbar[]{1.2 Pipeline}{2020-07}{2020-09}\\
-            \ganttlinkedbar[name=model12]{1.2 Dataset building}{2020-12}{2021-01}\\
-            \ganttbar[name=model12]{1.2 Model implementation for Signals}{2020-12}{2021-01}\\
+          \ganttbar[]{Pipeline}{2020-07}{2020-09}\\
+            \ganttlinkedbar[name=model12]{Dataset building}{2020-12}{2021-01}\\
+            \ganttbar[name=model12]{Model implementation}{2020-12}{2021-01}\\
             % \ganttbar[progress=0]{RQ1.2: Hypothesis}{2020-07}{2020-12} \\
-            \ganttlinkedbar[]{1.2 Analysis + paper}{2021-01}{2021-02}\\
-            \ganttlinkedbar[]{1.2: Online tool}{2021-03}{2021-04} \\
+            \ganttlinkedbar[]{Analysis + paper}{2021-01}{2021-02}\\
+            \ganttlinkedbar[]{Online tool}{2021-03}{2021-04} \\
         
           
         \ganttgroup{RQ2.1}{2021-06}{2021-10} \\
-          \ganttbar[]{2.1 Data retrieval and implementation}{2021-06}{2021-08}\\
-          \ganttlinkedbar[]{2.1 Analysis + paper}{2021-08}{2021-10}\\
+          \ganttbar[]{Data retrieval and implementation}{2021-06}{2021-08}\\
+          \ganttlinkedbar[]{Analysis + paper}{2021-08}{2021-10}\\
           
         \ganttgroup{RQ2.2}{2021-11}{2022-02} \\
-          \ganttbar[]{2.2 Implementation}{2021-11}{2021-12}\\
-          \ganttlinkedbar[]{2.2 Analysis + paper}{2021-12}{2022-02}\\
+          \ganttbar[]{Implementation}{2021-11}{2021-12}\\
+          \ganttlinkedbar[]{Analysis + paper}{2021-12}{2022-02}\\
           
         \ganttgroup{Thesis}{2022-04}{2022-09} \\
-          \ganttbar[]{Writing}{2022-04}{2022-09}\\
+          \ganttbar[]{Writing}{2022-04}{2022-09}
           
-         \ganttlink[]{res11}{model12}\\
-    \end{ganttchart}
+         \ganttlink[]{res11}{model12}
+    \end{ganttchart}}}
     \caption{Gantt chart showing the time plan}
     \label{fig:gantt}
 \end{figure}
 % \end{landscape}
 
-\todo{gantt graphical fix needed}

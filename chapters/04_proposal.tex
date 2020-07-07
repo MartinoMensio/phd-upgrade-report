@@ -17,7 +17,7 @@
 In this chapter, we present an overall description of the framework we want to build in order to highlight the different framing techniques and compare the articles that different sources create around a single event.
 % This needs to be taken as a description of the requirements
 % This description of the framework acts as a wireframe, where specific choices will be done based on evidence, 
-As we can see in Figure~\ref{fig:diagram}, we are taking the research questions and sub-questions from the previous chapter, and for each one of them we have a process that from the hypothesis leads to some outputs using a separate and distinct analysis.
+As we can see in Figure~\ref{fig:diagram}, we are taking the research questions and sub-questions from the previous chapter and, for each one of them, we have a process that from the hypothesis leads to some outputs using a separate and distinct analysis.
 
 % outline
 The structure of this chapter follows the columns that represent the different research questions.
@@ -42,9 +42,9 @@ The structure of this chapter follows the columns that represent the different r
 
 % RQ1: framing differences
 To address the first Research Question
-\textbf{(How can we automatically reveal the framing differences in articles presenting the same event?)}, we aim to resolve two sub-questions separately. The first one analyses the \emph{importance} for the reader of comparing multiple articles to understand the framing that is being applied on the news through the revelation of specific framing signals. The second one instead explores \emph{how} we can build a tool to identify these framing signals automatically.
-In other words, while the first sub-question deals with the importance for the readers, the second question instead targets the automated detection.
-The dependency between the two sub-questions underlines that the second needs the outputs of the first one to know how to label the framing differences.
+\textbf{(How can we automatically reveal the framing differences in articles presenting the same event?)}, we aim to resolve two sub-questions separately. The first one analyses the \emph{importance} for the reader of comparing multiple articles to understand the framing that is being applied to the news through the revelation of specific framing signals. The second one instead explores \emph{how} we can build a tool to identify these framing signals automatically.
+In other words, while the first sub-question deals with the importance for the readers, the second question instead targets automated detection.
+The dependency between the two sub-questions underlines that the second one needs the outputs of the first one to know how to label the framing differences.
 
 % we aim to automatically identify \textit{signals of framing} that otherwise would not be noticeable: differences in emphasis and selection of details.
 % These signals, while they are defined in the theoretical works, they have not been targeted in the automatic framing analysis.
@@ -63,11 +63,11 @@ The dependency between the two sub-questions underlines that the second needs th
 % RQ 1.1: cross-article signals
 The first column represents a line of research that is needed to understand how useful is for readers to confront the information available in multiple articles to spot the framing techniques used.
 % signals
-In order to describe and characterise the framing we started from the literature review to gather concrete manifestations of framing, both in theoretical works and in detection methods.
+In order to describe and characterise the framing, we started from the literature review to gather concrete manifestations of framing, both in theoretical works and in detection methods.
 As we have seen in section~\ref{sec:lit_framing}, different techniques have been theorised and studied, both in theoretical and practical works.
 % what we mean by signal
-We name the manifestation of such techniques \emph{signals} because they are signalling the presence of the framing, which is a abstract concept, but they are tangible and can be seen as concrete features.
-For example, loaded language (technique) emerges from specific words that have a strong sentiment (signals), and evokes frames of strength, violence, threat and similar.
+We name the manifestation of such techniques \emph{signals} because they are signalling the presence of the framing, which is an abstract concept, but they are tangible and can be seen as concrete features.
+For example, loaded language (technique) emerges from specific words that have a strong sentiment (signals) and evokes frames of strength, violence, threat and similar.
 Or the strategic omission or inclusion (technique) of certain details (signals) that have the role of shifting the opinion of the reader.
 What we want to investigate is whether we can ease their detection from readers by comparing multiple articles. 
 % extend this set of signals by exiting the limitations of a single-article analysis. 
@@ -127,12 +127,12 @@ By comparing them, the difference in their point of view would emerge through sp
 In order to validate our hypothesis, we will run a \textbf{user study} where participants will be shown different articles that present the same event with some differences.
 To test the hypothesis of framing being easier to spot when multiple articles are available, we plan to first present to the user just one article and ask to find the framing signals. Then we show also the second article on the side with different details and ask again.
 In both the steps, the input asked from the user is to highlight parts of the article(s) and to say which framing techniques it is representing, showing a certain view angle, as a free text.
-To obtain these annotation, users will first be shown with the framing techniques identified in the literature, to understand what they are looking for.
+To obtain these annotations, users will first be shown with the framing techniques identified in the literature, to understand what they are looking for.
 Then they will be shown with a single article and asked to annotate it. And the second phase will ask them to compare two articles and to point at differences in terms, themes, and details that are representative of framing techniques.
-We will then compare the number and type of annotations coming from the two different situations (one singe article or multiple articles).
+We will then compare the number and type of annotations coming from the two different situations (one single article or multiple articles).
 It is important to divide the annotators of a certain pair of articles in two sub-groups in order to divide the effect of ``seeing again the same article twice'' (unwanted) from ``seeing the article compared to another one'' (wanted).
 For this reason, if we consider A1 and A2, user U1 will first see A1 then A1+A2, while U2 will first see A2 then A1+A2.
-In this way we can sum the sets of annotations done in the first stage, when seeing just one article, and in the second stage, when the reader has already analysed one article and is presented with another one. In the second stage we sum the sets of annotations given to the corresponding new articles (A2 for user U1 and A1 for user U2).
+In this way, we can sum the sets of annotations done in the first stage, when seeing just one article, and in the second stage, when the reader has already analysed one article and is presented with another one. In the second stage, we sum the sets of annotations given to the corresponding new articles (A2 for user U1 and A1 for user U2).
 By comparing the number and types of annotations in the two settings, we can see the effect of having already knowledge from another point of view, and be able to compare with the new article.
 % CA1(before)+CA2 for U1 and CA1+CA2(before) for U2 where each observation is done at first sight of the corresponding article (see Figure~\ref{fig:user_study}).
 
@@ -148,7 +148,7 @@ By comparing the number and types of annotations in the two settings, we can see
 
 % requirements
 % data (hand-picked samples from sources with different political alignment)
-The pairs of articles to be shown will come from a selected subset from clusters of documents that are presenting the same detail, with some differences in the terms used. For this reason they need to be revised and checked.
+The pairs of articles to be shown will come from a selected subset from clusters of documents that are presenting the same detail, with some differences in the terms used. For this reason, they need to be revised and checked.
 The clusters will come from articles suggested by AllSides and other news aggregators like Google News, testing both differences from opposite political views as well as articles without any difference in the political bias.
 To identify the pairs of documents we plan to use the help from similarity models that, as will be seen in Chapter~\ref{chap:plan}, have been investigated and used to cluster documents and sentences.
 
@@ -189,7 +189,7 @@ To implement a method that exploits the differences between multiple articles, w
 For this reason, we plan to rely on the approaches described in the Literature Review~\ref{sec:lit_relationships} where we analysed some methods that are able to find the similarities at different granularities, and expose the differences of the details provided.
 % Based on the initial experiments done to see the similarity between documents, we are implementing a processing pipeline that is able to retrieve, process and compare articles.
 The step of feature extraction will be based on a pipeline that will process the documents in several steps as shown in Figure~\ref{fig:pipeline}.
-The first step, \emph{retrieval}, keeps collecting articles from multiple sources, and stores them with a unified schema that includes a set of useful fields: headline and body that are needed by linguistic analysis, the source and publication date which are needed for RQ2.
+The first step, \emph{retrieval}, keeps collecting articles from multiple sources and stores them with a unified schema that includes a set of useful fields: headline and body that are needed by linguistic analysis, the source and publication date which are needed for RQ2.
 Then the \emph{processing} stage will use NLP libraries with two main objectives: dividing the articles into sentences and compute the embedded semantic representation of both the articles and the sentences.
 The articles and sentences embeddings are then used in the last stage, \emph{linking}, which performs clustering at both article and sentence granularity. Furthermore, corroborated and omitted sentences are identified~\cite{bountouridis2018explaining} and this is added to the features.
 In this way, articles that cover the same event are brought together and are ready to be compared in their overlap and in their differences.
@@ -203,7 +203,7 @@ In this way, articles that cover the same event are brought together and are rea
 
 % how to build on top of the cross-article representation
 We need to develop a model that takes features both from the current article and from the linked pieces coming from other articles and performs a classification task to estimate if the current word is part of a framing signal and recognise which specific signal it is part of, inspired by similar approaches that work on single article features~\cite{da2019fine}.
-The difference of our approach will be that we plan to use the linked information as additional feature, to allow the model to learn and exploit the differences between the different articles.
+The difference of our approach will be that we plan to use the linked information as an additional feature, to allow the model to learn and exploit the differences between the different articles.
 Such extension could be obtained by simply adding as features spans of texts that satisfy certain properties (e.g., linked by a certain degree of similarity) or by using \emph{siamese architectures}~\cite{bromley1994signature} that have shown wide application in comparison scenarios.
 % https://www.inovex.de/blog/transfer-learning-siamese-networks/
 The model will output span annotations that will say which framing techniques have been used.
@@ -211,13 +211,13 @@ The model will output span annotations that will say which framing techniques ha
 
 % hypothesis
 Our hypothesis is that having the availability of multiple articles would help an automated framing detection model to find more signals of framing.
-As the first sub-question analyses the importance for human readers, this analysis wants to see if the same applies to the automated detection.
+As the first sub-question analyses the importance for human readers, this analysis wants to see if the same applies to automated detection.
 We also hypothesise that some types of framing signals are only detectable by using the external knowledge coming from other articles, which is not used by the existing methods.
 
 % evaluation
 To validate or refute our hypothesis, the model will be evaluated by looking at how accurately the spans containing framing differences are identified.
 As a comparison, we plan to use models that instead just focus on one single article at a time to extract the features.
-For example the complete model will be compared with another version (single-article) that discards the features coming from the comparison.
+For example, the complete model will be compared with another version (single-article) that discards the features coming from the comparison.
 Or also other models found in the literature that focus on specific types of framing signals (e.g., emphasis detection, loaded terms) will be tested to see if our model (complete or incomplete) is comparable and overtakes them.
 % \todo{how to compare to single-article framing datasets? https://ecommons.cornell.edu/handle/1813/39216 from baumer2015testing}
 % For some of the framing signals that focus on single articles, there are baselines that are usually only available on specific topics.
@@ -276,11 +276,11 @@ While the first research question focused on how to reveal the framing, here we 
 \subsection{Source features vs framing (RQ2.1)}
 % RQ2.1: relationship with source information
 News sources are different and there is a wide variety of them in the media landscape.
-A source can have a certain political alignment, be part of a certain news group, have affiliation to certain movements and ideals, or reside in a certain country, and we want to do an analysis of the framing techniques across all these features.
+A source can have a certain political alignment, be part of a certain newsgroup, have an affiliation to certain movements and ideals, or reside in a certain country, and we want to do an analysis of the framing techniques across all these features.
 % we capture all together as ``affiliation''
 Lots of tools and evaluation methods just rely on the provenance of the news, looking at which source published it. The reputation of the sources is a big theme in the credibility domain.
 Here we want to analyse the relationship between the features of a news source and how it applies framing differently from others. The sub-question is:
-\textbf{Which features of a news source relate with the framing techniques it uses?}
+\textbf{Which features of a news source influence the framing techniques used?}
 We want to analyse the relationships between the framing choices done by the authors and the news sources where the articles are published. In other words, we want to understand the relationships between the ideological alignment of the news outlets (political alignment, bias, news media groups) and the effective differences contained in the articles.
 
 
@@ -291,11 +291,11 @@ The hypothesis that we have is that certain features, such as the political alig
 We want to understand what is the effect of other features as well, and discover which ones influence mostly the framing of the articles written.
 
 % requirement: data on news outlets
-In order to test this hypothesis we need two sets of information: the features for each of the sources and the framing analysis.
+In order to test this hypothesis, we need two sets of information: the features for each of the sources and the framing analysis.
 In the first group, we can use many features:
 
 \begin{itemize}
-    \item \textbf{Political alignment}: different ratings exist describing the political leaning of the sources. AllSides, besides comparing articles from different news sources, also provides the bias rating for more than 600 media outlets\footnote{\url{https://www.allsides.com/media-bias/media-bias-ratings}}. Also Media Bias/Fact Check\footnote{\url{https://mediabiasfactcheck.com/}} provides the political leaning for more than 3200 news sources. This is probably one of the most important features when analysing the framing about political issues, as their leaning would show slighter support or distancing from public actors.
+    \item \textbf{Political alignment}: different ratings exist describing the political leaning of the sources. AllSides, besides comparing articles from different news sources, also provides the bias rating for more than 600 media outlets\footnote{\url{https://www.allsides.com/media-bias/media-bias-ratings}}. Also, Media Bias/Fact Check\footnote{\url{https://mediabiasfactcheck.com/}} provides the political leaning for more than 3200 news sources. This is probably one of the most important features when analysing the framing about political issues, as their leaning would show slighter support or distancing from public actors.
     \item \textbf{News media group/company}: this feature groups together media sources that are part of the same economical group, and therefore would have similar economical reasons in presenting the news about certain topics.\footnote{\url{https://en.wikipedia.org/wiki/Category:Newspaper_companies_by_country}} %https://en.wikipedia.org/wiki/Media_conglomerate
     \item \textbf{Geographical information}: knowing the country and region of a news outlet can provide an analysis of framing across countries to analyse how the same issue is framed differently depending on the position.
     \item \textbf{Factuality and credibility ratings}: there exist multiple ratings that say how factual is the reporting, or how transparent the organisation is in different aspects (Media Bias/Fact Check, NewsGuard\footnote{\url{https://www.newsguardtech.com/}}). All these ratings can instead drive the analysis in seeing how the reputation of a news outlet makes emerge different usage of framing.
@@ -318,7 +318,7 @@ One example that we may discover is that sources heavily biased tend to perform 
 
 % significance
 The outputs of this analysis will hopefully be able to describe the news sources and how they present information.
-This would be a step further in making the readers of news more conscious about who they are reading from and guide them, for example, to sources that report the information more completely.
+This would be a step further in making the readers of news more conscious about whom they are reading from and guide them, for example, to sources that report the information more completely.
 % It will also cast the light more on ... responsibility of 
 
 
@@ -337,13 +337,13 @@ Although news articles usually cite their sources, there is not much work that e
 
 % hypothesis
 Our hypothesis is that we will be able to identify patterns between certain sources that take contents from others and perform specific modifications.
-It is very likely that, especially small and secondary news outlets sometimes recycle material from other bigger sources, with citations, but they re-adapt parts for example by changing some wording.
+It is very likely that, especially small and secondary news outlets, sometimes recycle material from other bigger sources, with citations, but they re-adapt parts for example by changing some wording.
 Or on the other side, major headlines that reuse contents from local news outlets may remove details that are too dense for their reporting needs.
 
 % requirements
 % Data requirements: timing information.
 In order to do this analysis, we need to have precise timing information about the publication of the articles involved.
-In the metadata of the articles usually it is present the publication date and sometimes also the precise minute.
+The metadata of the articles usually contain the publication date and sometimes also the precise minute.
 % Is it reliable? How to manage intervals and not only instants
 Relying on this information (that sometimes could be imperfect because of further edits after the first publication), we have the challenge that many articles may indicate the date only and therefore any precise time-dependency could be undetectable.
 
@@ -351,14 +351,14 @@ Relying on this information (that sometimes could be imperfect because of furthe
 From the pipeline that gives us similar articles and characterises which parts have been changed, and with the framing analysis that serves to understand which type of modification has been performed, we will conduct this further analysis by ordering documents inside a cluster by publication time.
 Once the documents are sorted, we can then identify the different details, and analyse where do they appear first and how they evolve with time.
 Following these details we extract information flows that will give us an understanding of which sources influence others, creating an influence network.
-And furthermore we can add to this directed network labels on the edges that correspond to the types of framing modifications that are done.
+And furthermore, we can add to this directed network labels on the edges that correspond to the types of framing modifications that are done.
 To see whether there exist patterns we will take the statistics of the framing modifications article-wise and aggregate them to the source level.
-In this way we will count between each pair of sources how many times they reused details from others and which types of framing they used.
+We will count between each pair of sources how many times they reused details from others and which types of framing they used.
 % And if we also take the timing information (publication time), we can expand this model to characterise the evolution of information, describing how different news sources reuse contents from others and how the details are selected and changed over time.
 % \todo{describe analysis}
 
 % outputs
-In this way we will show, for example, how a certain source evolves the narrative starting from other sources, merging new elements on its way, emphasising some details, and dropping others.
+In this way, we will show, for example, how a certain source evolves the narrative starting from other sources, merging new elements on its way, emphasising some details, and dropping others.
 
 
 

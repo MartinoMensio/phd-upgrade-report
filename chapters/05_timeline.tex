@@ -11,7 +11,7 @@ While the previous chapter described the methodology and evaluation that is plan
 % - formalisation and problem definition
 % - data
 
-During the first year several activities have been done.
+During the first year, several activities have been done.
 Some have been done as initial explorations in the field of research, understanding what other researchers have done, ``getting the hands dirty'' with data and NLP tools.
 And their function within the PhD project has been to lead to the Research Questions that we described earlier.
 Some other activities have been done to kick start the future experimentation, for example doing data collection of news articles or by beginning to implement some of the stages of the processing pipeline that will be used.
@@ -26,7 +26,7 @@ We started by analysing the paper from~\citet{bountouridis2018explaining} which 
 We wanted to analyse this resource because it seems to be going in the broad direction of our project, analysing different presentations in the news of the same event.
 
 % how
-The paper has been analysed and reproduced, to get a deep understanding of how it works. The implementation started with the code publicly provided by the authors,\footnote{\url{https://github.com/dbountouridis/InCredible}} but its incompleteness in some stages of the processing (e.g., the creation of the article-level cliques, and all the specific hyperparameters of the algorithms used) required an integration of the codebase.\footnote{\url{https://github.com/MartinoMensio/InCredible}}
+The paper has been analysed and reproduced, to get a deep understanding of how it works. The implementation started with the code publicly provided by the authors,\footnote{\url{https://github.com/dbountouridis/InCredible}} but its incompleteness in some stages of the processing (e.g., the creation of the article-level cliques, and all the specific hyperparameters of the algorithms used) required integrating the codebase.\footnote{\url{https://github.com/MartinoMensio/InCredible}}
 
 % limitations
 With the experiments reproduced, we have been able to inspect the cliques of documents and sentences identified by the model, seeing the following limitations:
@@ -34,8 +34,8 @@ With the experiments reproduced, we have been able to inspect the cliques of doc
 \begin{itemize}
     % \item Their demo\footnote{\url{http://fairnews.ewi.tudelft.nl/InCredible/}} just shows one specific article as main and one specific clique (not very interesting)
     \item The \emph{document clustering} sometimes splits similar articles over different clusters, or in some cases has different stories that talk about a different detail within the same cluster (e.g., when a news story re-emerges because further details are discovered).
-    This can be a consequence of having TF-IDF as underlying method to represent the documents.
-    This method is fast and efficient for coarse topic detection, because it is based on bag of words which works well when specific terms that distinguish certain topics.
+    This can be a consequence of having TF-IDF as the underlying method to represent the documents.
+    This method is fast and efficient for coarse topic detection, because it is based on bag-of-words which works well when specific terms that distinguish certain topics.
     But when we need to have a finer-grained clustering such in this case, the limitation of such method may surface because the terms of two political events with the same entities mentioned result in having similar feature vectors.
     \item The \emph{sentence clustering} method provided just says that two sentences are similar, but does not point to which specific words are responsible for the similarities and differences. This would require a framing analysis that in this paper is not included. Furthermore, sentences in a clique are very similar and no big differences have been observed because the similarity metrics is based again on TF-IDF. This method is not robust enough to the usage of synonyms and other variations on the linguistic surface, while at the same time is unable to distinguish two sentences that use the same words but have different meanings because of the sentence structure, so it makes selecting a threshold value very difficult.
     \item The \emph{clique algorithms} are not the best choice for doing clustering when we have the information of how much similar two items are (a real-value is available for the similarity metric). The approach considers an unweighted version of the similarity graph by using a threshold (weights are just used to select the most appropriate clique during their creation), but instead dealing with the original weighted graph would allow better clustering techniques. %, like agglomerative clustering
@@ -49,18 +49,18 @@ With the experiments reproduced, we have been able to inspect the cliques of doc
 % And also, it uses the similarity between TF-IDF just with a threshold, modelling the graph and cliques as unweighted (the weights are just used to select the most appropriate clique during their creation).
 
 % role of this experiment
-This experiment helped seeing the limitation of this type of work, that belongs to the \emph{similarity} area of research (Section~\ref{sec:lit_relationships}).
+This experiment helped to see the limitation of this type of work, that belongs to the \emph{similarity} area of research (Section~\ref{sec:lit_relationships}).
 This paper provides a great way to analyse the overlap between articles and extracts pieces that have been omitted or that are corroborated, but does not investigate further in the reason behind the selection of what to include or not.
 This opened up for further work to:
 \begin{enumerate}
     \item investigate how to better represent the documents to provide meaningful similarity metrics;
     \item investigate the works that analyse framing theories and detection;
     \item experiment with document and sentence clustering to bring up differences;
-    \item collect data of more recent articles that would be more relevant and interesting.
+    \item collect data from more recent articles that would be more relevant and interesting.
 \end{enumerate}
 % \emph{i)} , \emph{ii)} , \emph{iii)} , and \emph{iv)} g.
 
-Apart from these limitations, we are building our processing pipeline on top of this type of analysis, that links together at different granularity levels news articles (document and sentence).
+Apart from these limitations, we are building our processing pipeline on top of this type of analysis, that links together news articles at different granularity levels (document and sentence).
 
 
 \subsection{Models for similarity analysis}
@@ -70,7 +70,7 @@ Moving to the problem of representing documents and sentences in a way that capt
 We wanted to see in practice how the usage of different representation models would affect the measurements of similarity, experimenting with a small set of articles. 
 % finding and exploring more advanced methods to find the similarity between texts by using language models, we experimented on how to use these methods.
 % why?
-Having a solid base for computing the distances between articles and sentences is a pillar for comparing different articles. The applications of similarity range from document clustering to identification of omitted pieces of information in a cluster, therefore it is very important to use a proper method that is not fooled by usage of synonyms and other linguistic variations in communicating the same information. To study the differences in the language of framing we first need to be able to tell whether two pieces of text are discussing the same information, and distinguish properly degrees of similarity.
+Having a solid base for computing the distances between articles and sentences is a pillar for comparing different articles. The applications of similarity range from document clustering to identification of omitted pieces of information in a cluster, therefore it is very important to use a proper method that is not fooled by the usage of synonyms and other linguistic variations in communicating the same information. To study the differences in the language of framing we first need to be able to tell whether two pieces of text are discussing the same information, and distinguish properly degrees of similarity.
 
 % how?
 % Specifically on the sentence level, we experimented to see how different models were able to pick similar sentences, by setting up a small benchmark.
@@ -82,8 +82,8 @@ The selected models used in the benchmark are the following:
 \begin{itemize}
     \item \textbf{TF-IDF}: with a feature size of 2000, with a preprocessing made of lowercasing and tokenizing, without lemmatisation;
     \item \textbf{GloVe-average}: considering GloVe word embeddings trained on the CommonCrawl dataset, and doing an average of the vectors over the sentence;\footnote{\url{https://spacy.io/models/en\#en_core_web_lg}}
-    \item \textbf{BERT}: using the most popular embeddings provided by Google Research~\cite{devlin2018bert} with the base uncased pretrained weights;\footnote{\url{https://spacy.io/models/en-starters\#en_trf_bertbaseuncased_lg}}
-    \item \textbf{USE}: using sentence embeddings coming from Universal Sentence Encoder~\cite{cer2018universal} which have been specifically trained for sentence similarity\footnote{\url{https://tfhub.dev/google/universal-sentence-encoder/}}
+    \item \textbf{BERT}: using the most popular embeddings provided by Google Research~\cite{devlin2018bert} with the base uncased pre-trained weights;\footnote{\url{https://spacy.io/models/en-starters\#en_trf_bertbaseuncased_lg}}
+    \item \textbf{USE}: using sentence embeddings coming from Universal Sentence Encoder~\cite{cer2018universal} which has been specifically trained for sentence similarity\footnote{\url{https://tfhub.dev/google/universal-sentence-encoder/}}
 \end{itemize}
 
 In all the cases, the representations from these models have been compared with the cosine similarity.
@@ -93,12 +93,12 @@ For each pair of sentences that was provided by any of the models, we listed by 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\linewidth]{figures/lyra.pdf}
-    \caption{The comparison between two sentences, one from BBC and the other from Sky News, where multiple differences exist.}
+    \caption{The comparison between two sentences, one from the BBC and the other from Sky News, where multiple differences exist.}
     \label{fig:lyra}
 \end{figure}
 \todo{crop figure, title not needed (already caption)}
 
-An example can be seen in figure~\ref{fig:lyra} that shows a sentence from BBC and one from Sky News, where the differences are the following:
+An example can be seen in Figure~\ref{fig:lyra} that shows a sentence from the BBC and one from Sky News, where the differences are the following:
 
 \begin{itemize}
     \item the detail ``4x4'' just appears on the BBC article;
@@ -114,7 +114,7 @@ With this kind of information on the number, type and magnitude of changes conta
 % Observations
 % \todo{rewrite better the observations}
 The observations that we have for the TF-IDF model is that
-Feature size changes a lot the results.
+Feature size changes the results a lot.
 It requires to be computed on a set of documents all together (which also changes which features are selected), and it is not possible to encode an additional document without changing the representation of the already encoded documents.
 We also see that the type of pre-processing affects the results: without a lemmatization step to the pipeline, it is sufficient to change the verb tense to have a different term.
 Given these limitations, we find that sentences that are very similar in the meaning but have some differences in the linguistic surface see a drop in their similarity with this model.
@@ -131,7 +131,7 @@ It is also the only model considered that is purposely trained on a semantic sim
 
 % role of this experiment
 This experiment shows the need for a similarity model that accounts for the semantics more than the linguistic surface. And given the continuous progress of language models, we need to be able to switch our choice relatively easily.
-For example by looking at the Semantic Textual Similarity benchmark,\footnote{\url{http://nlpprogress.com/english/semantic_textual_similarity.html}} at the moment the best model available is XLNet~\cite{yang2019xlnet} so we will use it for our future experiments.
+For example, by looking at the Semantic Textual Similarity benchmark,\footnote{\url{http://nlpprogress.com/english/semantic_textual_similarity.html}} at the moment the best model available is XLNet~\cite{yang2019xlnet} so we will use it for our future experiments.
 % this means for us:
 % - we need to use a similarity resistant to changes in the linguistic surface
 % - we need a measure that is able to represent well the different levels of similarity
@@ -166,7 +166,7 @@ We then use agglomerative hierarchical clustering for different reasons:
     \item it does not require the specification of the number of clusters wanted, we want to be flexible;
     \item we can truncate the clustering when we reach a certain level of distance between the clusters, or a certain number of clusters;
     \item We can see the evolution of many different features (e.g., number of clusters, size, internal cohesion) while performing the clustering step by step;
-    \item we have a graphical representation (dendrogram) which helps inspecting and understanding what is happening;
+    \item we have a graphical representation (dendrogram) which helps to inspect and understand what is happening;
     \item it has widely been used for similar tasks (e.g., finding related claims~\cite{TODO:meedan_talk_similarity:http://ceur-ws.org/Vol-2607/short4.pdf:or_better})
 \end{itemize}
 
@@ -191,7 +191,7 @@ Using this type of inspection, we can decide specific threshold values more cons
 
 % 3. extract degree of uniqueness of words (from pairwise to clusterwise, with bag-of-words or difftool (order matters, duplicates))
 % second motivation: highlight the different words and their uniqueness
-With this method we create sentence clusters that are very similar in their semantic content, but at the same time have linguistic changes.
+With this method, we create sentence clusters that are very similar in their semantic content, but at the same time have linguistic changes.
 With the objective of facilitating an analysis of the differences, we experimented with different methods of highlighting the uniqueness of the words in a cluster.
 This can be seen in Figure~\ref{fig:words_uniqueness} where we score each of the words with a scale of uniqueness that is defined as:
 $$u_w = 1 - \frac{|\Set{s_i | s_i \in S \land w \in s_i}|}{|S|}$$
@@ -210,7 +210,7 @@ This gives a higher value of uniqueness to the word ``deceased'' that just appea
 
 % role of this experiment and outcomes
 This methodology can be used in our framework to help the preparation of the dataset in different steps.
-First of all, during the decision of creating article couples that have to be compared (using at the article-level the same clustering methodology). In this case we will need to use a specific threshold that cuts out unrelated articles but at the same time keeps a considerable number of differences on the document level (not too similar because identical articles, that are a lot, are not useful).
+First of all, during the decision of creating article couples that have to be compared (using at the article-level the same clustering methodology). In this case, we will need to use a specific threshold that cuts out unrelated articles but at the same time keeps a considerable number of differences on the document level (not too similar because identical articles, that are a lot, are not useful).
 While for the first user study we can exploit hand-curated groups of articles, when doing a larger creation of the dataset we will need to rely on automated techniques.
 This methodology could also be used as support for the annotators, in order to see both which sentences are most similar, and the words that differ inside. This would make the annotation process faster and easier.
 
@@ -225,11 +225,11 @@ It serves the RQ1.2 as a first implementation of the processing pipeline by maki
 
 \subsection{Data collection}
 % what
-We also started collecting, early this year, different type of data that will be useful for the analysis planned.
+We also started collecting, early this year, several types of data that will be useful for the analysis planned.
 % why
-When looking for data, we are interested by different features.
-Firs of all, a wide set of articles is needed, dense in time and from a wide variety of news outlets. We need substantial overlap between articles and the more sources we can include, the better we can observe variation of the framing phenomena.
-Another feature that is very important, is to have a good pre-clustered set of articles to help, especially for the first Research Question, the curation of a dataset by knowing that the articles are well related. Then when we will have the document clustering working in action, this feature is not anymore required, but still can serve as benchmark for that stage.
+When looking for data, we are interested in different features.
+First of all, a wide set of articles is needed, dense in time and from a wide variety of news outlets. We need substantial overlap between articles and the more sources we can include, the better we can observe variations of the framing phenomena.
+Another feature that is very important, is to have a good pre-clustered set of articles to help, especially for the first Research Question, the curation of a dataset by knowing that the articles are well related. Then when we will have the document clustering working in action, this feature is not anymore required, but still can serve as a benchmark for that stage.
 And another desirable feature would be to have articles that come sources with a different opinion, that would be beneficial to create examples especially for the user study, where we want to maximise the occurrence of framing techniques. 
 
 % how
@@ -240,11 +240,11 @@ The stories are created automatically by Google News and this allows it to be al
 We have captured from mid-march every day the published set of stories, and managed to retrieve more than 700k articles (as of the end of June, and not all the articles listed can be retrieved because of paywalls or other filtering techniques by the publishers).
 
 % - allsides: human-created with interesting framing differences
-Another data source that we actively retrieve is AllSides which provides a curated set of ``headlines''\footnote{\url{https://www.allsides.com/story/admin}} where three article with a different political alignment are put together and compared in their difference.
+Another data source that we actively retrieve is AllSides which provides a curated set of ``headlines''\footnote{\url{https://www.allsides.com/story/admin}} where three articles with a different political alignment are put together and compared in their difference.
 The curators provide a description of how the story gets framed by the considered sources, using natural language.
-This description usually contains usage of terms or themes that get mentioned.
-At the end of June we have available 4764 headlines, with 13979 articles linked.
-Differently from Google Headlines which has different versions for each country, this data is US focused being curated in the US and therefore has a much more limited scope. Also the discussion of bias and framing is mainly focused on political issues, while we want to focus also on other types of differences of opinion.
+This description usually contains the usage of terms or themes that get mentioned.
+At the end of June, we have available 4764 headlines, with 13979 articles linked.
+Differently from Google Headlines which has different versions for each country, this data is US-focused being curated in the US and therefore has a much more limited scope. Also, the discussion of bias and framing is mainly focused on political issues, while we want to focus also on other types of differences of opinion.
 % role of this specific data
 This data, although the description of the differences is not directly parseable, will be used to feed the user study and understand the role of comparing different sides.
 
@@ -262,14 +262,14 @@ The last type of activity carried out during this year has been the presentation
 % why
 The motivation of this activity has been to get some feedback from both people working inside the same research space and also from other fields.
 From the first group, we wanted to get an expert opinion and mainly understand if we are missing some related research work that could be helpful.
-Instead from the more general-audience group we wanted to understand if this type of research makes sense to them and try to explain more motivationally and in an easier format.
+Instead, from the more general-audience group, we wanted to understand if this type of research makes sense to them and try to explain more motivationally and in an easier format.
 
 % how
 Belonging to the first group, this work has been presented firstly to an internal seminar in KMi on the 25th March, then to the Text2Story workshop part of the ECIR conference as a position paper which was presented in April\footnote{\url{http://text2story20.inesctec.pt/}}.
 This position paper~\cite{mensio2020towards} focuses on describing some proposed cross-article signals that would show differences in how stories are narrated.
 The proposal described completely in this report has also been presented in the CRC PhD Conference, that is an internal conference for PhD students of KMi and C\&C schools.
 
-Instead belonging to the more wide audience, during June we submitted a poster to the OU PhD Poster Competition which, involving a more general audience, focused more on being simple to understand.
+For the more wide audience instead, during June we submitted a poster to the OU PhD Poster Competition which, involving a more general audience, focused more on being simple to understand.
 
 These documents can be found at the end of this file.
 
@@ -293,7 +293,7 @@ In Figure~\ref{fig:gantt} we show the time plan, which mirrors the structure of 
 
 The first phase will target RQ1.1, by doing the user study proposed before. This will require different stages, from the preparation of the data to be annotated and guidelines for the participants, to a small pilot to correct potential errors in the procedure, to the real user study and analysis of the results.
 
-The outputs of the first phase will be needed by the second one, to create and annotate a larger dataset with the specific labels identified in the first study. The implementation of the pipeline is independent from this requirement so it can be done in parallel. The implementation of the detection model will sit on top of the pipeline.
+The outputs of the first phase will be needed by the second one, to create and annotate a larger dataset with the specific labels identified in the first study. The implementation of the pipeline is independent of this requirement so it can be done in parallel. The implementation of the detection model will sit on top of the pipeline.
 
 After a month of buffer time, the analysis of the second research question will be faced, with two cycles of data preparation, implementation and analysis.
 

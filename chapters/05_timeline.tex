@@ -23,7 +23,7 @@ Some other activities have been done to kick start the future experimentation, f
 % what
 We started by analysing the paper from~\citet{bountouridis2018explaining} which presents a methodology to analyse how much information overlaps between different similar documents, identifying points of information that are corroborated or omitted.
 % why
-We wanted to analyse this resource because it seems to be going in the broad direction of this project, analysing different presentations in the news of the same event.
+We wanted to analyse this resource because it seems to be going in the broad direction of our project, analysing different presentations in the news of the same event.
 
 % how
 The paper has been analysed and reproduced, to get a deep understanding of how it works. The implementation started with the code publicly provided by the authors,\footnote{\url{https://github.com/dbountouridis/InCredible}} but its incompleteness in some stages of the processing (e.g., the creation of the article-level cliques, and all the specific hyperparameters of the algorithms used) required an integration of the codebase.\footnote{\url{https://github.com/MartinoMensio/InCredible}}
@@ -33,7 +33,10 @@ With the experiments reproduced, we have been able to inspect the cliques of doc
 
 \begin{itemize}
     % \item Their demo\footnote{\url{http://fairnews.ewi.tudelft.nl/InCredible/}} just shows one specific article as main and one specific clique (not very interesting)
-    \item The \emph{document clustering} sometimes splits similar articles over different clusters, or in some cases has different stories that talk about a different detail within the same cluster (e.g., when a news story re-emerges because further details are discovered). This can be a consequence of having TF-IDF as underlying method to represent the documents. While it is fast and efficient for coarse topic detection, because it is based on bag of words which works well when specific terms that distinguish certain topics, when we need to have a finer-grained clustering such in this case, the limitation of such method may surface because the terms of two political events with the same entities mentioned result in having similar feature vectors.
+    \item The \emph{document clustering} sometimes splits similar articles over different clusters, or in some cases has different stories that talk about a different detail within the same cluster (e.g., when a news story re-emerges because further details are discovered).
+    This can be a consequence of having TF-IDF as underlying method to represent the documents.
+    This method is fast and efficient for coarse topic detection, because it is based on bag of words which works well when specific terms that distinguish certain topics.
+    But when we need to have a finer-grained clustering such in this case, the limitation of such method may surface because the terms of two political events with the same entities mentioned result in having similar feature vectors.
     \item The \emph{sentence clustering} method provided just says that two sentences are similar, but does not point to which specific words are responsible for the similarities and differences. This would require a framing analysis that in this paper is not included. Furthermore, sentences in a clique are very similar and no big differences have been observed because the similarity metrics is based again on TF-IDF. This method is not robust enough to the usage of synonyms and other variations on the linguistic surface, while at the same time is unable to distinguish two sentences that use the same words but have different meanings because of the sentence structure, so it makes selecting a threshold value very difficult.
     \item The \emph{clique algorithms} are not the best choice for doing clustering when we have the information of how much similar two items are (a real-value is available for the similarity metric). The approach considers an unweighted version of the similarity graph by using a threshold (weights are just used to select the most appropriate clique during their creation), but instead dealing with the original weighted graph would allow better clustering techniques. %, like agglomerative clustering
 \end{itemize}
@@ -48,7 +51,16 @@ With the experiments reproduced, we have been able to inspect the cliques of doc
 % role of this experiment
 This experiment helped seeing the limitation of this type of work, that belongs to the \emph{similarity} area of research (Section~\ref{sec:lit_relationships}).
 This paper provides a great way to analyse the overlap between articles and extracts pieces that have been omitted or that are corroborated, but does not investigate further in the reason behind the selection of what to include or not.
-This opened up for more investigation in \emph{i)} how to represent better documents to have better similarity metrics, \emph{ii)} investigating the works that analyse framing, \emph{iii)} experimentation with document and sentence clustering to bring up differences, and \emph{iv)} data collection of more recent articles that would be more relevant and interesting.
+This opened up for further work to:
+\begin{enumerate}
+    \item investigate how to better represent the documents to provide meaningful similarity metrics;
+    \item investigate the works that analyse framing theories and detection;
+    \item experiment with document and sentence clustering to bring up differences;
+    \item collect data of more recent articles that would be more relevant and interesting.
+\end{enumerate}
+% \emph{i)} , \emph{ii)} , \emph{iii)} , and \emph{iv)} g.
+
+Apart from these limitations, we are building our processing pipeline on top of this type of analysis, that links together at different granularity levels news articles (document and sentence).
 
 
 \subsection{Models for similarity analysis}
@@ -111,7 +123,7 @@ Instead considering GloVe-average, we observe in some cases that the measure of 
 
 For the language models (BERT and USE models), we see a big improvement in the pairs of sentences that come as more similar.
 % The values provided are very similar. This per-se is not a problem if some geometric properties are valid (ordering, proportions)
-We observe that USE provide values less skewed to the higher values, distributing the similarity values more evenly. The numbers make more sense without any re-scaling technique, and therefore the heatmaps showed in this document come from this model.
+We observe that USE provides values less skewed to the higher end, distributing the similarity values more evenly. The numbers make more sense without any re-scaling technique, and therefore the heatmaps showed in this document come from this model.
 It is also the only model considered that is purposely trained on a semantic similarity task, while the other models are able to provide similarity measures just because of how they represent language.
 
 
@@ -142,7 +154,7 @@ We have seen with the reproduction of the model from \citet{bountouridis2018expl
 % (from experiment on similarity)
 
 % how
-With this idea, we retrieved some groups of articles that relate to the same event from Google Headlines, which aggregates and clusters together news articles from multiple sources,\footnote{\url{https://www.blog.google/products/news/new-google-news-ai-meets-human-intelligence/}} (see next: data collection).
+With this idea, we retrieved some groups of articles that relate to the same event from Google Headlines, which aggregates and clusters together news articles from multiple sources.\footnote{\url{https://www.blog.google/products/news/new-google-news-ai-meets-human-intelligence/}}
 These documents are processed with the SpaCy NLP Python library\footnote{\url{https://spacy.io/}} in order to split the documents into sentences and have available different NLP functions (e.g., tokenisation, POS tagging).
 
 % 1. distance computation
@@ -172,7 +184,7 @@ As we can see in Figure~\ref{fig:dendrogram}, we can explore what is the distanc
     \caption{A portion of the dendrogram that shows how different sentences are merged together in the clusters by increasing distance values.}
     \label{fig:dendrogram}
 \end{figure}
-\todo{redo figure with cosine distance}
+\todo{redo figure with cosine distance, and higher to be more readable}
 
 Using this type of inspection, we can decide specific threshold values more consistently: we can see what is the required similarity to make two pairs of sentences be in the same cluster.
 % \todo{some observations about the distance values and threshold}
@@ -190,7 +202,7 @@ This gives a higher value of uniqueness to the word ``deceased'' that just appea
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/words_uniqueness.png}
-    \caption{A sentence cluster example, where the uniqueness of words are highlighted with different shades of green, highlighting words that differ within the cluster.}
+    \caption{A sentence cluster example, where the uniqueness of words in the cluster is highlighted with different shades of green.}
     \label{fig:words_uniqueness}
 \end{figure}
 
@@ -222,7 +234,7 @@ And another desirable feature would be to have articles that come sources with a
 
 % how
 % - google news (more than 500k articles) daily. Some stats about the number of sources involved  TODO: how is it made? What are its properties? Why useful?
-Given these requirements and after exploring different news aggregators, we found that Google Headlines Full Coverage feature\footnote{\url{https://www.blog.google/products/news/new-google-news-ai-meets-human-intelligence/}} would fit the requirements of covering a big number of news sources (the \texttt{en-gb} version containing articles from more than 10k domains) and being very dense (an average of 9k new articles each day).
+Given these requirements and after exploring different news aggregators, we found that Google Headlines Full Coverage feature\footnote{\url{https://www.blog.google/products/news/new-google-news-ai-meets-human-intelligence/}} would fit the requirements of covering a big number of news sources (the \texttt{en-GB} version containing articles from more than 10k domains) and being very dense (an average of 9k new articles each day).
 The data comes divided by topics (Latest, United Kingdom, World, Business, Technology, Entertainment, Sports, Science, Health) and inside each topic the articles are grouped in ``stories''. Each story has articles from the most relevant sources (``Top coverage'') and then lists also articles from other less important sources, for an average of 21 articles inside each story.
 The stories are created automatically by Google News and this allows it to be always updated and be so diverse in the sources included.
 We have captured from mid-march every day the published set of stories, and managed to retrieve more than 700k articles (as of the end of June, and not all the articles listed can be retrieved because of paywalls or other filtering techniques by the publishers).
@@ -283,7 +295,7 @@ The first phase will target RQ1.1, by doing the user study proposed before. This
 
 The outputs of the first phase will be needed by the second one, to create and annotate a larger dataset with the specific labels identified in the first study. The implementation of the pipeline is independent from this requirement so it can be done in parallel. The implementation of the detection model will sit on top of the pipeline.
 
-After a month of buffer time, the analysis of the second research question will be faced, with two cycles of data retrieval, implementation and analysis.
+After a month of buffer time, the analysis of the second research question will be faced, with two cycles of data preparation, implementation and analysis.
 
 We plan for each of the groups to use the results of the analysis in papers that will be submitted to upcoming conferences.
 
@@ -344,27 +356,29 @@ The last six months will be dedicated exclusively to writing the thesis.
             \ganttlinkedbar[name=res11]{Results analysis + paper}{2020-10}{2020-11} \\
             % \ganttlink[link mid=.4]{T0}{T12}\\
             % \ganttbar[]{RQ1.2: Analysis}{2021-02}{2021-03} \\
-        \ganttgroup{RQ1.2}{2020-07}{2021-04} \\
+        \ganttgroup{RQ1.2}{2020-07}{2021-05} \\
           \ganttbar[]{Pipeline}{2020-07}{2020-09}\\
-            \ganttlinkedbar[name=model12]{Dataset building}{2020-12}{2021-01}\\
-            \ganttbar[name=model12]{Model implementation}{2020-12}{2021-01}\\
+            \ganttlinkedbar[name=model12]{Dataset building}{2020-12}{2021-02}\\
+            \ganttbar[name=model12]{Model implementation}{2020-12}{2021-02}\\
             % \ganttbar[progress=0]{RQ1.2: Hypothesis}{2020-07}{2020-12} \\
-            \ganttlinkedbar[]{Analysis + paper}{2021-01}{2021-02}\\
-            \ganttlinkedbar[]{Online tool}{2021-03}{2021-04} \\
+            \ganttlinkedbar[name=output12]{Analysis + paper}{2021-03}{2021-05}\\
+            %\ganttlinkedbar[]{Online tool}{2021-03}{2021-04} \\
         
           
-        \ganttgroup{RQ2.1}{2021-06}{2021-10} \\
-          \ganttbar[]{Data retrieval and implementation}{2021-06}{2021-08}\\
-          \ganttlinkedbar[]{Analysis + paper}{2021-08}{2021-10}\\
+        \ganttgroup{RQ2.1}{2021-07}{2021-10} \\
+          \ganttbar[name=model21]{Data retrieval and implementation}{2021-07}{2021-08}\\
+          \ganttlinkedbar[]{Analysis + paper}{2021-09}{2021-10}\\
           
         \ganttgroup{RQ2.2}{2021-11}{2022-02} \\
-          \ganttbar[]{Implementation}{2021-11}{2021-12}\\
-          \ganttlinkedbar[]{Analysis + paper}{2021-12}{2022-02}\\
+          \ganttbar[name=model22]{Implementation}{2021-11}{2021-12}\\
+          \ganttlinkedbar[]{Analysis + paper}{2022-01}{2022-02}\\
           
         \ganttgroup{Thesis}{2022-04}{2022-09} \\
           \ganttbar[]{Writing}{2022-04}{2022-09}
           
          \ganttlink[]{res11}{model12}
+         \ganttlink[]{output12}{model21}
+         \ganttlink[]{output12}{model22}
     \end{ganttchart}}}
     \caption{Gantt chart showing the time plan}
     \label{fig:gantt}

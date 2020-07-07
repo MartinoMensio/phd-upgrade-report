@@ -12,7 +12,8 @@
 
 Given the aims identified in the introduction, this chapter investigates the existing work that can help us understand the \emph{framing} phenomenon, and how it is detected by automatic approaches, usually performed on single articles.
 % how we can expand the current state of detection by using the information coming from other articles.
-But, as mentioned previously, this type of analysis struggles to detect the framing when it is very subtle and manifests through techniques such as focusing on certain aspects, or selecting which details to include or omit, or even selecting a specific order inside a story~\cite{morstatter2018identifying}.
+But, as mentioned previously, %this type of analysis struggles to detect the
+framing can be very subtle when it manifests through techniques such as focusing on certain aspects, or selecting which details to include or omit, or even selecting a specific order inside a story~\cite{morstatter2018identifying}.
 For these specific cases, it is very complicated to spot the signals of framing taking place, and we argue that both human and automated analysis would benefit from comparing different articles that talk about the same event but have different perspectives. %taking a look at other articles.
 
 This multi-article knowledge requires introducing a second family of methods that aims at finding \emph{similarities} between articles, by using document and sentence representations, and to find which pieces appear in multiple documents. In this way the common ground can be identified, as well as the diversity in the information reported.
@@ -38,12 +39,15 @@ For these reasons, this chapter is structured in three parts: framing analysis o
 As we are using the term \emph{framing}, we need to define what we mean with it, because multiple definitions do exist.
 % Before exploring the framing analysis area, we need to define what we mean with framing, because multiple definitions exist.
 % - broad framing as perception of the world (goffman)
-The broadest definition comes from \citet{goffman1974frame} who defines framing as how people organise experiences about the world.
+The broadest definition comes from \citet{goffman1974frame} who defines frames as
+%how people organise experiences about the world
+the cognitive maps or patterns of interpretation that people use to organise their understandings of reality.
+% (paraphrased by~\cite{cox2013environmental})
 % - semantic frames
-Then we have the Frame Semantics~\cite{fillmore2006frame} that instead defines a frame as ``\textit{any system of concepts related in such a way that to understand any one of them you have to understand the whole structure in which it fits}''. This second definition goes into the direction of annotating sentences with units of meaning (semantics) that are evoked by specific words, e.g. FrameNet~\cite{baker1998berkeley}.
+Then we have the Frame Semantics~\cite{fillmore2006frame} that instead defines a frame as ``\textit{any system of concepts related in such a way that to understand any one of them you have to understand the whole structure in which it fits}''. This second definition goes into the direction of associating sentences with units of meaning (semantics) that are evoked by specific words, e.g. FrameNet~\cite{baker1998berkeley}.
 
 % - media framing
-But the definition that we rely on, instead, focuses on the power of media to present facts under a specific light: instead of focusing on \emph{what} is contained in a text (semantics), we focus on \emph{how} it is described.
+But the definition that we rely on, instead, focuses on the power of mass media to present facts under a specific light: instead of focusing on \emph{what} is contained in a text (semantics), we focus on \emph{how} it is described.
 This facet of the term can be seen in the work of
 \citet{entman1993framing} that defines framing as ``\textit{select[ing] some aspects of a perceived reality and make them more salient in a communicating text}''.
 Or from \citet{goffman1974frame} that describes framing as ``\textit{how a certain story is presented to shape mass opinion}''.
@@ -101,7 +105,8 @@ From the literature many works describe and categorise framing techniques that c
     This can be done on broad granularity, as analysed by different studies~\cite{tsur2015frame,card2015media}, where each document is associated with very wide media frames, not dependent on any specific topic (e.g., economics, politics, health, ...).
     % Economic, Capacity and resources, Morality, Fairness and equality, Legality, constitutionality and jurisprudence, Policy prescription and evaluation, Crime and punishment, Security and defense, Health and safety, Quality of life, Cultural identity, Public opinion, Political, External regulation and reputation, Other.
     Or other studies that investigate more on a more fine-grained level using hierarchical topic modelling to identify both issue-specific and generic frames~\cite{boydstun2013making}.
-    This, however, is still limiting the ability to evidence how a certain opinion is supported inside the articles. For this reason, some studies identify a set of specific set of themes that exist around a certain issue and analyse the polarity of the article with respect to them. For example the work by~\citet{morstatter2018identifying} defines a set of 10 themes in relationship to the narrow topic of ``ballistic missile defence system in Europe''. For this work, framing analysis is defined as the extraction of the presence and polarity with respect to the 10 themes (e.g., Collective Security, Political Tension, Threat to Russia).
+    This, however, is still limiting the ability to evidence how a certain opinion is supported inside the articles. For this reason, some studies identify a set of specific set of themes that exist around a certain issue and analyse the polarity of the article with respect to them. For example the work by~\citet{morstatter2018identifying} defines a set of 10 themes in relationship to the narrow topic of ``ballistic missile defence system in Europe''. %For this work
+    They define framing analysis as the extraction of the presence and polarity with respect to the 10 themes (e.g., Collective Security, Political Tension, Threat to Russia).
     % : General Threat (GT), Specific Threat (ST), Collective Security (CS), Deterrence System (DS), Domestic Benefit (DB), Progress/Effectiveness (PE), Political Tensions (PT), Threat to Russia (TR), Russian Roadblocks (RR), Partnership with Russia (PR).
     
     % \item which stories in the coverage (agenda setting): macro-level
@@ -140,13 +145,15 @@ From the literature many works describe and categorise framing techniques that c
 
 
 % lift RQ1.1: cross-article signals
-While these studies in political, social communication and linguistics fields focus on defining these signals, it is unclear how important it is for the users to have available news articles from other sources that show the same story under a different perspective.
+While these studies in political, social communication and linguistics fields focus on defining these techniques, it is unclear how important it is for the users to have available news articles from other sources that show the same story under a different perspective.
 It is an intuitive concept that, to see better how someone is trying to convince us to have a certain point of view, it would be helpful to compare his persuasion with ideas coming from different sides.
+
 % - techniques that need external knowledge/comparison
-Some of these techniques especially, would need to have external sources of knowledge to be detected easier: how could we know that an article is showing an incomplete picture if we do not have a ground truth available, or at least some other sources with a different opinion to compare?
+In our opinion, some of these framing techniques, would need to have external sources of knowledge to be detected easier: how could we know that an article is showing an incomplete picture if we do not have a ground truth available, or at least some other sources with a different opinion to compare?
 % - techniques that can be observed on one single article (but still can benefit from comparison)
-And some others techniques that, even if they can be seen on articles on their own, would anyway benefit from a comparison: we can see that an adjective is emphasising the importance of something, but if we see another sentence that is using a different adjective maybe we can identify more easily where the persuasion is manifesting.
-% some nice things?
+And some others techniques that, even if they can be seen on articles on their own, would anyway benefit from a comparison: we can see that an adjective is emphasising the importance of something, but if we see another sentence that is using a different adjective maybe we can identify more easily how the author is trying to persuade in a specific way.
+
+% comparing information has been already suggested in other close fields
 Using external sources is already suggested in other fields that deal with the process of information, for example in guides to spot misinformation: media literacy refers to searching for external sources to find corroboration of the claims,\footnote{\url{http://www.spencerauthor.com/fake-news-is-a-real-problem-heres-how-students-can-solve-it/}} but we do not see the same for more subtle influences on the opinion of the readers, that happen when framing occurs.
 
 % Observing these techniques, we see that all the framing techniques defined in the literature mostly focus on single articles, and do not use the external knwoledge from other articles both in the definition and in the detection.
@@ -157,7 +164,7 @@ Using external sources is already suggested in other fields that deal with the p
 % framing: practical automated approaches
 
 % what is framing detection?
-Automated framing detection is defined as a task where articles need to be labelled, in their whole or in sub-parts, with categories that relate to some of the framing techniques identified previously.
+Automated framing detection is defined as a task where articles need to be labelled, in their whole or in sub-parts, with categories that relate to some of the framing techniques identified previously~\cite{morstatter2018identifying,liu2019detecting}.
 
 % why do we want automated framing
 The main motivation to develop and use automated framing detection is to analyse at scale and reveal the type and magnitude of influence that the articles are trying to push to the readers. The hypothesis that drawing the attention to this type of language may help mitigate framing effects has been already stated by other researchers~\cite{baumer2015testing}.
@@ -168,8 +175,8 @@ Different strategies have been used to perform this type of detection.
 % - lexicon based: list of terms
 A first group can be identified by using specific lexicon-based approaches, which work by counting the occurrences of terms in the analysed texts.
 This has been used on large scale identification of recurring themes, which are identified by specific words that have been selected by putting together the manual analysis of annotators~\cite{field2018framing}.
-Similarly, other works infer automatically the specific words of the recurring themes by using LDA analysis~\cite{tsur2015frame}.
-Other works instead compared different computational approaches to find out that the most important contribution to detect the language of framing is given by analysing the grammatical structure, seconded by lexical features (n-grams)~\cite{baumer2015testing}.
+Similarly, the automatic inference of specific words of the recurring themes has been done by using LDA analysis~\cite{tsur2015frame}.
+Another work instead compared different computational approaches to find out that the most important contribution to detect the language of framing is given by analysing the grammatical structure, seconded by lexical features (n-grams)~\cite{baumer2015testing}.
 
 % The approaches used in practice usually come from specifically built lexicons~\cite{TODO} or by human annotations~\cite{card2015media,morstatter2018identifying}.
 
@@ -181,10 +188,12 @@ Other works instead compared different computational approaches to find out that
 \end{figure}
 
 % - Deep learning: classify spans
-More recent works instead make use of complex models based on neural networks. With the advance of language models like BERT~\cite{devlin2018bert}, which are able to face different tasks with great results, more models are making use of them for almost every problem in NLP.
+More recent works instead make use of complex models based on neural networks. With the advance of language models like BERT~\cite{devlin2018bert}, which have shown to achieve the state of the art in many different tasks,
+% are able to face different tasks with great results,
+more models are making use of them for almost every problem in NLP.
 The work of~\citet{da2019fine}, which is focused on propaganda techniques detection, makes use of a model based on BERT.
 The architecture first uses this language model to provide contextualised representations of the words, and then uses these representation to classify each word with one of the labels available (one label for each of the propaganda techniques, plus one extra label to indicate the absence of propaganda).
-In this way their model needs to train only the weights of the added layer for the specific task, and reuses the rich encoded knowledge of the language owned by BERT.
+In this way their model needs to train only the weights of the added layer for the specific task, and reuses the rich encoded knowledge of the language owned by the pre-trained BERT.
 In Figure~\ref{fig:brexit_propaganda}, we can see the propaganda analysis performed by this tool, which evidences the usage of several of these techniques.\footnote{\url{https://www.tanbih.org/propaganda/223/BREXIT/}}
 
 The methods described focus on detecting how framing looks like, by highlighting occurrences which are quite visible.
@@ -278,10 +287,11 @@ We would like to bring a similar analysis but with a different goal: instead of 
 
 To summarise here we present the limitations found in the framing literature.
 
-On the theoretical side, different framing techniques have been defined. Some of them, in order to be seen, require external knowledge that could be provided by using external articles.
+As we have seen, on the theoretical side different framing techniques have been defined. Some of them, in order to be seen, require external knowledge that could be provided by using external articles.
 These techniques include the omission of facts that appear on other sources, or adding details that other sources did not report because of different relevance criteria.
 Or also using specific language choices that other sources do differently.
-For these cases, narrowing the analysis to articles in their singularity is likely to be a limiting factor (both for human reader and for automated detection).
+For these cases, narrowing the analysis to articles in isolation %their singularity
+is likely to be a limiting factor (both for human reader and for automated detection).
 
 It is very unlikely that how the news are communicated is independent from political forces and also articles that may present 100\% factual information may result in driving the opinions in a certain way.
 Given that every news source has different ideological alignment, we aim at using stories from multiple sources, written by authors with different perspectives.
@@ -337,7 +347,7 @@ Similarity is used in many NLP applications that deal with documents and need to
 % Clustering
 Document clustering is widely used in the Information Retrieval community, to discover topics on different levels, to find similar items and to find possible duplicates. Given big quantities of articles, there are different methods that are able to form groups based on wider or narrower topics.
 
-The literature is quite rich in approaches to news clustering~\cite{carpineto2009survey,jones1972statistical} %also andrews2007recent
+The literature is quite rich in approaches to news clustering~\cite{carpineto2009survey,andrews2007recent} %also andrews2007recent
 that work in many different ways.
 Some clustering techniques requires specifying the number of clusters wanted (K-Means, Mean-Shift, GMM) as an input, others instead are more flexible, discovering the number of cluster based on other geometric properties (DBSCAN).
 And some others have even nicer properties.
@@ -355,7 +365,7 @@ The overall objective of this group of works is to study how many parts of a doc
 % - plagiarism
 The objectives for this analysis may vary from plagiarism detection~\cite{potthast2010evaluation} where the occurrence of text pieces too similar is an indication of non-originality.
 % - finding external confirmation in fact-checking
-Or in the fact-checking perspectives, when external confirmation is searched about a specific detail to be able to corroborate and establish if the content is true~\cite{karadzhov2017fully}
+Or in the fact-checking perspectives, when external confirmation is searched about a specific detail to be able to corroborate and establish if the content is true~\cite{karadzhov2017fully}.
 % - bountouridis
 Or to compute how complete is the reporting from different sources, analysing the overlap between different articles.
 
@@ -384,7 +394,12 @@ not only we might be able to recognise which sentences appear in multiple docume
 
 \subsection{Similarity computation}
 % How is similarity computed?
-In order to be able to compute a similarity between different texts, there are two steps: \emph{i)} representing the texts with a numeric representation, \textit{ii)} use similarity metrics between these representations.
+In order to be able to compute a similarity between different texts, there are two steps: %\emph{i)} representing the texts with a numeric representation, ii) use similarity metrics between these representations.
+
+\begin{enumerate}
+    \item representing the texts with a numeric representation;
+    \item use similarity metrics between these representations.
+\end{enumerate}
 
 % Language representation
 The first step is the one that is more interesting and so many different methods exist.
@@ -396,7 +411,7 @@ The aim of group of methods is to find a condensed representation that contains 
 Starting with very naive methods, we have approaches based on \emph{bag of words} that simply take into consideration which words are present in the considered text.
 They run with an initial scan of all the available documents to create a dictionary, and then each document is represented with a one-hot-vector that is saying for each word in the dictionary if it belongs to the current document.
 Many refinements to this basic approach exist, e.g., by removing words that do not carry meaning (stopwords) or by limiting the dictionary based on term frequencies (only the top k words overall are considered, or only words that appear at least n times).
-This group of methods culminates with a model that is called TF-IDF~\cite{ramos2003using} which is based on two components: Term Frequency and Inverse Document Frequency.
+This group of methods culminates with a model that is called TF-IDF~\cite{jones1972statistical} which is based on two components: Term Frequency and Inverse Document Frequency.
 In simple words, the first component gives higher weights to terms that appear more in the considered document, while the second measures how important a term is by promoting rare terms~\cite{jones1972statistical}.
 
 Then we have another group of models that relies on explicit semantic representation. This is the field of knowledge extraction that is based on recognising the entities mentioned in a text (entity recognition and linking) and extracting the relationships expressed between them. Using these models, a text is translated into a knowledge graph.
@@ -405,7 +420,8 @@ The main limitations of this set of models it that they may work accurately enou
 And finally, we have a whole line of research that is based on distributional semantics.
 The assumption is that the words take their meaning from the context around them. For example two synonyms can be recognised as similar because one can be switched for the other and therefore they have similar contexts.
 This unsupervised learning strategy therefore builds words representation by observing their context.
-A milestone in this area is given by the word embedding models Word2Vec~\cite{mikolov2013efficient} and GloVe~\cite{pennington2014glove} which have shown their superiority in a big variety of tasks.
+A milestone in this area is given by the word embedding models Word2Vec~\cite{mikolov2013efficient} and GloVe~\cite{pennington2014glove} which have shown %their superiority
+to achieve better performance metrics in a big variety of tasks.
 They are able to work with syntax and semantics and even solve analogy tests~\cite{mikolov2013efficient} with great performances.
 
 Then in the recent years, new models have arisen in the language representation that are extremely powerful to encode entire documents and capture their meaning. It is the
@@ -532,7 +548,7 @@ Different documents may express the same set of details, but give them a differe
 And also the fact that a certain detail is present or not in certain articles within a group where other sources mention it, needs to be analysed with framing theories.
 
 
-Another limitation of this group of works is that, while they analyse the overlap of information, they do not consider the influence between the sources (one could have taken the content from the other and modified it slightly).
+Another problem of using only this group of works for our objectives is that, while we can analyse the overlap of information, we do not consider the influence between the sources (one could have taken the content from the other and modified it slightly).
 This problem is currently tackled by works on plagiarism analysis, but this is not studied jointly with framing analysis.
 And furthermore plagiarism detection is done by having one questionable article and a set of original works, while here we do not have this distinction.
 % What plagiarism analysis tells us is that two documents have highly similar parts between them.
@@ -563,7 +579,7 @@ This specific detail, describing a ``mixed reaction'', gets omitted from the sen
 % Daily Mail: "While many locals greeted him warmly, he also faced heckles of 'traitor' as he viewed flood barriers - and one person told him to 'do your f***ing job' as he posed with teenagers for a selfie on a bridge in the town."
 
 % limitation of current framing
-This example present one specific manifestation of framing that current techniques do not focus on detecting, that is the selection of details.
+This example presents one specific manifestation of framing that current techniques do not focus on detecting, that is the selection of details.
 And the main reason is that such techniques requires a method that goes beyond the analysis of one single article at a time.
 We cannot know when something has been omitted if we don't have or a ground truth or different stories to corroborate with, using the richness of information available from multiple points of view.
 % RQ1.1 lift

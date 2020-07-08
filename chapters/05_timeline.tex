@@ -92,13 +92,12 @@ For each pair of sentences that was provided by any of the models, we listed by 
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\linewidth]{figures/lyra.pdf}
+    \includegraphics[width=0.9\linewidth]{figures/lyra.pdf}
     \caption{The comparison between two sentences, one from the BBC and the other from Sky News, where multiple differences exist.}
     \label{fig:lyra}
 \end{figure}
-\todo{crop figure, title not needed (already caption)}
 
-An example can be seen in Figure~\ref{fig:lyra} that shows a sentence from the BBC and one from Sky News, where the differences are the following:
+An example can be seen in Figure~\ref{fig:lyra} that shows a sentence from the BBC\footnote{\url{https://www.bbc.co.uk/news/uk-england-hereford-worcester-51791346}} and one from Sky News,\footnote{\url{https://www.dailymail.co.uk/news/article-8088805/Britons-facing-heavy-downpours-four-inches-rain-50mph-winds-set-batter-UK.html}} where the differences are the following:
 
 \begin{itemize}
     \item the detail ``4x4'' just appears on the BBC article;
@@ -127,7 +126,7 @@ We observe that USE provides values less skewed to the higher end, distributing 
 It is also the only model considered that is purposely trained on a semantic similarity task, while the other models can provide similarity measures just because of how they represent language.
 
 
-\todo{an example of two pairs where we can see some of the limitations?}
+% \todo{an example of two pairs where we can see some of the limitations?}
 
 % role of this experiment
 This experiment shows the need for a similarity model that accounts for the semantics more than the linguistic surface. And given the continuous progress of language models, we need to be able to switch our choice relatively easily.
@@ -167,7 +166,7 @@ We then use agglomerative hierarchical clustering for different reasons:
     \item we can truncate the clustering when we reach a certain level of distance between the clusters, or a certain number of clusters;
     \item We can see the evolution of many different features (e.g., number of clusters, size, internal cohesion) while performing the clustering step by step;
     \item we have a graphical representation (dendrogram) which helps to inspect and understand what is happening;
-    \item it has widely been used for similar tasks (e.g., finding related claims~\cite{TODO:meedan_talk_similarity:http://ceur-ws.org/Vol-2607/short4.pdf:or_better})
+    \item it has widely been used for similar tasks (e.g., finding related claims~\cite{almeida2020text})
 \end{itemize}
 
 % This clustering algorithm has the following parameters:
@@ -184,7 +183,6 @@ As we can see in Figure~\ref{fig:dendrogram}, we can explore what is the distanc
     \caption{A portion of the dendrogram that shows how different sentences are merged in the clusters by increasing distance values.}
     \label{fig:dendrogram}
 \end{figure}
-\todo{redo figure with cosine distance, and higher to be more readable}
 
 Using this type of inspection, we can decide specific threshold values more consistently: we can see what is the required similarity to make two pairs of sentences be in the same cluster.
 % \todo{some observations about the distance values and threshold}
@@ -256,7 +254,7 @@ This data, although the description of the differences is not directly parseable
 The data collection done in these current months will continue across the PhD, and will be used in different stages of the analysis, serving as the seed to create the labelled dataset that we are aiming to create at the end of the journey of the first Research Question and also providing a wide set of articles from different news sources to empower the studies of the second Research Question.
 Having articles from so many different news sources, we can on one side provide some indication of framing for news sources that are not usually targeted by manual framing studies because not enough ``important'', and on the other side be more confident to observe some phenomenon of information flow/re-usage that is the underlying hypothesis for the last sub-question.
 
-\subsection{Formalisation and dissemination}\todo{do we need this?}
+\subsection{Formalisation and dissemination}
 % what
 The last type of activity carried out during this year has been the presentation of this work to other researchers throughout different events, both internally to the Open University and externally.
 % why
@@ -304,7 +302,7 @@ The last six months will be dedicated exclusively to writing the thesis.
 % \begin{landscape}
 \begin{figure}[!htb]
     \centering{
-    \resizebox{0.9\textwidth}{!}{
+    \resizebox{0.92\textwidth}{!}{
         \begin{ganttchart}[
             % y unit title=1cm,
             % y unit chart=1cm,

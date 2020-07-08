@@ -130,7 +130,7 @@ From the literature, many works describe and categorise framing techniques that 
     This technique requires a knowledge external to the article to be seen.
 
     
-    \item \textbf{Pre-packaging}: in this technique, the narrative of the article identifies structural roles of the details narrated, defining what is the problem, the relationships with other problems, who are the people linked, and what is the suggested solution~\cite{entman1993framing,bell1991language}.
+    \item \textbf{Pre-packaging}: in this technique, the narrative of the article identifies structural roles of the details narrated, defining what is the problem, the relationships with other problems, who are the people linked, and what is the suggested solution~\cite{entman1993framing,bell1991language,zahid2019towards}.
     This technique is very effective in providing readers with a way to interpret the different details mentioned.
     Sometimes the interpretive framework is packaged by using different components such as ``keywords, stock phrases, stereotype images, sources of information''~\cite{entman1993framing} and ``metaphors, exemplars, catchphrases, depictions, [...] visual images''~\cite{gamson1989media}.
     The role of these specific components is to provide an interpretive lens that packages the issues described
@@ -144,6 +144,35 @@ From the literature, many works describe and categorise framing techniques that 
 % - framing and epistemological bias: https://www.aclweb.org/anthology/P13-1162.pdf framing bias is realized by subjective words or phrases linked with a particular point of view. Epistemological bias, is related to linguistic features that subtly (often via presupposition) focus on the believability of a proposition
 
 
+\begin{figure}[!htb]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.95\linewidth]{figures/themes.png}
+  \caption{Recurrent themes}
+  \label{fig:sfig1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.95\linewidth]{figures/emphasis.png}
+  \caption{Emphasis}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.95\linewidth]{figures/selection_details.png}
+  \caption{Selection of details}
+  \label{fig:sfig1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.95\linewidth]{figures/prepackaging.png}
+  \caption{Pre-packaging}
+  % http://ceur-ws.org/Vol-2342/paper9.pdf
+  \label{fig:sfig2}
+\end{subfigure}
+\caption{Examples of framing techniques}
+\label{fig:fig}
+\end{figure}
 
 % lift RQ1.1: cross-article signals
 While these studies in political, social communication and linguistics fields focus on defining these techniques, it is unclear how important it is for the users to have available news articles from other sources that show the same story under a different perspective.
@@ -343,7 +372,7 @@ And another requirement is that the similarity depends on the context of the wor
 \subsection{Applications of similarity}
 % What is similarity used for?
 
-Similarity is used in many NLP applications that deal with documents and need to find how close they are to each other. This includes both applications that work on whole documents, like document clustering, and more detailed analyses of overlap which aim at finding pieces occurring in multiple documents.
+Similarity is used in many NLP applications that deal with documents and need to find how close they are to each other. This includes both applications that work on whole documents, like document clustering, and more detailed analyses of overlap which aim at finding pieces occurring in multiple documents (paragraphs, sentences, words).
 
 % Clustering
 Document clustering is widely used in the Information Retrieval community, to discover topics on different levels, to find similar items and to find possible duplicates. Given big quantities of articles, different methods can form groups based on wider or narrower topics.
@@ -382,11 +411,13 @@ Or to compute how complete is the reporting from different sources, analysing th
 % % what (details)
 % Furthermore, there are works that not only link the articles at a document level, but also investigate in more detail the connections between sentences.
 In one recent work~\cite{bountouridis2018explaining}, groups of similar articles are found, then broken down to pieces of information and analysed to find if these details are \emph{corroborated} (occurring in multiple documents) or \emph{omitted} (occurring in other documents of the same group, but not the current one). 
-\todo{figure from Bountouridis paper?}
+% \todo{figure from Bountouridis paper?}
 %is good for getting relationships between paragraphs and documents. Corroboration and omission
 % \begin{added}
-We aim to use this idea of applying similarity to both article-level and sentence-level, extending it even to the word-level. By doing so,
-not only we might be able to recognise which sentences appear in multiple documents (with different degrees of similarity) but also we would be able to identify the specific words that have been changed.
+We aim to use this idea of applying similarity hierarchically to both article-level and sentence-level, extending it even to the word-level.
+By doing so, not only we might be able to recognise which sentences appear in multiple documents (with different degrees of similarity) but also we would be able to identify the specific words that have been changed.
+
+Going into a more fine-grained comparison, we can shift from analysing the similarity of meaning, which is required to relate different articles, to the similarity of the linguistic surface, which is our target since we want to analyse \emph{how} the events are presented in different ways.
 
 
 
@@ -457,7 +488,7 @@ The most commonly used distance measure is euclidean, although with word and sen
 
 And we can compare therefore representations for single words, for sentences or even for complete documents.
 The computation of similarity allows targeting all the different applications that we saw previously, exploring commonalities and differences at multiple granularity levels.
-\todo{a figure of sentence comparison to show this?}
+% \todo{a figure of sentence comparison to show this?}
 
 
 % Example: let us compare TF-IDF, BERT and USE matrices (similar to experiment)
@@ -568,7 +599,7 @@ We need to bring together the works on framing and similarities to spot more sub
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\linewidth]{figures/johnson_flood.png}
+    \includegraphics[width=0.9\linewidth]{figures/johnson_flood.png}
     \caption{An example where omitting a detail provides a different framing.}
     \label{fig:johnson_flood}
 \end{figure}

@@ -15,6 +15,11 @@
 \usepackage[a4paper,width=150mm,top=25mm,bottom=25mm,bindingoffset=6mm]{geometry}
 \usepackage{fancyhdr}
 \pagestyle{fancy} % adding header to pages
+% https://en.wikibooks.org/wiki/LaTeX/Customizing_Page_Headers_and_Footers
+\fancyhf{}
+\lhead{\thesection} %\rightmark
+\rhead{\leftmark}
+\cfoot{\thepage}
 \newsavebox{\largestimage} % for the title_page
 \usepackage{enumitem}
 \setlist[itemize,enumerate,description]{noitemsep,nolistsep} % big emptiness around lists is ugly
@@ -79,7 +84,7 @@
 
 \tableofcontents
 \listoffigures
-\listoftables
+% \listoftables (no tables)
 
 
 \input{chapters/01_introduction}

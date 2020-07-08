@@ -102,7 +102,7 @@ From the literature, many works describe and categorise framing techniques that 
 \begin{itemize}
     \item \textbf{Recurrent themes}: this technique is achieved by repeating and reinforcing certain themes in the articles, making the readers perceive certain topics more important than others because they appear more in the news. This is the direct manifestation of the agenda-setting theory, where the press has the power to influence the importance of the issues.
     % , commonly known as ‘spin’~\cite{tsur2015frame} (e.g. health, energy, security, economy).
-    This can be done on broad granularity, as analysed by different studies~\cite{tsur2015frame,card2015media}, where each document is associated with very wide media frames, not dependent on any specific topic (e.g., economics, politics, health, ...).
+    This can be done on broad granularity, as analysed by different studies~\cite{tsur2015frame,card2015media}, where each document is associated with very wide media frames, not focused on any specific topic (e.g., economics, politics, health, ...).
     % Economic, Capacity and resources, Morality, Fairness and equality, Legality, constitutionality and jurisprudence, Policy prescription and evaluation, Crime and punishment, Security and defense, Health and safety, Quality of life, Cultural identity, Public opinion, Political, External regulation and reputation, Other.
     Or other studies that investigate more on a more fine-grained level using hierarchical topic modelling to identify both issue-specific and generic frames~\cite{boydstun2013making}.
     This, however, is still limiting the ability to evidence how a certain opinion is supported inside the articles. For this reason, some studies identify a set of specific themes that exist around a certain issue and analyse the polarity of the article with respect to them. For example, the work by~\citet{morstatter2018identifying} defines a set of 10 themes concerning the narrow topic of ``ballistic missile defence system in Europe''. %For this work
@@ -120,11 +120,11 @@ From the literature, many works describe and categorise framing techniques that 
     view of the authors~\cite{liu2019detecting}: for example on articles about gun violence, there can be an emphasis on gun control or the 2nd amendment or mental health.
     % dataset https://derrywijaya.github.io/GVFC.html
     % or by repeating over and over the same concept~\cite{TODO}.
-    The emphasis gives more importance to some details and demotes other details that are just mentioned as secondary.
+    The emphasis gives more importance to some details and demotes others that are just mentioned as secondary.
     
     % \item loaded language?
     
-    \item \textbf{Selection of details}: another technique found in the literature is the strategic selection of the details that may be supporting the communication objectives or the omission of others that could make the readers less convinced of a certain opinion. This is different from the recurrent themes because the details are not directly part of a narrative line that is being repeated over and over.
+    \item \textbf{Selection of details}: another technique found in the literature is the strategic selection of the details that may be supporting the communication objectives or the omission of some information that could make the readers less convinced of a certain opinion. This is different from the recurrent themes because the details are not directly part of a narrative line that is being repeated over and over.
     Some studies have focused on analysing quoting behaviours from public speeches, observing how different news outlets select different parts and omit others~\cite{niculae2015quotus}.
     % Also tool http://snap.stanford.edu/quotus/vis/
     This technique requires a knowledge external to the article to be seen.
@@ -133,7 +133,7 @@ From the literature, many works describe and categorise framing techniques that 
     \item \textbf{Pre-packaging}: in this technique, the narrative of the article identifies structural roles of the details narrated, defining what is the problem, the relationships with other problems, who are the people linked, and what is the suggested solution~\cite{entman1993framing,bell1991language,zahid2019towards}.
     This technique is very effective in providing readers with a way to interpret the different details mentioned.
     Sometimes the interpretive framework is packaged by using different components such as ``keywords, stock phrases, stereotype images, sources of information''~\cite{entman1993framing} and ``metaphors, exemplars, catchphrases, depictions, [...] visual images''~\cite{gamson1989media}.
-    The role of these specific components is to provide an interpretive lens that packages the issues described
+    The role of these specific components is to provide an interpretive lens that packages the issues described.
     
     \item \textbf{Propaganda techniques}: this set is borrowed from the specific case of propaganda analysis, and includes a set of logical fallacies and other oversimplification methods that are very commonly used~\cite{da2019fine} (e.g., name-calling, repetitions, exaggerations, whataboutism, straw man).
     % (loaded language, name calling, repetition, exaggeration or minimisation, doubt, appeal to fear or prejudice, flag-waving, causal oversimplification, slogans, appeal to authority, black-and-white, thought-terminating chiché, whataboutism, reductio ad hitlerum, red herring, bandwagon, obfuscation, straw man).
@@ -179,7 +179,7 @@ While these studies in political, social communication and linguistics fields fo
 It is an intuitive concept that, to see better how someone is trying to convince us to have a certain point of view, it would be helpful to compare his persuasion with ideas coming from different sides.
 
 % - techniques that need external knowledge/comparison
-In our opinion, some of these framing techniques, would need to have external sources of knowledge to be detected easier: how could we know that an article is showing an incomplete picture if we do not have a ground truth available, or at least some other sources with a different opinion to compare?
+In our opinion, some of these framing techniques would need to have external sources of knowledge to be detected more easily: how could we know that an article is showing an incomplete picture if we do not have a ground truth available, or at least some other sources with a different opinion to compare?
 % - techniques that can be observed on one single article (but still can benefit from comparison)
 And some others techniques that, even if they can be seen on articles on their own, would anyway benefit from a comparison: we can see that an adjective is emphasising the importance of something, but if we see another sentence that is using a different adjective maybe we can identify more easily how the author is trying to persuade in a specific way.
 
@@ -224,7 +224,7 @@ more models are making use of them for almost every problem in NLP.
 The work of~\citet{da2019fine}, which is focused on propaganda techniques detection, makes use of a model based on BERT.
 The architecture first uses this language model to provide contextualised representations of the words, and then uses these representations to classify each word with one of the labels available (one label for each of the propaganda techniques, plus one extra label to indicate the absence of propaganda).
 In this way, their model needs to train only the weights of the added layer for the specific task, reusing the rich encoded knowledge of the language owned by the pre-trained BERT.
-In Figure~\ref{fig:brexit_propaganda}, we can see the propaganda analysis performed by this tool, which evidences the usage of several of these techniques.\footnote{\url{https://www.tanbih.org/propaganda/223/BREXIT/}}
+In Figure~\ref{fig:brexit_propaganda}, we can see the analysis performed by this tool, which evidences the usage of several propaganda techniques.\footnote{\url{https://www.tanbih.org/propaganda/223/BREXIT/}}
 
 The methods described focus on detecting how framing looks like, by highlighting occurrences which are quite visible.
 But, as for human readers, also automated methods will probably benefit by comparing different articles that present the same issue.
@@ -362,7 +362,7 @@ The concept of similarity is widely defined as ``\emph{the fact that people or t
 This narrower definition is used in the NLP community, and for several years a specific SentEval task has been targeted to evaluate the capacity of evaluating the level of similarity between sentences~\cite{conneau-kiela-2018-senteval}.\footnote{\url{http://nlpprogress.com/english/semantic\_textual\_similarity.html}}
 % exists even a benchmark that evaluates and scores the models capacity of distinguish different levels of semantic similarity between texts.
 % different linguistic surface
-The similarity can match with how similar the corresponding strings of the text are (character-wise similarity) but has also to account for entities, relationships and concepts that can be expressed by using different words that have the same meaning.
+The similarity can match with how similar the corresponding strings of the text are (character-wise similarity) but has also to account for entities, relationships and concepts that can be expressed by using different words with the same meaning.
 For example, if we consider two synonyms, their semantic similarity needs to be high. 
 % also dependent on the context
 And another requirement is that the similarity depends on the context of the words~\cite{miller1991contextual}. The same word can have different meanings depending on the sentence it is used in.
@@ -379,7 +379,7 @@ Document clustering is widely used in the Information Retrieval community, to di
 
 The literature is quite rich in approaches to news clustering~\cite{carpineto2009survey,andrews2007recent} %also andrews2007recent
 that work in many different ways.
-Some clustering techniques requires specifying the number of clusters wanted (K-Means, Mean-Shift, GMM) as an input, others instead are more flexible, discovering the number of clusters based on other geometric properties (DBSCAN).
+Some clustering techniques requires specifying the number of clusters wanted as an input (K-Means, Mean-Shift, GMM), others instead are more flexible, discovering the number of clusters based on other geometric properties (DBSCAN).
 And some others have even nicer properties.
 For example, Agglomerative Hierarchical Clustering allows cutting at different stages of the algorithm which represent a threshold distance to merge clusters.
 
@@ -446,7 +446,7 @@ Many refinements to this basic approach exist, e.g., by removing words that do n
 This group of methods culminates with a model that is called TF-IDF~\cite{jones1972statistical} which is based on two components: Term Frequency and Inverse Document Frequency.
 In simple words, the first component gives higher weights to terms that appear more in the considered document, while the second measures how important a term is by promoting rare terms~\cite{jones1972statistical}.
 
-Then we have another group of models that relies on explicit semantic representation. This is the field of knowledge extraction that is based on recognising the entities mentioned in a text (entity recognition and linking) and extracting the relationships expressed between them. Using these models, a text is translated into a knowledge graph.
+Then we have another group of models that relies on explicit semantic representation. This is the field of knowledge extraction that is based on recognising the entities mentioned in a text (entity recognition and linking) and extracting the relationships expressed between them. Using these models, a text is translated into a knowledge graph~\cite{gangemi2013comparison}.
 The main limitations of this set of models it that they may work accurately enough just when entities that are known are mentioned and need the supervision of rich knowledge bases.
 
 And finally, we have a whole line of research that is based on distributional semantics.
@@ -611,7 +611,7 @@ This specific detail, describing a ``mixed reaction'', gets omitted from the sen
 % Daily Mail: "While many locals greeted him warmly, he also faced heckles of 'traitor' as he viewed flood barriers - and one person told him to 'do your f***ing job' as he posed with teenagers for a selfie on a bridge in the town."
 
 % limitation of current framing
-This example presents one specific manifestation of framing that current techniques do not focus on detecting, that is the selection of details.
+This example presents one specific manifestation of framing that current methods do not focus on detecting, that is the selection of details.
 And the main reason is that such techniques require a method that goes beyond the analysis of one single article at a time.
 We cannot know when something has been omitted if we don't have or a ground truth or different stories to corroborate with, using the richness of information available from multiple points of view.
 % RQ1.1 lift

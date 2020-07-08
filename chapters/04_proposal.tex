@@ -71,7 +71,7 @@ For example, loaded language (technique) emerges from specific words that have a
 Or the strategic omission or inclusion (technique) of certain details (signals) that have the role of shifting the opinion of the reader.
 What we want to investigate is whether we can ease their detection from readers by comparing multiple articles. 
 % extend this set of signals by exiting the limitations of a single-article analysis. 
-Therefore, the specific sub-question is \textbf{What is the contribution of comparing multiple articles see reveal framing signals?}
+Therefore, the specific sub-question is \textbf{What is the contribution of comparing multiple articles to see framing signals?}
 
 % Hypothesis
 We hypothesise that having multiple articles would allow users to easier detect the framing signals that they are faced with, especially with some of them that are particularly subtle to reveal when just looking at a single article at a time.
@@ -124,14 +124,14 @@ By comparing them, the difference in their point of view would emerge through sp
 
 
 % analysis
-To validate our hypothesis, we will run a \textbf{user study} where participants will be shown different articles that present the same event with some differences.
+To validate our hypothesis, we will run a \emph{user study} where participants will be shown different articles that present the same event with some differences.
 To test the hypothesis of framing being easier to spot when multiple articles are available, we plan to first present to the user just one article and ask to find the framing signals. Then we show also the second article on the side with different details and ask again.
-In both the steps, the input asked from the user is to highlight parts of the article(s) and to say which framing techniques it is representing, showing a certain view angle, as a free text.
+In both the steps, the input asked from the user is to highlight parts of the article(s) and to say which framing techniques it is representing, showing a certain view angle, as one of many labels decided before (one extra label ``other'' which participants can use to describe something different). % a free text.
 To obtain these annotations, users will first be shown with the framing techniques identified in the literature, to understand what they are looking for.
 Then they will be shown with a single article and asked to annotate it. And the second phase will ask them to compare two articles and to point at differences in terms, themes, and details that are representative of framing techniques.
 We will then compare the number and type of annotations coming from the two different situations (one single article or multiple articles).
 It is important to divide the annotators of a certain pair of articles in two sub-groups to divide the effect of ``seeing again the same article twice'' (unwanted) from ``seeing the article compared to another one'' (wanted).
-For this reason, if we consider A1 and A2, user U1 will first see A1 then A1+A2, while U2 will first see A2 then A1+A2.
+For this reason, if we consider two articles A1 and A2 and two users U1 and U2, user U1 will first see A1 then A1+A2, while U2 will first see A2 then A1+A2.
 In this way, we can sum the sets of annotations done in the first stage, when seeing just one article, and in the second stage, when the reader has already analysed one article and is presented with another one. In the second stage, we sum the sets of annotations given to the corresponding new articles (A2 for user U1 and A1 for user U2).
 By comparing the number and types of annotations in the two settings, we can see the effect of having already knowledge from another point of view, and be able to compare with the new article (see Figure~\ref{fig:user_study}).
 % CA1(before)+CA2 for U1 and CA1+CA2(before) for U2 where each observation is done at first sight of the corresponding article.
@@ -171,7 +171,13 @@ To identify the pairs of documents we plan to use the help from similarity model
 The annotations will be manually examined with two goals.
 First, to see if the annotators (using inter-annotator agreement measures) are able to spot more signals when they have different articles available.
 This will prove or disprove our hypothesis that framing can be revealed easier in this setting, especially for some subtle framing techniques.
-And second, the annotations will be revised manually to bring them back to some categories that represent framing signals. An example could be ``omission of opposing detail'' or ``biased term''. We need to come up with a set of labels that we can assign to the differences pointed out by the users, guided by their descriptions.
+And second, the annotations will be revised manually to manage the cases where participants have expressed the need for other types of signal.
+% bring them back to some categories that represent framing signals.
+For this reason it is important to design the labels well enough during the preparation period of the study, making use of a small initial pilot to gather feedback.
+The labels need to account for the framing technique used, which serves as link between the documents, together with a role of the participating articles.
+For example, if the technique \emph{selection of details} is used, one article will participate with the role \emph{omitting} and the other \emph{adding}.
+Or for the \emph{emphasis} technique, one article can have the role of having a \emph{stronger term} while the other a \emph{weaker term}. 
+% An example could be ``omission of opposing detail'' or ``biased term''. We need to come up with a set of labels that we can assign to the differences pointed out by the users, guided by their descriptions.
 
 
 
@@ -225,10 +231,10 @@ Or also other models found in the literature that focus on specific types of fra
 % We cannot compare with mostly of them because of the different topics and because the problem
 
 % dataset building
-To evaluate the model proposed, we will need to collect a larger \textbf{dataset}, where manual annotators will be given the refined task description and will annotate on document pairs the framing differences according to the schema identified with the first user study.
+To evaluate the model proposed, we will need to expand the dataset of labelled instances, where manual annotators will be given the refined task description and will annotate on document pairs the framing differences according to the schema refined with the first user study.
 % (help of pipeline to provide similar articles and candidate words/sentences based on uniqueness)
 The pairs of documents will be extracted with the help of the pipeline which will provide articles that are very similar in the content but at the same time have enough differences to be annotated. % (criticality of the threshold)
-The annotations will contain the type of signal and also the role/orientation of the two documents (e.g. in an omission signal, one article is \textit{including} and the other is \textit{excluding}, or instead in a term strength variation, one article is \textit{stronger} and the other is \textit{weaker}).
+The annotations will contain the type of signal and also the role of the two documents (e.g. in an omission signal, one article is \textit{including} and the other is \textit{excluding}, or instead in a term strength variation, one article is \textit{stronger} and the other is \textit{weaker}).
 The annotations can be then used both in the multi-article scenario and in the single-article scenario, because different spans will be annotated on the pairs of documents.
 For example, if we have an annotation that is highlighting a term that is used with a difference in strength, the fact that one term is stronger is available even without having the information of the other article.
 This dataset will be made available as a resource paper to promote the research on this task.
@@ -288,6 +294,7 @@ We want to analyse the relationships between the framing choices done by the aut
 
 % Hypothesis
 The hypothesis that we have is that certain features, such as the political alignment, have bigger effects than others on how the news is presented, especially when the news topic is about politics.
+Or considering the magnitude of political leaning of a source, more biased sources will be using more loaded terms and report information more incompletely than balanced sources.
 We want to understand what is the effect of other features as well, and discover which ones influence mostly the framing of the articles written.
 
 % requirement: data on news outlets
@@ -359,6 +366,7 @@ We will count between each pair of sources how many times they reused details fr
 
 % outputs
 In this way, we will show, for example, how a certain source evolves the narrative starting from other sources, merging new elements on its way, emphasising some details, and dropping others.
+This is important for the readers to understand the provenance of the information they are consuming and how it has been modified over time by different sources.
 
 
 

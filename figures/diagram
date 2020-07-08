@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-07-08T07:47:44.355Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36" etag="qh5Atlxqs50rFFYmQBAC" version="13.3.9" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2020-07-08T07:49:04.344Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36" etag="_CpIMHre3-LyUkpg3r1B" version="13.3.9" type="github" pages="3">
   <diagram id="7T68ok9usWCE8idKFhK-" name="RQ">
     <mxGraphModel dx="946" dy="536" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -23,10 +23,10 @@
           <mxGeometry x="100" y="613" width="130" height="60" as="geometry" />
         </mxCell>
         <mxCell id="80m16F6b2pWgyMr5H69u-9" value="Analysis" style="text;html=1;strokeColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#FFF5D4;" parent="1" vertex="1">
-          <mxGeometry x="15" y="623" width="70" height="40" as="geometry" />
+          <mxGeometry x="10" y="623" width="80" height="40" as="geometry" />
         </mxCell>
         <mxCell id="80m16F6b2pWgyMr5H69u-11" value="Outputs" style="text;html=1;strokeColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#D4FFDB;" parent="1" vertex="1">
-          <mxGeometry x="20" y="703" width="60" height="40" as="geometry" />
+          <mxGeometry x="10" y="703" width="80" height="40" as="geometry" />
         </mxCell>
         <mxCell id="80m16F6b2pWgyMr5H69u-12" value="RQ1:&amp;nbsp;How can we automatically reveal the framing differences in articles presenting the same event?" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="100" y="240" width="280" height="60" as="geometry" />
@@ -100,7 +100,7 @@
             <mxPoint x="490" y="673" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="HCrz_zpZMKq17tcVIUEb-1" value="" style="endArrow=classic;html=1;fontSize=11;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" parent="1" source="80m16F6b2pWgyMr5H69u-13" target="80m16F6b2pWgyMr5H69u-7" edge="1">
+        <mxCell id="HCrz_zpZMKq17tcVIUEb-1" value="" style="endArrow=classic;html=1;fontSize=11;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="80m16F6b2pWgyMr5H69u-13" target="80m16F6b2pWgyMr5H69u-7" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="240" y="823" as="sourcePoint" />
             <mxPoint x="490" y="643" as="targetPoint" />

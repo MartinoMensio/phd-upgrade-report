@@ -124,7 +124,7 @@ Instead considering GloVe-average, we observe in some cases that the measure of 
 For the language models (BERT and USE models), we see a big improvement in the pairs of sentences that come as more similar.
 % The values provided are very similar. This per-se is not a problem if some geometric properties are valid (ordering, proportions)
 We observe that USE provides values less skewed to the higher end, distributing the similarity values more evenly. The numbers make more sense without any re-scaling technique, and therefore the heatmaps showed in this document come from this model.
-It is also the only model considered that is purposely trained on a semantic similarity task, while the other models are able to provide similarity measures just because of how they represent language.
+It is also the only model considered that is purposely trained on a semantic similarity task, while the other models can provide similarity measures just because of how they represent language.
 
 
 \todo{an example of two pairs where we can see some of the limitations?}
@@ -155,7 +155,7 @@ We have seen with the reproduction of the model from \citet{bountouridis2018expl
 
 % how
 With this idea, we retrieved some groups of articles that relate to the same event from Google Headlines, which aggregates and clusters together news articles from multiple sources.\footnote{\url{https://www.blog.google/products/news/new-google-news-ai-meets-human-intelligence/}}
-These documents are processed with the SpaCy NLP Python library\footnote{\url{https://spacy.io/}} in order to split the documents into sentences and have available different NLP functions (e.g., tokenisation, POS tagging).
+These documents are processed with the SpaCy NLP Python library\footnote{\url{https://spacy.io/}} to split the documents into sentences and have available different NLP functions (e.g., tokenisation, POS tagging).
 
 % 1. distance computation
 Each of the sentences is then passed through a language model which creates a sentence embedding, in this case using the Universal Sentence Encoder because it showed to distribute the similarity values more evenly and is specifically trained for sentence similarity.
@@ -181,7 +181,7 @@ As we can see in Figure~\ref{fig:dendrogram}, we can explore what is the distanc
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\linewidth]{figures/dendrogram.png}
-    \caption{A portion of the dendrogram that shows how different sentences are merged together in the clusters by increasing distance values.}
+    \caption{A portion of the dendrogram that shows how different sentences are merged in the clusters by increasing distance values.}
     \label{fig:dendrogram}
 \end{figure}
 \todo{redo figure with cosine distance, and higher to be more readable}
@@ -192,7 +192,7 @@ Using this type of inspection, we can decide specific threshold values more cons
 % 3. extract degree of uniqueness of words (from pairwise to clusterwise, with bag-of-words or difftool (order matters, duplicates))
 % second motivation: highlight the different words and their uniqueness
 With this method, we create sentence clusters that are very similar in their semantic content, but at the same time have linguistic changes.
-With the objective of facilitating an analysis of the differences, we experimented with different methods of highlighting the uniqueness of the words in a cluster.
+To facilitate an analysis of the differences, we experimented with different methods of highlighting the uniqueness of the words in a cluster.
 This can be seen in Figure~\ref{fig:words_uniqueness} where we score each of the words with a scale of uniqueness that is defined as:
 $$u_w = 1 - \frac{|\Set{s_i | s_i \in S \land w \in s_i}|}{|S|}$$
 where S is the set of sentences considered, $w$ is the word for which to compute the index. The expression compares the sentences of the current cluster where $w$ appears (numerator) with respect to the cluster size.
@@ -212,7 +212,7 @@ This gives a higher value of uniqueness to the word ``deceased'' that just appea
 This methodology can be used in our framework to help the preparation of the dataset in different steps.
 First of all, during the decision of creating article couples that have to be compared (using at the article-level the same clustering methodology). In this case, we will need to use a specific threshold that cuts out unrelated articles but at the same time keeps a considerable number of differences on the document level (not too similar because identical articles, that are a lot, are not useful).
 While for the first user study we can exploit hand-curated groups of articles, when doing a larger creation of the dataset we will need to rely on automated techniques.
-This methodology could also be used as support for the annotators, in order to see both which sentences are most similar, and the words that differ inside. This would make the annotation process faster and easier.
+This methodology could also be used as support for the annotators, to see both which sentences are most similar, and the words that differ inside. This would make the annotation process faster and easier.
 
 This experiment needs to be completed, to choose some parameters with better criteria. We want to identify good intervals for the thresholds and parameters (e.g. with euclidean distance around 0.6-1.0 sentences start to have linguistic variations but still very related to the same concepts).
 
@@ -229,7 +229,7 @@ We also started collecting, early this year, several types of data that will be 
 % why
 When looking for data, we are interested in different features.
 First of all, a wide set of articles is needed, dense in time and from a wide variety of news outlets. We need substantial overlap between articles and the more sources we can include, the better we can observe variations of the framing phenomena.
-Another feature that is very important, is to have a good pre-clustered set of articles to help, especially for the first Research Question, the curation of a dataset by knowing that the articles are well related. Then when we will have the document clustering working in action, this feature is not anymore required, but still can serve as a benchmark for that stage.
+Another very important feature is to have a good pre-clustered set of articles to help, especially for the first Research Question, the curation of a dataset by knowing that the articles are well related. Then when we will have the document clustering working in action, this feature is not anymore required, but still can serve as a benchmark for that stage.
 And another desirable feature would be to have articles that come sources with a different opinion, that would be beneficial to create examples especially for the user study, where we want to maximise the occurrence of framing techniques. 
 
 % how
@@ -241,7 +241,7 @@ We have captured from mid-march every day the published set of stories, and mana
 
 % - allsides: human-created with interesting framing differences
 Another data source that we actively retrieve is AllSides which provides a curated set of ``headlines''\footnote{\url{https://www.allsides.com/story/admin}} where three articles with a different political alignment are put together and compared in their difference.
-The curators provide a description of how the story gets framed by the considered sources, using natural language.
+The curators describe how the story gets framed by the considered sources, using natural language.
 This description usually contains the usage of terms or themes that get mentioned.
 At the end of June, we have available 4764 headlines, with 13979 articles linked.
 Differently from Google Headlines which has different versions for each country, this data is US-focused being curated in the US and therefore has a much more limited scope. Also, the discussion of bias and framing is mainly focused on political issues, while we want to focus also on other types of differences of opinion.

@@ -208,13 +208,27 @@ In this way, articles that cover the same event are brought together and are rea
 \end{figure}
 
 % how to build on top of the cross-article representation
-We need to develop a model that takes features both from the current article and from the linked pieces coming from other articles and performs a classification task to estimate if the current word is part of a framing signal and recognise which specific signal it is part of, inspired by similar approaches that work on single article features~\cite{da2019fine}.
-The difference of our approach will be that we plan to use the linked information as an additional feature, to allow the model to learn and exploit the differences between the different articles.
-Such extension could be obtained by simply adding as features spans of texts that satisfy certain properties (e.g., linked by a certain degree of similarity) or by using \emph{siamese architectures}~\cite{bromley1994signature} that have shown wide application in comparison scenarios.
-% https://www.inovex.de/blog/transfer-learning-siamese-networks/
-The model will output span annotations that will say which framing techniques have been used.
+% We need to develop a model that takes features both from the current article and from the linked pieces coming from other articles and performs a classification task to estimate if the current word is part of a framing signal and recognise which specific signal it is part of, inspired by similar approaches that work on single article features~\cite{da2019fine}.
+% The difference of our approach will be that we plan to use the linked information as an additional feature, to allow the model to learn and exploit the differences between the different articles.
+% Such extension could be obtained by simply adding as features spans of texts that satisfy certain properties (e.g., linked by a certain degree of similarity) or by using \emph{siamese architectures}~\cite{bromley1994signature} that have shown wide application in comparison scenarios.
+% % https://www.inovex.de/blog/transfer-learning-siamese-networks/
+% The model will output span annotations that will say which framing techniques have been used.
 
-This model has the role of, given a difference between articles, estimate whether this difference is meaningful in the framing perspective or not. There are differences that are not conveying any framing, and therefore should be discarded.
+What is available after this initial processing, is a set of differences between articles.
+But since not all the differences are related to framing, we need a model that, given as input a specific difference, estimates whether this difference is meaningful in the framing perspective or not.
+There are differences that are not conveying any framing, and therefore should be discarded.
+In Figure~\ref{fig:framing_model} we can see that from a pair of details that are different but belong to similar contexts (e.g., a word that has been swapped for one other, or a detail that is present in one article and not in the other), we need a model that learns to recognise which differences are framing the reported events differently.
+In order to do so, there may be multiple features, explicit (e.g., sentiment strength, proxies of emphasis, POS) or implicit (e.g., the representations coming from a Language Model) that the model can use to recognise when this difference is a framing one, and which type of framing signal it is.
+The structure of this model is inspired from similar ones that are used on articles in isolation to detect propaganda techniques~\cite{da2019fine}.
+The commonality is that we have an additional layer on top of the representation layer (BERT in the reference work) which is responsible to recognise when and which specific techniques are occurring.
+The difference is that we are working with a dual network which has a 
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/diagram-framing_differences_model_structure.pdf}
+    \caption{The general structure of the model that estimates the framing differences.}
+    \label{fig:framing_model}
+\end{figure}
 
 
 % hypothesis

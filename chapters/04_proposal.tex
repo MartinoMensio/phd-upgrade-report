@@ -74,9 +74,9 @@ What we want to investigate is whether we can ease their detection from readers 
 Therefore, the specific sub-question is \textbf{What is the contribution of comparing multiple articles to see framing signals?}
 
 % Hypothesis
-We hypothesise that having multiple articles would allow users to easier detect the framing signals that they are faced with, especially with some of them that are particularly subtle to reveal when just looking at a single article at a time.
+We hypothesise that having multiple articles would allow users to more easily detect the framing signals that they are faced with, especially when some of them are particularly subtle to reveal when just looking at a single article.
 % these signals will reveal far more than the single-article framing analysis.
-As we described in a position paper~\cite{mensio2020towards}, such signals vary from differences in the emphasis (e.g., different articles focus their headlines on a different detail, or present parts of the story with more weight) to the selection of details (e.g., some articles may decide to omit some parts of the story that is reported by others, or include unnecessary details to push for a certain narrative) or also to different term choices (e.g., being stronger in the language, or evoke specific feelings or related events).
+As we described in our position paper~\cite{mensio2020towards}, such signals vary, from differences in emphasis (e.g., different articles focus their headlines on a different detail, to presenting parts of the story with more weight), to the selection of details (e.g., some articles may decide to omit some parts of the story that is reported by others, or include unnecessary details to push for a certain narrative), or also to different term choices (e.g., being stronger in the language, or evoke specific feelings or related events).
 For this reason, we want to test how important it is to see multiple articles that treat the same event.
 By comparing them, the difference in their point of view would emerge through specific differences of the texts.
 
@@ -213,6 +213,8 @@ The difference of our approach will be that we plan to use the linked informatio
 Such extension could be obtained by simply adding as features spans of texts that satisfy certain properties (e.g., linked by a certain degree of similarity) or by using \emph{siamese architectures}~\cite{bromley1994signature} that have shown wide application in comparison scenarios.
 % https://www.inovex.de/blog/transfer-learning-siamese-networks/
 The model will output span annotations that will say which framing techniques have been used.
+
+This model has the role of, given a difference between articles, estimate whether this difference is meaningful in the framing perspective or not. There are differences that are not conveying any framing, and therefore should be discarded.
 
 
 % hypothesis

@@ -179,6 +179,9 @@ For example, if the technique \emph{selection of details} is used, one article w
 Or for the \emph{emphasis} technique, one article can have the role of having a \emph{stronger term} while the other a \emph{weaker term}. 
 % An example could be ``omission of opposing detail'' or ``biased term''. We need to come up with a set of labels that we can assign to the differences pointed out by the users, guided by their descriptions.
 
+This user study will provide, from the perspective of the readers, which differences are important in relation to the framing phenomenon.
+From seeing multiple differences in the articles, the participants will make a decision of which ones are providing a different connotation to the events reported, ignoring other modifications that are not meaningful for them.
+
 
 
 \subsection{Automated framing detection (RQ1.2)}
@@ -195,10 +198,6 @@ To implement a method that exploits the differences between multiple articles, w
 For this reason, we plan to rely on the approaches described in the Literature Review~\ref{sec:lit_relationships} where we analysed some methods that can find the similarities at different granularities, and expose the differences of the details provided.
 % Based on the initial experiments done to see the similarity between documents, we are implementing a processing pipeline that is able to retrieve, process and compare articles.
 The step of feature extraction will be based on a pipeline that will process the documents in several steps as shown in Figure~\ref{fig:pipeline}.
-The first step, \emph{retrieval}, keeps collecting articles from multiple sources and stores them with a unified schema that includes a set of useful fields: headline and body that are needed by linguistic analysis, the source and publication date which are needed for RQ2.
-Then the \emph{processing} stage will use NLP libraries with two main objectives: dividing the articles into sentences and compute the embedded semantic representation of both the articles and the sentences.
-The articles and sentences embeddings are then used in the last stage, \emph{linking}, which performs clustering at both article and sentence granularity. Furthermore, corroborated and omitted sentences are identified~\cite{bountouridis2018explaining} and this is added to the features.
-In this way, articles that cover the same event are brought together and are ready to be compared in their overlap and in their differences.
 
 \begin{figure}[!htb]
     \centering
@@ -206,6 +205,12 @@ In this way, articles that cover the same event are brought together and are rea
     \caption{The processing pipeline that retrieves, processes and links together different articles.}
     \label{fig:pipeline}
 \end{figure}
+
+The first step, \emph{retrieval}, keeps collecting articles from multiple sources and stores them with a unified schema that includes a set of useful fields: headline and body that are needed by linguistic analysis, the source and publication date which are needed for RQ2.
+Then the \emph{processing} stage will use NLP libraries with two main objectives: dividing the articles into sentences and compute the embedded semantic representation of both the articles and the sentences.
+The articles and sentences embeddings are then used in the last stage, \emph{linking}, which performs clustering at both article and sentence granularity. Furthermore, corroborated and omitted sentences are identified~\cite{bountouridis2018explaining} and this is added to the features.
+In this way, articles that cover the same event are brought together and are ready to be compared in their overlap and in their differences.
+
 
 % how to build on top of the cross-article representation
 % We need to develop a model that takes features both from the current article and from the linked pieces coming from other articles and performs a classification task to estimate if the current word is part of a framing signal and recognise which specific signal it is part of, inspired by similar approaches that work on single article features~\cite{da2019fine}.
@@ -215,13 +220,10 @@ In this way, articles that cover the same event are brought together and are rea
 % The model will output span annotations that will say which framing techniques have been used.
 
 What is available after this initial processing, is a set of differences between articles.
-But since not all the differences are related to framing, we need a model that, given as input a specific difference, estimates whether this difference is meaningful in the framing perspective or not.
+But since not all the differences are related to framing, we need a model that, given as input one specific difference, estimates whether this difference is \emph{meaningful} in the framing perspective or not.
 There are differences that are not conveying any framing, and therefore should be discarded.
-In Figure~\ref{fig:framing_model} we can see that from a pair of details that are different but belong to similar contexts (e.g., a word that has been swapped for one other, or a detail that is present in one article and not in the other), we need a model that learns to recognise which differences are framing the reported events differently.
-In order to do so, there may be multiple features, explicit (e.g., sentiment strength, proxies of emphasis, POS) or implicit (e.g., the representations coming from a Language Model) that the model can use to recognise when this difference is a framing one, and which type of framing signal it is.
-The structure of this model is inspired from similar ones that are used on articles in isolation to detect propaganda techniques~\cite{da2019fine}.
-The commonality is that we have an additional layer on top of the representation layer (BERT in the reference work) which is responsible to recognise when and which specific techniques are occurring.
-The difference is that we are working with a dual network which has a 
+In Figure~\ref{fig:framing_model} we can see that from a pair of details that are different but belong to similar contexts (e.g., a word that has been changed with one other, or a detail that is present in one article and not in the other), we need a model that learns to recognise which differences are framing the reported events differently.
+In order to do so, there may be multiple features, explicit (e.g., sentiment strength, proxies of emphasis, POS) or implicit (e.g., the representations coming from a Language Model) that the model can use to recognise when this difference is related to framing, and which type of signal it represents.
 
 \begin{figure}[!htb]
     \centering
@@ -230,24 +232,35 @@ The difference is that we are working with a dual network which has a
     \label{fig:framing_model}
 \end{figure}
 
+The general structure of this model is inspired from a similar one that is used on articles in isolation to detect propaganda techniques~\cite{da2019fine}.
+The commonality is that, on top of the representation layer (BERT in the compared work), we have an additional layer which is responsible to recognise when and which specific techniques are occurring.
+The difference is that we will work with a dual network with a siamese structure~\cite{bromley1994signature}.
+Siamese networks have shown wide application in comparison scenarios, and are made of two identical parts (here represented by the encoding of the details changed and their contexts) that are merged into a final comparison layer.
+This final layer will try to learn when the differences provided are conveying a different framing perspective, and assign one of the many labels identified in the user study.
+We need to experiment with this type of architecture and see whether it can achieve the task assigned.
+
+As a simple example, the model should learn that when the two details are using a different strength in the language, this needs to be categorised as a signal of emphasis which is probably conveying a different framing. Other signals may require to take into consideration also the context of the differences, for example when an adjective is giving an additional connotation to an entity in one article, the type of entity may guide the model to understand how to interpret the situation.
+% Such model should learn, for example, to recognise situations where a term with 
+
 
 % hypothesis
-We hypothesise that having the availability of multiple articles would help an automated framing detection model to find more signals of framing.
+We hypothesise that using the differences between different articles would help an automated model to find more signals of framing, with respect to models that work just by considering single articles in isolation.
 As the first sub-question analyses the importance for human readers, this analysis wants to see if the same applies to automated detection.
 We also hypothesise that some types of framing signals are only detectable by using the external knowledge coming from other articles, which is not used by the existing methods.
 
 % evaluation
 To validate or refute our hypothesis, the model will be evaluated by looking at how accurately the spans containing framing differences are identified.
-As a comparison, we plan to use models that instead just focus on one single article at a time to extract the features.
-For example, the complete model will be compared with another version (single-article) that discards the features coming from the comparison.
-Or also other models found in the literature that focus on specific types of framing signals (e.g., emphasis detection, loaded terms) will be tested to see if our model (complete or incomplete) is comparable and overtakes them.
+% As a comparison, we plan to use models that instead just focus on one single article at a time to extract the features.
+For example, the complete model will be compared with another version of the model that will take as inputs raw articles without using the difference extraction.
+And we will also use models found in the literature that focus on specific types of framing signals (e.g., emphasis detection, loaded terms) to see how the detection results compare with our difference-based analysis.
+%will be tested to see if our model (complete or incomplete) is comparable and overtakes them.
 % \todo{how to compare to single-article framing datasets? https://ecommons.cornell.edu/handle/1813/39216 from baumer2015testing}
 % For some of the framing signals that focus on single articles, there are baselines that are usually only available on specific topics.
 
 % We cannot compare with mostly of them because of the different topics and because the problem
 
 % dataset building
-To evaluate the model proposed, we will need to expand the dataset of labelled instances, where manual annotators will be given the refined task description and will annotate on document pairs the framing differences according to the schema refined with the first user study.
+To evaluate the model proposed, we will need to expand the dataset annotated in the user study. Manual annotators will be given the refined task description and will annotate on document pairs the framing differences according to the schema refined with the first user study.
 % (help of pipeline to provide similar articles and candidate words/sentences based on uniqueness)
 The pairs of documents will be extracted with the help of the pipeline which will provide articles that are very similar in the content but at the same time have enough differences to be annotated. % (criticality of the threshold)
 The annotations will contain the type of signal and also the role of the two documents (e.g. in an omission signal, one article is \textit{including} and the other is \textit{excluding}, or instead in a term strength variation, one article is \textit{stronger} and the other is \textit{weaker}).
@@ -256,8 +269,8 @@ For example, if we have an annotation that is highlighting a term that is used w
 This dataset will be made available as a resource paper to promote the research on this task.
 
 % outputs
-Once this method has been analysed and validated, the detection model will be made available as a tool to help users seeing the framing differences between multiple articles.
-This tool will provide highlights on the current article, by evidencing where it is showing the usage of framing techniques. Users will be able to see how articles from other sources have presented the same story with different techniques.
+Once this method has been analysed and validated, the detection model will be made available as a tool to help users to see the framing differences between multiple articles.
+This tool will provide highlights on the current article, by evidencing where it is showing the usage of framing techniques. Users will be able to see how articles from other sources have presented the same story framed in different ways.
 % We plan to put it in an online setting where people will continue to provide training data by correcting or validating the outputs of the tool on new articles that have not yet been analysed.
 % This tool will also be the founding block for the next research questions.
 
@@ -318,7 +331,7 @@ To test this hypothesis, we need two sets of information: the features for each 
 In the first group, we can use many features:
 
 \begin{itemize}
-    \item \textbf{Political alignment}: different ratings exist describing the political leaning of the sources. AllSides, besides comparing articles from different news sources, also provides the bias rating for more than 600 media outlets\footnote{\url{https://www.allsides.com/media-bias/media-bias-ratings}}. Also, Media Bias/Fact Check\footnote{\url{https://mediabiasfactcheck.com/}} provides the political leaning for more than 3200 news sources. This is probably one of the most important features when analysing the framing about political issues, as their leaning would show slighter support or distancing from public actors.
+    \item \textbf{Political alignment}: different ratings exist describing the political leaning of the sources. AllSides, besides comparing articles from different news sources, also provides the bias rating for more than 600 media outlets.\footnote{\url{https://www.allsides.com/media-bias/media-bias-ratings}} Also, Media Bias/Fact Check\footnote{\url{https://mediabiasfactcheck.com/}} provides the political leaning for more than 3200 news sources. This is probably one of the most important features when analysing the framing about political issues, as their leaning would show slighter support or distancing from public actors.
     \item \textbf{News media group/company}: this feature groups together media sources that are part of the same economical group, and therefore would have similar economical reasons in presenting the news about certain topics.\footnote{\url{https://en.wikipedia.org/wiki/Category:Newspaper_companies_by_country}} %https://en.wikipedia.org/wiki/Media_conglomerate
     \item \textbf{Geographical information}: knowing the country and region of a news outlet can provide an analysis of framing across countries to analyse how the same issue is framed differently depending on the position.
     \item \textbf{Factuality and credibility ratings}: there exist multiple ratings that say how factual is the reporting, or how transparent the organisation is in different aspects (Media Bias/Fact Check, NewsGuard\footnote{\url{https://www.newsguardtech.com/}}). All these ratings can instead drive the analysis in seeing how the reputation of a news outlet makes emerge different usage of framing.

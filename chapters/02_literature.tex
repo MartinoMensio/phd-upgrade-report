@@ -20,7 +20,7 @@ This multi-article knowledge requires introducing a second family of methods tha
 With this second family of methods, we can see that for a certain event there are several articles which overlap in part, and some of them have unique pieces or specific words that differ from the others. But this analysis needs an interpretation framework that can describe the framing role of the choices done by each of the sources.
 
 Exploring these two different fields of research, we can see that there is an intersection area that is not much explored, that is the analysis of framing differences. Given the differences identified by this second group of methods, we need to expand the framing analysis to work with multiple documents and understand why modifications in the text happen.
-Some works analyse this specific field, but using manual handcrafted analysis, that for example show how events are described from sources belonging to different political leanings. We want to target this specific area with automated analysis.
+Some works analyse this specific field, but using manual handcrafted analysis, that for example shows how events are described from sources belonging to different political leanings. We want to target this specific area with automated analysis.
 %under the perspective of social science (manual analysis, not automated), and the automation of this type of analysis is an existing gap.
 
 % structure
@@ -620,7 +620,7 @@ There are facets of framing that have not been tackled by automated approaches b
 % acknowledge existing works on framing differences, but manual and not annotated
 % Manual framing difference approaches
 There exist some efforts in this joint area, that try to provide multiple points of view of the same events by considering sources that come from different political leanings.
-For example, AllSides\footnote{\url{https://www.allsides.com/story/admin}} is a platform that collects articles from different news sources providing a hand-curated set of stories where articles with different political bias are put together, with also a brief textual introduction of the framing differences.
+For example, AllSides\footnote{\url{https://www.allsides.com/story/admin}} is a platform that collects articles from different news sources providing a hand-curated set of stories where articles with opposing political bias are put together, with also a brief textual introduction of the framing differences.
 
 \begin{figure}[!htb]
     \centering
@@ -634,15 +634,15 @@ In Figure~\ref{fig:allsides} we can see an example that is displaying how a sour
 Sources from the left use the term ``threat'' while sources from the right use ``warning'', which can be seen in the specific words used in the headlines.
 This \emph{selection of terms} gives a specific framing which can be seen as the emphasis from the left on the strength of the tweet versus an attenuation from the right, plus the centre instead is keeping in an intermediate position.
 But if we look at the articles, this term is not the only difference. The sources from the left give more space to the narrative about Juneteenth\footnote{\url{https://en.wikipedia.org/wiki/Juneteenth}} and the past history of the city, which emerges also in the image of the article from ABC News.
-We need to have a more precise definition of what constitutes framing and how it manifests in the articles.
+% We need to have a more precise definition of what constitutes framing and how it manifests in the articles.
 % - how could we detect
 % - bias vs framing?
 % \todo{say that framing/propaganda detection is not able to pick up these differences}
 
 % limitations:
 % Only US, handmade (lift RQ1.2)
-Considering AllSides, its main limitations come from the analysis being handmade and therefore they publish just a few stories per week and only focusing on the US.
-With this work, we want to provide a similar analysis but powered by an automated method, which will need to rely on existing works of framing analysis and document similarities.
+We would like to provide a similar analysis, but with an automated analysis. The main limitations of AllSides come from the analysis being handmade and therefore they publish just a few stories per week and only focusing on the US.
+With this work, we want to create an automated method, which will need to rely on existing works of framing analysis and document similarities.
 
 % \todo{limits of automated framing / propaganda analysis: https://propaganda.qcri.org/}
 
@@ -655,8 +655,8 @@ We argue that by the integration of these two fields, a deeper analysis of frami
 % Framing analysis, being limited to single-article analysis, cannot analyse specific framing manifestations that have been described in theoretical works: for example selecting or omitting details. This is the area that we want to tackle.
 
 % just left-right political leaning is considered (lift RQ2.1)
-With respect to AllSides or other tools (Blue Feed, Red Feed\footnote{\url{https://graphics.wsj.com/blue-feed-red-feed/}}) that just focus on the left/right political bias (mainly from the US with liberal/conservative), we want to conduct an analysis that compares several characteristics of the news outlets, such as the newsgroup they belong to, or how they are rated by multiple news rating organisations (factuality, bias), or their ideology in general.
-We want to have an idea of the correlation between certain features of the sources and the type of framing that they use. This goes beyond the left/right spectrum because not all the news is focused on the political topic.
+With respect to AllSides or other tools (Blue Feed, Red Feed\footnote{\url{https://graphics.wsj.com/blue-feed-red-feed/}}) that just focus on the left/right political bias (mainly from the US with liberal vs conservative), we want to conduct an analysis that compares several characteristics of the news outlets, such as the newsgroup they belong to, or how they are rated by multiple news rating organisations (factuality, bias), or their ideology in general.
+We want to have an idea of the correlation between certain features of the sources and the type of framing that they use. This goes beyond the left/right spectrum because not all the news is focused on political issues.
 
 
 % lift RQ2.2
